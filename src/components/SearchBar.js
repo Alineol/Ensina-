@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   getFoodsByIngredientApi,
   getFoodsByNameApi,
   getFoodsByFirstLetterApi } from '../services/fetchApiSearchBar';
 
 export default function SearchBar() {
+  // const [searchInput, setSearchInput] = useState('');
+
+  const [filterByIngredient, setFilterByIngredient] = useState('');
+
+  const [filters, setFilters] = useState({
+    filters: {
+      searchByIngredient: '',
+      searchByName: '',
+      searchByFirstLetter: '',
+    },
+  });
+
+  useEffect(() => {
+    const setSearchByIngredient = async () => {
+      const searchIngredient = await getFoodsByIngredientApi();
+      setFilterByIngredient(searchIngredient);
+    };
+
+    setSearchByIngredient();
+  }, []);
+
   return (
     <div>
       <input
