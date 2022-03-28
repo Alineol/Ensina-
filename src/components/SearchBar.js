@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  getFoodsByIngredientApi,
+  getFoodsByNameApi,
+  getFoodsByFirstLetterApi } from '../services/fetchApiSearchBar';
 
 export default function SearchBar() {
   return (
