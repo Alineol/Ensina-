@@ -5,9 +5,9 @@ import {
   getFoodsByFirstLetterApi } from '../services/fetchApiSearchBar';
 
 export default function SearchBar() {
-  // const [searchInput, setSearchInput] = useState('');
-
   const [filterByIngredient, setFilterByIngredient] = useState('');
+  const [filterByName, setFilterByName] = useState('');
+  const [filterByFirstLetter, setFilterByFirstLetter] = useState('');
 
   const [filters, setFilters] = useState({
     filters: {
@@ -22,8 +22,18 @@ export default function SearchBar() {
       const searchIngredient = await getFoodsByIngredientApi();
       setFilterByIngredient(searchIngredient);
     };
+    const setSearchByName = async () => {
+      const searchName = await getFoodsByNameApi();
+      setFilterByName(searchName);
+    };
+    const setSearchByLetter = async () => {
+      const searchFirstLetter = await getFoodsByFirstLetterApi();
+      setFilterByFirstLetter(searchFirstLetter);
+    };
 
     setSearchByIngredient();
+    setSearchByName();
+    setSearchByLetter();
   }, []);
 
   return (
