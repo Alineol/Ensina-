@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import context from './context';
 
 function Provider({ children }) {
-  
-
-  const contextValue = { 
-     };
+  const contextValue = {
+  };
 
   return (
     <context.Provider value={ contextValue }>
@@ -14,5 +12,9 @@ function Provider({ children }) {
     </context.Provider>
   );
 }
+
+Provider.propTypes = {
+  children: PropTypes.arrayOf().isRequired,
+};
 
 export default Provider;
