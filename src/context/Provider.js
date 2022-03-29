@@ -6,10 +6,14 @@ function Provider({ children }) {
   // const [mealsToken, setMealsToken] = useState(1);
   // const [cocktailsToken, setCocktailsToken] = useState(1);
   const [user, setUser] = useState({ email: '' });
+  const [renderFoodRecipes, setRenderFoodRecipes] = useState(true);
   // const [doneRecipes, setDoceRecipes] = useState([]);
   // const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const contextValue = {
-    user, setUser,
+    user,
+    setUser,
+    renderFoodRecipes,
+    setRenderFoodRecipes,
   };
 
   return (

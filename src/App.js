@@ -5,13 +5,15 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
+import RecipesScreen from './pages/FoodRecipes';
 
 function App() {
   return (
     <BrowserRouter>
       <Provider>
         <Switch>
-          <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+          <Route exact path="/" render={ () => <Login /> } />
+          <Route exact path="/foods" render={ () => <RecipesScreen /> } />
         </Switch>
         {/* <div className="meals">
           <span className="logo">TRYBE</span>
