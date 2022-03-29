@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 function DoneRecipes() {
   return (
-    <Header pageTitle="Done Recipes" />
+    <Header pageTitle="Done Recipes" showSearchButton={ false } />
   );
 }
 

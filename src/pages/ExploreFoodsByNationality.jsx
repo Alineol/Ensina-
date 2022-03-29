@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 function ExploreFoodsByNationality() {
   return (
-    <Header pageTitle="Explore Foods By Nationality" />
+    <Header pageTitle="Explore Nationalities" showSearchButton />
   );
 }
 
