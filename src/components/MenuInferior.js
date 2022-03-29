@@ -6,7 +6,10 @@ import mealIcon from '../images/mealIcon.svg';
 
 function MenuInferior() {
   return (
-    <div data-testid="footer" className="footer">
+    <div
+      data-testid="footer"
+      style={ { bottom: '0', position: 'fixed' } }
+    >
       <Link to="/drinks">
         <img data-testid="drinks-bottom-btn" src={ drinkIcon } alt="Drink" />
       </Link>

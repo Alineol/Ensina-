@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
+// import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
@@ -19,6 +19,7 @@ import ExploreFoodsByNationality from './pages/ExploreFoodsByNationality';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import Foods from './pages/Foods';
 
 function App() {
   return (
@@ -58,12 +59,12 @@ function App() {
             path="/explore/foods/nationalities"
             component={ ExploreFoodsByNationality }
           />
-          <Route exact path="profile" component={ Profile } />
+          <Route exact path="/profile" component={ Profile } />
           <Route exact path="/done-recipes" component={ DoneRecipes } />
           <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
 
         </Switch>
-        <div className="meals">
+        {/* <div className="meals">
           <span className="logo">TRYBE</span>
           <object
             className="rocksGlass"
@@ -72,7 +73,7 @@ function App() {
           >
             Glass
           </object>
-        </div>
+        </div> */}
       </Provider>
     </BrowserRouter>
   );

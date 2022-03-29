@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
 function Header() {
-  const [isSearchBarVisible, setSearchBar] = useState(false);
-  
+  // const [isSearchBarVisible, setSearchBar] = useState(false);
+
   return (
     <header>
       <Link to="/foods">
