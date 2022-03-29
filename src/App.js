@@ -5,6 +5,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
+import MenuInferior from './components/MenuInferior';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Switch>
           <Route exact path="/" render={ (props) => <Login { ...props } /> } />
         </Switch>
+        <MenuInferior />
+
         {/* <div className="meals">
           <span className="logo">TRYBE</span>
           <object
