@@ -3,10 +3,10 @@ import Header from '../components/Header';
 
 function Profile() {
   return (
-    <>
-      <Header />
-      <h1>Foods page</h1>
-    </>
+    <div className="profile-page">
+      <Header pageTitle="Profile" />
+      <h2>pagina de perfil uhul</h2>
+    </div>
   );
 }
 

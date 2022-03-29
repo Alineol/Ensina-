@@ -5,6 +5,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
+import Foods from './pages/Foods';
 import FoodDetails from './pages/FoodDetails';
 import FoodInProgress from './pages/FoodInProgress';
 import Drinks from './pages/Drinks';
@@ -58,9 +59,9 @@ function App() {
             path="/explore/foods/nationalities"
             component={ ExploreFoodsByNationality }
           />
-          <Route exact path="profile" component={ Profile } />
-          <Route exact path="/done-recipes" component={ DoneRecipes } />
-          <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
+          <Route path="profile" component={ Profile } />
+          <Route path="/done-recipes" component={ DoneRecipes } />
+          <Route path="/favorite-recipes" component={ FavoriteRecipes } />
 
         </Switch>
         {/* <div className="meals">
