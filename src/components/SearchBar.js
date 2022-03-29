@@ -4,7 +4,9 @@ import {
   getFoodsByIngredientApi,
   getDrinksByIngredientApi,
   getFoodsByNameApi,
-  getFoodsByFirstLetterApi } from '../services/fetchApiSearchBar';
+  getDrinksByNameApi,
+  getFoodsByFirstLetterApi,
+  getDrinksByFirstLetterApi } from '../services/fetchApiSearchBar';
 
 export default function SearchBar() {
   const { recipesFiltered, setRecipesFiltered } = useContext(context);
