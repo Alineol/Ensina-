@@ -1,23 +1,32 @@
-const getFoodsByIngredientApi = async () => {
-  const requestByIngredient = await fetch('https://www.themealdb.com/api/json/v1/1/filter.php?i={ingrediente}');
+const callApi = async (api, filter) => {
+  const requestByIngredient = await fetch(`${api}${filter}`);
   const responseJson = await requestByIngredient.json();
   return responseJson;
 };
 
-const getFoodsByNameApi = async () => {
-  const requestByName = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s={nome}');
-  const responseJson = await requestByName.json();
-  return responseJson;
-};
+const getFoodsByIngredientApi = async (ingredient) => callApi(
+  'https://www.themealdb.com/api/json/v1/1/filter.php?i=',
+  ingredient,
+);
 
-const getFoodsByFirstLetterApi = async () => {
-  const requestByFirstLetter = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?f={primeira-letra}');
-  const responseJson = await requestByFirstLetter.json();
-  return responseJson;
-};
+const getDrinksByIngredientApi = async (ingredient) => callApi(
+  'www.thecocktaildb.com/api/json/v1/1/search.php?s=',
+  ingredient,
+);
+
+const getFoodsByNameApi = async (name) => callApi(
+  'https://www.themealdb.com/api/json/v1/1/search.php?s=',
+  name,
+);
+
+const getFoodsByFirstLetterApi = async (firstLetter) => callApi(
+  'https://www.themealdb.com/api/json/v1/1/search.php?f=',
+  firstLetter,
+);
 
 const responsesApi = {
   getFoodsByIngredientApi,
+  getDrinksByIngredientApi,
   getFoodsByNameApi,
   getFoodsByFirstLetterApi,
 };
