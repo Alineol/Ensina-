@@ -50,9 +50,15 @@ export default function SearchBar() {
 
   const handleChange = ({ target: { name, value } }) => setFilter(name, value);
 
-  const validateFields = (searchInputText) => {
+  const validateFields = (searchInputText,
+    ingredientFilterType,
+    firstLetterFilterType,
+    nameFilterType) => {
     // Validar se os filtros informados são válidos
     if (searchInputText !== undefined) {
+      return true;
+    }
+    if (ingredientFilterType || nameFilterType || firstLetterFilterType) {
       return true;
     }
     return false;
