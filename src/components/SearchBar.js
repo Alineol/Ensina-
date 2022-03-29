@@ -67,7 +67,7 @@ export default function SearchBar() {
   const FOOD = 'food';
   const DRINK = 'drink';
   const mergeFoodsAndDrinksRecipes = (foods, drinks) => {
-    let mergedResults;
+    const mergedResults = [];
     mergedResults.push(foods.map((food) => ({
       id: food.idDrink,
       description: food.strMeal,
