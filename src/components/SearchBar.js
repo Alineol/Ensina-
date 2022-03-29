@@ -6,9 +6,10 @@ import {
   getFoodsByFirstLetterApi } from '../services/fetchApiSearchBar';
 
 export default function SearchBar() {
-  const [filterByIngredient, setFilterByIngredient] = useState('');
-  const [filterByName, setFilterByName] = useState('');
-  const [filterByFirstLetter, setFilterByFirstLetter] = useState('');
+  const [filterByIngredient, setFilterByIngredient] = useState([]);
+  const [filterByName, setFilterByName] = useState([]);
+  const [filterByFirstLetter, setFilterByFirstLetter] = useState([]);
+  const [recipesFiltered, setRecipesFiltered] = useState([]);
 
   const [filters, setFilters] = useState({
     filters: {
