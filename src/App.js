@@ -5,15 +5,16 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
-import RecipesScreen from './pages/FoodRecipes';
+import RecipesScreen from './pages/RecipesScreen';
 
 function App() {
   return (
     <BrowserRouter>
       <Provider>
         <Switch>
-          <Route exact path="/" render={ () => <Login /> } />
-          <Route exact path="/foods" render={ () => <RecipesScreen /> } />
+          <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+          <Route path="/foods" render={ (props) => <RecipesScreen { ...props } /> } />
+          <Route path="/drinks" render={ (props) => <RecipesScreen { ...props } /> } />
         </Switch>
         {/* <div className="meals">
           <span className="logo">TRYBE</span>
