@@ -11,31 +11,30 @@ import {
 export default function SearchBar() {
   const { recipesFiltered, setRecipesFiltered } = useContext(context);
 
+  const [inputText, setInputText] = useState({
+    searchInputText: '',
+  });
+
   const [filters, setFilters] = useState({
-    filters: {
-      searchInputText: '',
-      ingredientFilterType: [],
-      nameFilterType: [],
-      firstLetterFilterType: [],
-    },
+    ingredientFilterType: [],
+    nameFilterType: [],
+    firstLetterFilterType: [],
   });
 
   const setFilter = (filter, value) => {
     setFilters((prevFilter) => ({
       ...prevFilter,
-      filters: {
-        [filter]: value,
-      },
+      [filter]: value,
     }));
   };
 
   const handleChange = ({ target: { name, value } }) => setFilter(name, value);
+  const handleInputChange = ({ target: { value } }) => setInputText(value);
 
   const validateFields = (searchInputText,
     ingredientFilterType,
     firstLetterFilterType,
     nameFilterType) => {
-    // Validar se os filtros informados são válidos
     if (searchInputText === undefined || searchInputText === '') {
       global.alert('Informe pelo menos uma letra!');
       return false;
@@ -116,14 +115,14 @@ export default function SearchBar() {
         data-testid="search-input"
         type="text"
         name="search-input"
-        value={ searchInputText }
-        onChange={ handleChange }
+        value={ inputText.searchInputText }
+        onChange={ handleInputChange }
       />
       <input
         data-testid="ingredient-search-radio"
         type="radio"
         name="ingredient-search"
-        value={ ingredientFilterType }
+        value={ filters.ingredientFilterType }
         onChange={ handleChange }
       />
       Ingredient
@@ -131,7 +130,7 @@ export default function SearchBar() {
         data-testid="name-search-radio"
         type="radio"
         name="name-search"
-        value={ nameFilterType }
+        value={ filters.nameFilterType }
         onChange={ handleChange }
       />
       Name
@@ -139,7 +138,7 @@ export default function SearchBar() {
         data-testid="first-letter-search-radio"
         type="radio"
         name="first-letter-search"
-        value={ firstLetterFilterType }
+        value={ filters.firstLetterFilterType }
         onChange={ handleChange }
       />
       First Letter
