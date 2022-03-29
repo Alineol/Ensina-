@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import context from './context';
 
@@ -8,8 +8,9 @@ function Provider({ children }) {
   const [user, setUser] = useState({ email: '' });
   // const [doneRecipes, setDoceRecipes] = useState([]);
   // const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [recipesFiltered, setRecipesFiltered] = useState([]);
   const contextValue = {
-    user, setUser,
+    user, setUser, recipesFiltered, setRecipesFiltered,
   };
 
   return (
