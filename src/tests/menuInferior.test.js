@@ -1,12 +1,11 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
-import renderWithRouter from './rederWithRouter';
+import { render, screen } from '@testing-library/react';
 import MenuInferior from '../components/MenuInferior';
 
 describe('Verifica validações na tela de Menu Inferior', () => {
   it('19- Tem data-testids footer/drinks-bottom-btn/explore-bottom-btn e food-bottom-btn',
     () => {
-      renderWithRouter(<MenuInferior />);
+      render(<MenuInferior />);
       const dreinksBottom = screen.getByTestId('drinks-bottom-btn');
       const exploreBottom = screen.getByTestId('explore-bottom-btn');
       const foodBottom = screen.getByTestId('food-bottom-btn');
