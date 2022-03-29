@@ -10,7 +10,7 @@ export const getFoodsByIngredientApi = async (ingredient) => callApi(
 );
 
 export const getDrinksByIngredientApi = async (ingredient) => callApi(
-  'www.thecocktaildb.com/api/json/v1/1/search.php?s=',
+  'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=',
   ingredient,
 );
 
@@ -19,7 +19,17 @@ export const getFoodsByNameApi = async (name) => callApi(
   name,
 );
 
+export const getDrinksByNameApi = async (name) => callApi(
+  'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
+  name,
+);
+
 export const getFoodsByFirstLetterApi = async (firstLetter) => callApi(
   'https://www.themealdb.com/api/json/v1/1/search.php?f=',
+  firstLetter,
+);
+
+export const getDrinksByFirstLetterApi = async (firstLetter) => callApi(
+  'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=',
   firstLetter,
 );
