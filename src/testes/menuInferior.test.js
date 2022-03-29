@@ -141,6 +141,7 @@ describe('Verifica validações na tela de Menu Inferior', () => {
       fireEvent.click(explore);
       expect(history.location.pathname).toBe('/explore');
     });
+
   it(' Redirezar o usuário para lista de comidas ao clicar no ícone de Food',
     () => {
       // teste 24
