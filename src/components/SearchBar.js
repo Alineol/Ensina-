@@ -34,13 +34,18 @@ export default function SearchBar() {
     firstLetterFilterType,
     nameFilterType) => {
     // Validar se os filtros informados são válidos
-    if (searchInputText !== undefined) {
-      return true;
+    if (searchInputText === undefined || searchInputText === '') {
+      global.alert('Informe pelo menos uma letra!');
+      return false;
     }
     if (ingredientFilterType || nameFilterType || firstLetterFilterType) {
       return true;
     }
-    return false;
+    if (firstLetterFilterType && searchInputText.length > 1) {
+      global.alert('Your search must have only 1 (one) character');
+      return false;
+    }
+    return true;
   };
 
   const FOOD = 'food';
@@ -88,7 +93,8 @@ export default function SearchBar() {
       nameFilterType,
       firstLetterFilterType } = filters;
 
-    if (validateFields(searchInputText, ingredientFilterType)) {
+    if (validateFields(searchInputText, ingredientFilterType,
+      nameFilterType, firstLetterFilterType)) {
       if (ingredientFilterType) {
         setRecipesFiltered(getRecipesByIngredient(searchInputText));
       }
