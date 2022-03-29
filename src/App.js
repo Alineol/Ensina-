@@ -62,7 +62,6 @@ function App() {
           <Route path="/profile" component={ Profile } />
           <Route path="/done-recipes" component={ DoneRecipes } />
           <Route path="/favorite-recipes" component={ FavoriteRecipes } />
-
         </Switch>
         {/* <div className="meals">
           <span className="logo">TRYBE</span>
