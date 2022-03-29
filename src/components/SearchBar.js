@@ -11,14 +11,11 @@ import {
 export default function SearchBar() {
   const { recipesFiltered, setRecipesFiltered } = useContext(context);
 
-  const [inputText, setInputText] = useState({
-    searchInputText: '',
-  });
-
   const [filters, setFilters] = useState({
-    ingredientFilterType: [],
-    nameFilterType: [],
-    firstLetterFilterType: [],
+    searchInputText: '',
+    ingredientFilterType: false,
+    nameFilterType: false,
+    firstLetterFilterType: false,
   });
 
   const setFilter = (filter, value) => {
@@ -28,8 +25,11 @@ export default function SearchBar() {
     }));
   };
 
-  const handleChange = ({ target: { name, value } }) => setFilter(name, value);
-  const handleInputChange = ({ target: { value } }) => setInputText(value);
+  const handleInputTextChange = ({ target }) => {
+    const { name, value } = target;
+    setFilter(name, value);
+  };
+  const handleRadioChange = ({ target: { name, checked } }) => setFilter(name, checked);
 
   const validateFields = (searchInputText,
     ingredientFilterType,
@@ -93,7 +93,6 @@ export default function SearchBar() {
       ingredientFilterType,
       nameFilterType,
       firstLetterFilterType } = filters;
-
     if (validateFields(searchInputText, ingredientFilterType,
       nameFilterType, firstLetterFilterType)) {
       if (ingredientFilterType) {
@@ -114,32 +113,32 @@ export default function SearchBar() {
       <input
         data-testid="search-input"
         type="text"
-        name="search-input"
-        value={ inputText.searchInputText }
-        onChange={ handleInputChange }
+        name="searchInputText"
+        value={ filters.searchInputText }
+        onChange={ handleInputTextChange }
       />
       <input
         data-testid="ingredient-search-radio"
         type="radio"
-        name="ingredient-search"
-        value={ filters.ingredientFilterType }
-        onChange={ handleChange }
+        name="ingredientFilterType"
+        checked={ filters.ingredientFilterType }
+        onChange={ handleRadioChange }
       />
       Ingredient
       <input
         data-testid="name-search-radio"
         type="radio"
-        name="name-search"
-        value={ filters.nameFilterType }
-        onChange={ handleChange }
+        name="nameFilterType"
+        checked={ filters.nameFilterType }
+        onChange={ handleRadioChange }
       />
       Name
       <input
         data-testid="first-letter-search-radio"
         type="radio"
-        name="first-letter-search"
-        value={ filters.firstLetterFilterType }
-        onChange={ handleChange }
+        name="firstLetterFilterType"
+        checked={ filters.firstLetterFilterType }
+        onChange={ handleRadioChange }
       />
       First Letter
       <button
