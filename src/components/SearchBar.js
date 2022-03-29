@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
+import context from '../context/context';
 import {
   getFoodsByIngredientApi,
   getDrinksByIngredientApi,
@@ -6,10 +7,7 @@ import {
   getFoodsByFirstLetterApi } from '../services/fetchApiSearchBar';
 
 export default function SearchBar() {
-  const [filterByIngredient, setFilterByIngredient] = useState([]);
-  const [filterByName, setFilterByName] = useState([]);
-  const [filterByFirstLetter, setFilterByFirstLetter] = useState([]);
-  const [recipesFiltered, setRecipesFiltered] = useState([]);
+  const { recipesFiltered, setRecipesFiltered } = useContext(context);
 
   const [filters, setFilters] = useState({
     filters: {
@@ -19,25 +17,6 @@ export default function SearchBar() {
       firstLetterFilterType: [],
     },
   });
-
-  useEffect(() => {
-    const setSearchByIngredient = async () => {
-      const searchIngredient = await getFoodsByIngredientApi();
-      setFilterByIngredient(searchIngredient);
-    };
-    const setSearchByName = async () => {
-      const searchName = await getFoodsByNameApi();
-      setFilterByName(searchName);
-    };
-    const setSearchByLetter = async () => {
-      const searchFirstLetter = await getFoodsByFirstLetterApi();
-      setFilterByFirstLetter(searchFirstLetter);
-    };
-
-    setSearchByIngredient();
-    setSearchByName();
-    setSearchByLetter();
-  }, []);
 
   const setFilter = (filter, value) => {
     setFilters((prevFilter) => ({
@@ -120,6 +99,7 @@ export default function SearchBar() {
         setRecipesFiltered(getRecipesByFirstLetter(searchInputText));
       }
     }
+    return recipesFiltered;
   };
 
   return (

@@ -13,16 +13,6 @@ function App() {
         <Switch>
           <Route exact path="/" render={ (props) => <Login { ...props } /> } />
         </Switch>
-        {/* <div className="meals">
-          <span className="logo">TRYBE</span>
-          <object
-            className="rocksGlass"
-            type="image/svg+xml"
-            data={ rockGlass }
-          >
-            Glass
-          </object>
-        </div> */}
       </Provider>
     </BrowserRouter>
   );
