@@ -13,9 +13,10 @@ export default function SearchBar() {
 
   const [filters, setFilters] = useState({
     filters: {
-      searchByIngredient: '',
-      searchByName: '',
-      searchByFirstLetter: '',
+      searchInputText: '',
+      ingredientFilterType: [],
+      nameFilterType: [],
+      firstLetterFilterType: [],
     },
   });
 
@@ -37,6 +38,17 @@ export default function SearchBar() {
     setSearchByName();
     setSearchByLetter();
   }, []);
+
+  const setFilter = (filter, value) => {
+    setFilters((prevFilter) => ({
+      ...prevFilter,
+      filters: {
+        [filter]: value,
+      },
+    }));
+  };
+
+  const handleChange = ({ target: { name, value } }) => setFilter(name, value);
 
   const validateFields = (searchInputText) => {
     // Validar se os filtros informados são válidos
@@ -91,7 +103,7 @@ export default function SearchBar() {
       nameFilterType,
       firstLetterFilterType } = filters;
 
-    if (validateFields(searchInputText)) {
+    if (validateFields(searchInputText, ingredientFilterType)) {
       if (ingredientFilterType) {
         setRecipesFiltered(getRecipesByIngredient(searchInputText));
       }
@@ -111,12 +123,14 @@ export default function SearchBar() {
         type="text"
         name="search-input"
         value={ searchInputText }
+        onChange={ handleChange }
       />
       <input
         data-testid="ingredient-search-radio"
         type="radio"
         name="ingredient-search"
         value={ ingredientFilterType }
+        onChange={ handleChange }
       />
       Ingredient
       <input
@@ -124,6 +138,7 @@ export default function SearchBar() {
         type="radio"
         name="name-search"
         value={ nameFilterType }
+        onChange={ handleChange }
       />
       Name
       <input
@@ -131,6 +146,7 @@ export default function SearchBar() {
         type="radio"
         name="first-letter-search"
         value={ firstLetterFilterType }
+        onChange={ handleChange }
       />
       First Letter
       <button
