@@ -1,11 +1,8 @@
 import React, { useContext, useState } from 'react';
 import context from '../context/context';
 import {
-  getFoodsByIngredientApi,
   getDrinksByIngredientApi,
-  getFoodsByNameApi,
   getDrinksByNameApi,
-  getFoodsByFirstLetterApi,
   getDrinksByFirstLetterApi } from '../services/fetchApiSearchBar';
 
 export default function SearchBarFilters() {
@@ -50,21 +47,18 @@ export default function SearchBarFilters() {
   };
 
   const getRecipesByIngredient = async (textFilter) => {
-    const foods = await getFoodsByIngredientApi(textFilter);
     const drinks = await getDrinksByIngredientApi(textFilter);
-    return mergeFoodsAndDrinksRecipes(foods, drinks);
+    return drinks;
   };
 
   const getRecipesByName = async (textFilter) => {
-    const foods = await getFoodsByNameApi(textFilter);
     const drinks = await getDrinksByNameApi(textFilter);
-    return mergeFoodsAndDrinksRecipes(foods, drinks);
+    return drinks;
   };
 
   const getRecipesByFirstLetter = async (textFilter) => {
-    const foods = await getFoodsByFirstLetterApi(textFilter);
     const drinks = await getDrinksByFirstLetterApi(textFilter);
-    return mergeFoodsAndDrinksRecipes(foods, drinks);
+    return drinks;
   };
 
   const handleClickButton = () => {

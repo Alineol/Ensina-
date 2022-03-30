@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchBarFilters from './SearchBarFilters';
+import SearchBarForFoods from './SearchBarForFoods';
+import SearchBarForDrinks from './SearchBarForDrinks';
 
 function SearchBar(props) {
   const { location } = props;
@@ -8,7 +9,7 @@ function SearchBar(props) {
 
   return (
     <>
-      <SearchBarFilters pathname={ pathname } />
+      <SearchBarForFoods pathname={ pathname } />
       { pathname === '/foods'
         ? <SearchBarForFoods { ...props } />
         : <SearchBarForDrinks { ...props } /> }
