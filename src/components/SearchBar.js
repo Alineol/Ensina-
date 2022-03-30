@@ -49,26 +49,6 @@ export default function SearchBar() {
     return true;
   };
 
-  const FOOD = 'food';
-  const DRINK = 'drink';
-  const mergeFoodsAndDrinksRecipes = (foods, drinks) => {
-    const mergedResults = [];
-    mergedResults.push(foods.map((food) => ({
-      id: food.idDrink,
-      description: food.strMeal,
-      imageUrl: food.strMealThumb,
-      type: FOOD,
-    })));
-
-    mergedResults.push(drinks.map((drink) => ({
-      id: drink.idMeal,
-      description: drink.strDrink,
-      imageUrl: drink.strDrinkThumb,
-      type: DRINK,
-    })));
-    return mergedResults;
-  };
-
   const getRecipesByIngredient = async (textFilter) => {
     const foods = await getFoodsByIngredientApi(textFilter);
     const drinks = await getDrinksByIngredientApi(textFilter);
