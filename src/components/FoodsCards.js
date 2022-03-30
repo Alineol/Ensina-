@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import context from '../context/context';
 
 function FoodsCards(props) {
@@ -47,5 +48,7 @@ function FoodsCards(props) {
     <p>Carregando...</p>
   );
 }
-
+FoodsCards.propTypes = {
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 export default FoodsCards;

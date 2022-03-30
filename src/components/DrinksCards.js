@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import context from '../context/context';
 
 function DrinksCards(props) {
@@ -45,5 +46,7 @@ function DrinksCards(props) {
     <p>Carregando...</p>
   );
 }
-
+DrinksCards.propTypes = {
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 export default DrinksCards;
