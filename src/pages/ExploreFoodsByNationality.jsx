@@ -4,8 +4,10 @@ import MenuInferior from '../components/MenuInferior';
 
 function ExploreFoodsByNationality() {
   return (
-    <Header pageTitle="Explore Nationalities" showSearchButton />
-    <MenuInferior />
+    <>
+      <Header pageTitle="Explore Nationalities" showSearchButton />
+      <MenuInferior />
+    </>
   );
 }
 

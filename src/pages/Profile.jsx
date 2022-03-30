@@ -6,7 +6,7 @@ function Profile() {
   return (
     <div className="profile-page">
       <Header pageTitle="Profile" showSearchButton={ false } />
-    <MenuInferior />
+      <MenuInferior />
     </div>
   );
 }

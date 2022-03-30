@@ -4,8 +4,10 @@ import MenuInferior from '../components/MenuInferior';
 
 function Foods() {
   return (
-    <Header pageTitle="Foods" showSearchButton />
-    <MenuInferior />
+    <>
+      <Header pageTitle="Foods" showSearchButton />
+      <MenuInferior />
+    </>
   );
 }
 
