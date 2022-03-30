@@ -5,8 +5,7 @@ import MenuInferior from '../components/MenuInferior';
 function Explore() {
   return (
     <>
-      <Header />
-      <h1>Explore page</h1>
+      <Header pageTitle="Explore" showSearchButton={ false } />
       <MenuInferior />
     </>
   );

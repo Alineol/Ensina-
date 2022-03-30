@@ -5,9 +5,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
+import RecipesScreen from './pages/RecipesScreen';
 import FoodDetails from './pages/FoodDetails';
 import FoodInProgress from './pages/FoodInProgress';
-import Drinks from './pages/Drinks';
+// import Drinks from './pages/Drinks';
 import DrinkDetails from './pages/DrinkDetails';
 import DrinkInProgress from './pages/DrinkInProgress';
 import Explore from './pages/Explore';
@@ -19,7 +20,7 @@ import ExploreFoodsByNationality from './pages/ExploreFoodsByNationality';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
-import Foods from './pages/Foods';
+// import Foods from './pages/Foods';
 
 function App() {
   return (
@@ -27,8 +28,16 @@ function App() {
       <Provider>
         <Switch>
           <Route exact path="/" render={ (props) => <Login { ...props } /> } />
-          <Route exact path="/foods" component={ Foods } />
-          <Route exact path="/drinks" component={ Drinks } />
+          <Route
+            exact
+            path="/foods"
+            render={ (props) => <RecipesScreen { ...props } /> }
+          />
+          <Route
+            exact
+            path="/drinks"
+            render={ (props) => <RecipesScreen { ...props } /> }
+          />
           <Route exact path="/foods/:id" component={ FoodDetails } />
           <Route exact path="/drinks/:id" component={ DrinkDetails } />
           <Route
@@ -59,21 +68,10 @@ function App() {
             path="/explore/foods/nationalities"
             component={ ExploreFoodsByNationality }
           />
-          <Route exact path="/profile" component={ Profile } />
-          <Route exact path="/done-recipes" component={ DoneRecipes } />
-          <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
-
+          <Route path="/profile" component={ Profile } />
+          <Route path="/done-recipes" component={ DoneRecipes } />
+          <Route path="/favorite-recipes" component={ FavoriteRecipes } />
         </Switch>
-        {/* <div className="meals">
-          <span className="logo">TRYBE</span>
-          <object
-            className="rocksGlass"
-            type="image/svg+xml"
-            data={ rockGlass }
-          >
-            Glass
-          </object>
-        </div> */}
       </Provider>
     </BrowserRouter>
   );

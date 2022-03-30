@@ -5,8 +5,7 @@ import MenuInferior from '../components/MenuInferior';
 function ExploreFoods() {
   return (
     <>
-      <Header />
-      <h1>Explore foods page</h1>
+      <Header pageTitle="Explore Foods" showSearchButton={ false } />
       <MenuInferior />
     </>
   );

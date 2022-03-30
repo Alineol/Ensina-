@@ -5,8 +5,7 @@ import MenuInferior from '../components/MenuInferior';
 function ExploreDrinksByIngredient() {
   return (
     <>
-      <Header />
-      <h1>Explore drinks by ingredient page</h1>
+      <Header pageTitle="Explore Ingredients" showSearchButton={ false } />
       <MenuInferior />
     </>
   );

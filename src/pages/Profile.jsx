@@ -4,11 +4,10 @@ import MenuInferior from '../components/MenuInferior';
 
 function Profile() {
   return (
-    <>
-      <Header />
-      <h1>Foods page</h1>
+    <div className="profile-page">
+      <Header pageTitle="Profile" showSearchButton={ false } />
       <MenuInferior />
-    </>
+    </div>
   );
 }
 
