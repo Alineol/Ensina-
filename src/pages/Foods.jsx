@@ -2,10 +2,12 @@ import React from 'react';
 import Header from '../components/Header';
 import MenuInferior from '../components/MenuInferior';
 
-function Foods() {
+function Foods(props) {
+  const { location } = props;
+  const { pathname } = location;
   return (
     <>
-      <Header pageTitle="Foods" showSearchButton />
+      <Header pageTitle="Foods" showSearchButton props={ props } />
       <MenuInferior />
     </>
   );
