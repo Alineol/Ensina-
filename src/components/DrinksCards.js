@@ -1,7 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import context from '../context/context';
 
-function DrinksCards() {
+function DrinksCards(props) {
+  const { history } = props;
   const { recipes, setRecipes, showFilteredRecipes } = useContext(context);
   useEffect(() => {
     const fetchFoodsApi = async () => {
@@ -20,7 +21,12 @@ function DrinksCards() {
     return (
       <section className="recipes-section">
         {recipes.map((recipe, index) => (
-          <div key={ recipe.idDrink } data-testid={ `${index}-recipe-card` }>
+          <button
+            type="button"
+            key={ recipe.idDrink }
+            data-testid={ `${index}-recipe-card` }
+            onClick={ () => history.push(`/drinks/${recipe.idDrink}`) }
+          >
             <img
               src={ recipe.strDrinkThumb }
               alt={ recipe.strDrink }
@@ -30,7 +36,7 @@ function DrinksCards() {
             <p data-testid={ `${index}-card-name` }>
               {recipe.strDrink}
             </p>
-          </div>
+          </button>
         ))}
       </section>
     );

@@ -12,7 +12,7 @@ function RecipesScreen(props) {
   return (
     <div className="recipesScreen">
       <PrincipalScreenFilters pathname={ pathname } />
-      {pathname === '/foods' ? <FoodsCards /> : <DrinksCards />}
+      {pathname === '/foods' ? <FoodsCards { ...props } /> : <DrinksCards { ...props } />}
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import context from '../context/context';
 
-function FoodsCards() {
+function FoodsCards(props) {
+  const { history } = props;
   const { recipes, setRecipes, showFilteredRecipes } = useContext(context);
   useEffect(() => {
     const maxIndex = 12;
@@ -20,7 +21,13 @@ function FoodsCards() {
     return (
       <section className="recipes-section">
         {recipes.map((recipe, index) => (
-          <div key={ recipe.idMeal } data-testid={ `${index}-recipe-card` }>
+          <button
+            key={ recipe.idMeal }
+            type="button"
+            data-testid={ `${index}-recipe-card` }
+            tabIndex={ index }
+            onClick={ () => history.push(`/foods/${recipe.idMeal}`) }
+          >
             <img
               src={ recipe.strMealThumb }
               alt={ recipe.strMeal }
@@ -31,7 +38,7 @@ function FoodsCards() {
               {recipe.strMeal}
               {' '}
             </p>
-          </div>
+          </button>
         ))}
       </section>
     );

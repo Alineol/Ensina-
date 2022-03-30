@@ -6,7 +6,7 @@ function PrincipalScreenFilters(props) {
   const { setRecipes, showFilteredRecipes, setShowFilteredRecipes } = useContext(context);
   const { pathname } = props;
   const [filtersList, setFiltersList] = useState([]);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState('');
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -26,7 +26,22 @@ function PrincipalScreenFilters(props) {
     fetchApi();
   }, [pathname]);
 
+  const checkSelected = (category) => {
+    console.log(selected);
+    switch (selected) {
+    case category:
+      setShowFilteredRecipes(false);
+      setSelected('');
+      break;
+    case '':
+      setSelected(category);
+      break;
+    default: return null;
+    }
+  };
+
   const handleButtonClick = async (strCategory) => {
+    checkSelected(strCategory);
     if (showFilteredRecipes === false) {
       setShowFilteredRecipes(true);
     }
@@ -50,7 +65,7 @@ function PrincipalScreenFilters(props) {
       type="button"
       key={ index }
       onClick={ () => handleButtonClick(strCategory) }
-      onFocus={ () => setSelected([...selected, strCategory]) }
+      // onFocus={ (e) => handleOnFocus(e) }
     >
       {strCategory}
     </button>

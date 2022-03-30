@@ -13,8 +13,16 @@ function App() {
       <Provider>
         <Switch>
           <Route exact path="/" render={ (props) => <Login { ...props } /> } />
-          <Route path="/foods" render={ (props) => <RecipesScreen { ...props } /> } />
-          <Route path="/drinks" render={ (props) => <RecipesScreen { ...props } /> } />
+          <Route
+            exact
+            path="/foods"
+            render={ (props) => <RecipesScreen { ...props } /> }
+          />
+          <Route
+            exact
+            path="/drinks"
+            render={ (props) => <RecipesScreen { ...props } /> }
+          />
         </Switch>
         {/* <div className="meals">
           <span className="logo">TRYBE</span>
