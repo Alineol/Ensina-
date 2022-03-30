@@ -5,7 +5,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
-import Foods from './pages/Foods';
 import FoodDetails from './pages/FoodDetails';
 import FoodInProgress from './pages/FoodInProgress';
 import Drinks from './pages/Drinks';
@@ -20,6 +19,8 @@ import ExploreFoodsByNationality from './pages/ExploreFoodsByNationality';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import Foods from './pages/Foods';
+
 
 function App() {
   return (
@@ -63,16 +64,6 @@ function App() {
           <Route path="/done-recipes" component={ DoneRecipes } />
           <Route path="/favorite-recipes" component={ FavoriteRecipes } />
         </Switch>
-        {/* <div className="meals">
-          <span className="logo">TRYBE</span>
-          <object
-            className="rocksGlass"
-            type="image/svg+xml"
-            data={ rockGlass }
-          >
-            Glass
-          </object>
-        </div> */}
       </Provider>
     </BrowserRouter>
   );
