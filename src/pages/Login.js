@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 // import context from '../context/myContext';
 import { Link } from 'react-router-dom';
+import SearchBar from '../components/SearchBar';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -28,6 +29,7 @@ function Login() {
 
   return (
     <div className="login-page">
+      <SearchBar />
       <form>
         <input
           className="email-input"
