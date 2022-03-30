@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+
 function Header({ pageTitle, showSearchButton }) {
   const [showSearchBar, setShowSearchBar] = useState(false);
 

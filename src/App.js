@@ -21,7 +21,6 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
 
-
 function App() {
   return (
     <BrowserRouter>
