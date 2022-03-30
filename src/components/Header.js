@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
+import context from '../context/context';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 
-function Header({ pageTitle, showSearchButton }, props) {
+function Header({ pageTitle, showSearchButton }) {
   const [showSearchBar, setShowSearchBar] = useState(false);
-  const { location } = props;
-  const { pathname } = location;
+  const { setPageTitle } = useContext(context);
+
+  useEffect(() => {
+    setPageTitle(pageTitle);
+  }, [pageTitle, setPageTitle]);
 
   return (
     <header data-testid="header">
@@ -26,7 +30,7 @@ function Header({ pageTitle, showSearchButton }, props) {
           <img src={ searchIcon } data-testid="search-top-btn" alt="search" />
         </button>
       )}
-      {showSearchBar && <SearchBar pathname={ pathname } />}
+      {showSearchBar && <SearchBar />}
     </header>
   );
 }
