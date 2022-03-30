@@ -2,13 +2,16 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import context from '../context/context';
 import {
+  getFoodsByIngredientApi,
+  getFoodsByNameApi,
+  getFoodsByFirstLetterApi,
   getDrinksByIngredientApi,
   getDrinksByNameApi,
   getDrinksByFirstLetterApi } from '../services/fetchApiSearchBar';
 
-export default function SearchBarForDrinks() {
+export default function SearchBarFilters(props) {
   const { recipesFiltered, setRecipesFiltered } = useContext(context);
-  const { pathname, history } = props;
+  const { pathname } = props;
 
   const [filters, setFilters] = useState({
     searchInputText: '',
@@ -49,6 +52,10 @@ export default function SearchBarForDrinks() {
   };
 
   const getRecipesByIngredient = async (textFilter) => {
+    if (pathname === '/foods') {
+      const foods = await getFoodsByIngredientApi(textFilter);
+      return foods;
+    }
     if (pathname === '/drinks') {
       const drinks = await getDrinksByIngredientApi(textFilter);
       return drinks;
@@ -56,6 +63,10 @@ export default function SearchBarForDrinks() {
   };
 
   const getRecipesByName = async (textFilter) => {
+    if (pathname === '/foods') {
+      const foods = await getFoodsByNameApi(textFilter);
+      return foods;
+    }
     if (pathname === '/drinks') {
       const drinks = await getDrinksByNameApi(textFilter);
       return drinks;
@@ -63,6 +74,10 @@ export default function SearchBarForDrinks() {
   };
 
   const getRecipesByFirstLetter = async (textFilter) => {
+    if (pathname === '/foods') {
+      const foods = await getFoodsByFirstLetterApi(textFilter);
+      return foods;
+    }
     if (pathname === '/drinks') {
       const drinks = await getDrinksByFirstLetterApi(textFilter);
       return drinks;
@@ -87,9 +102,7 @@ export default function SearchBarForDrinks() {
         setRecipesFiltered(getRecipesByFirstLetter(searchInputText));
       }
     }
-    if (recipesFiltered.length === 1) {
-      history.push(`/foods/${recipesFiltered.id}`);
-    }
+    return recipesFiltered;
   };
 
   return (
@@ -137,7 +150,6 @@ export default function SearchBarForDrinks() {
   );
 }
 
-SearchBarForDrinks.propTypes = {
+SearchBarFilters.propTypes = {
   pathname: PropTypes.string.isRequired,
-  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };

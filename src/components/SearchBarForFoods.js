@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import context from '../context/context';
 import {
   getFoodsByIngredientApi,
   getFoodsByNameApi,
   getFoodsByFirstLetterApi } from '../services/fetchApiSearchBar';
 
-export default function SearchBarFilters() {
+export default function SearchBarForFoods() {
   const { recipesFiltered, setRecipesFiltered } = useContext(context);
+  const { pathname } = props;
 
   const [filters, setFilters] = useState({
     searchInputText: '',
@@ -47,18 +49,24 @@ export default function SearchBarFilters() {
   };
 
   const getRecipesByIngredient = async (textFilter) => {
-    const foods = await getFoodsByIngredientApi(textFilter);
-    return foods;
+    if (pathname === '/foods') {
+      const foods = await getFoodsByIngredientApi(textFilter);
+      return foods;
+    }
   };
 
   const getRecipesByName = async (textFilter) => {
-    const foods = await getFoodsByNameApi(textFilter);
-    return foods;
+    if (pathname === '/foods') {
+      const foods = await getFoodsByNameApi(textFilter);
+      return foods;
+    }
   };
 
   const getRecipesByFirstLetter = async (textFilter) => {
-    const foods = await getFoodsByFirstLetterApi(textFilter);
-    return foods;
+    if (pathname === '/foods') {
+      const foods = await getFoodsByFirstLetterApi(textFilter);
+      return foods;
+    }
   };
 
   const handleClickButton = () => {
@@ -126,3 +134,7 @@ export default function SearchBarFilters() {
     </div>
   );
 }
+
+SearchBarForFoods.propTypes = {
+  pathname: PropTypes.string.isRequired,
+};

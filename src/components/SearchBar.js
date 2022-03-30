@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchBarForFoods from './SearchBarForFoods';
-import SearchBarForDrinks from './SearchBarForDrinks';
+import SearchBarFilters from './SearchBarFilters';
+// import SearchBarForFoods from './SearchBarForFoods';
+// import SearchBarForDrinks from './SearchBarForDrinks';
 
 function SearchBar(props) {
-  const { location } = props;
-  const { pathname } = location;
-
+  const { pathname } = props;
+  console.log(pathname);
   return (
-    <>
-      <SearchBarForFoods pathname={ pathname } />
-      { pathname === '/foods'
-        ? <SearchBarForFoods { ...props } />
-        : <SearchBarForDrinks { ...props } /> }
-    </>
+    <SearchBarFilters pathname={ pathname } />
+    // <>
+    //   <SearchBarFilters pathname={ pathname } />
+    //   { pathname === '/foods'
+    //     ? <SearchBarForFoods { ...props } />
+    //     : <SearchBarForDrinks { ...props } /> }
+    // </>
   );
 }
 

@@ -5,8 +5,10 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 
-function Header({ pageTitle, showSearchButton }) {
+function Header({ pageTitle, showSearchButton }, props) {
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const { location } = props;
+  const { pathname } = location;
 
   return (
     <header data-testid="header">
@@ -24,7 +26,7 @@ function Header({ pageTitle, showSearchButton }) {
           <img src={ searchIcon } data-testid="search-top-btn" alt="search" />
         </button>
       )}
-      {showSearchBar && <SearchBar />}
+      {showSearchBar && <SearchBar pathname={ pathname } />}
     </header>
   );
 }
