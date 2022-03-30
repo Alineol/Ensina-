@@ -21,6 +21,7 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -59,21 +60,10 @@ function App() {
             path="/explore/foods/nationalities"
             component={ ExploreFoodsByNationality }
           />
-          <Route exact path="/profile" component={ Profile } />
-          <Route exact path="/done-recipes" component={ DoneRecipes } />
-          <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
-
+          <Route path="/profile" component={ Profile } />
+          <Route path="/done-recipes" component={ DoneRecipes } />
+          <Route path="/favorite-recipes" component={ FavoriteRecipes } />
         </Switch>
-        {/* <div className="meals">
-          <span className="logo">TRYBE</span>
-          <object
-            className="rocksGlass"
-            type="image/svg+xml"
-            data={ rockGlass }
-          >
-            Glass
-          </object>
-        </div> */}
       </Provider>
     </BrowserRouter>
   );

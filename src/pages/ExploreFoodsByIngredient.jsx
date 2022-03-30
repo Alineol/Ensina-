@@ -4,11 +4,8 @@ import MenuInferior from '../components/MenuInferior';
 
 function ExploreFoodsByIngredient() {
   return (
-    <>
-      <Header />
-      <h1>Explore foods by ingredient page</h1>
-      <MenuInferior />
-    </>
+    <Header pageTitle="Explore Ingredients" showSearchButton={ false } />
+    <MenuInferior />
   );
 }
 
