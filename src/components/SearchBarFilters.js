@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import PropTypes from 'prop-types';
 import context from '../context/context';
 import {
   getFoodsByIngredientApi,
@@ -9,9 +8,8 @@ import {
   getDrinksByNameApi,
   getDrinksByFirstLetterApi } from '../services/fetchApiSearchBar';
 
-export default function SearchBarFilters(props) {
-  const { recipesFiltered, setRecipesFiltered } = useContext(context);
-  const { pathname } = props;
+export default function SearchBarFilters() {
+  const { setRecipes, pageTitle } = useContext(context);
 
   const [filters, setFilters] = useState({
     searchInputText: '',
@@ -35,14 +33,15 @@ export default function SearchBarFilters(props) {
 
   const validateFields = (searchInputText,
     ingredientFilterType,
-    firstLetterFilterType,
-    nameFilterType) => {
+    nameFilterType,
+    firstLetterFilterType) => {
     if (searchInputText === undefined || searchInputText === '') {
       global.alert('Informe pelo menos uma letra!');
       return false;
     }
-    if (ingredientFilterType || nameFilterType || firstLetterFilterType) {
-      return true;
+    if (!ingredientFilterType && !nameFilterType && !firstLetterFilterType) {
+      global.alert('Selecione um filtro!');
+      return false;
     }
     if (firstLetterFilterType && searchInputText.length > 1) {
       global.alert('Your search must have only 1 (one) character');
@@ -52,39 +51,39 @@ export default function SearchBarFilters(props) {
   };
 
   const getRecipesByIngredient = async (textFilter) => {
-    if (pathname === '/foods') {
+    if (pageTitle === 'Foods') {
       const foods = await getFoodsByIngredientApi(textFilter);
-      return foods;
+      return foods.meals;
     }
-    if (pathname === '/drinks') {
+    if (pageTitle === 'Drinks') {
       const drinks = await getDrinksByIngredientApi(textFilter);
-      return drinks;
+      return drinks.drinks;
     }
   };
 
   const getRecipesByName = async (textFilter) => {
-    if (pathname === '/foods') {
+    if (pageTitle === 'Foods') {
       const foods = await getFoodsByNameApi(textFilter);
-      return foods;
+      return foods.meals;
     }
-    if (pathname === '/drinks') {
+    if (pageTitle === 'Drinks') {
       const drinks = await getDrinksByNameApi(textFilter);
-      return drinks;
+      return drinks.drinks;
     }
   };
 
   const getRecipesByFirstLetter = async (textFilter) => {
-    if (pathname === '/foods') {
+    if (pageTitle === 'Foods') {
       const foods = await getFoodsByFirstLetterApi(textFilter);
-      return foods;
+      return foods.meals;
     }
-    if (pathname === '/drinks') {
+    if (pageTitle === 'Drinks') {
       const drinks = await getDrinksByFirstLetterApi(textFilter);
-      return drinks;
+      return drinks.drinks;
     }
   };
 
-  const handleClickButton = () => {
+  const handleClickButton = async () => {
     const {
       searchInputText,
       ingredientFilterType,
@@ -93,16 +92,15 @@ export default function SearchBarFilters(props) {
     if (validateFields(searchInputText, ingredientFilterType,
       nameFilterType, firstLetterFilterType)) {
       if (ingredientFilterType) {
-        setRecipesFiltered(getRecipesByIngredient(searchInputText));
+        setRecipes(await getRecipesByIngredient(searchInputText));
       }
       if (nameFilterType) {
-        setRecipesFiltered(getRecipesByName(searchInputText));
+        setRecipes(await getRecipesByName(searchInputText));
       }
       if (firstLetterFilterType) {
-        setRecipesFiltered(getRecipesByFirstLetter(searchInputText));
+        setRecipes(await getRecipesByFirstLetter(searchInputText));
       }
     }
-    return recipesFiltered;
   };
 
   return (
@@ -149,7 +147,3 @@ export default function SearchBarFilters(props) {
     </div>
   );
 }
-
-SearchBarFilters.propTypes = {
-  pathname: PropTypes.string.isRequired,
-};
