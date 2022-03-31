@@ -16,7 +16,6 @@ function ExploreFoodsByNationality(props) {
       const data = await response.json();
       const twelveNationalities = data.meals.slice(0, maxIndex);
       setNationalities(twelveNationalities);
-      setSelected(twelveNationalities[0].strArea);
     };
     getNationalies();
   }, []);
@@ -71,7 +70,9 @@ function ExploreFoodsByNationality(props) {
           </option>
         ))}
       </select>
-      {recipes[0] && createCards()}
+      <div className="Recipes">
+        {recipes[0] && createCards()}
+      </div>
       <MenuInferior />
     </div>
   );
