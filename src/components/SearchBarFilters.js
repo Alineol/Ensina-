@@ -1,5 +1,10 @@
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import context from '../context/context';
+import FoodsCards from './FoodsCards';
+// import FoodDetails from '../pages/FoodDetails';
+import DrinksCards from './DrinksCards';
+// import DrinkDetails from '../pages/DrinkDetails';
 import {
   getFoodsByIngredientApi,
   getFoodsByNameApi,
@@ -9,7 +14,8 @@ import {
   getDrinksByFirstLetterApi } from '../services/fetchApiSearchBar';
 
 export default function SearchBarFilters() {
-  const { setRecipes, pageTitle } = useContext(context);
+  const { setRecipes, recipes, pageTitle } = useContext(context);
+  const history = useHistory();
 
   const [filters, setFilters] = useState({
     searchInputText: '',
@@ -83,6 +89,27 @@ export default function SearchBarFilters() {
     }
   };
 
+  const cardRecipeRedirect = () => {
+    if (pageTitle === 'Foods' && recipes.length > 1) {
+      return <FoodsCards />;
+    }
+    if (pageTitle === 'Drinks' && recipes.length > 1) {
+      return <DrinksCards />;
+    }
+  };
+  // eslint-disable-next-line no-debugger
+  debugger;
+  const handleRedirect = () => {
+    if (pageTitle === 'Foods' && recipes.length === 1) {
+      history.push(`/foods/${recipes[0].idMeal}`);
+    }
+    if (pageTitle === 'Drinks' && recipes.length === 1) {
+      history.push(`/drinks/${recipes[0].idDrinks}`);
+      // return <DrinkDetails />;
+    }
+    cardRecipeRedirect();
+  };
+
   const handleClickButton = async () => {
     const {
       searchInputText,
@@ -101,6 +128,7 @@ export default function SearchBarFilters() {
         setRecipes(await getRecipesByFirstLetter(searchInputText));
       }
     }
+    handleRedirect();
   };
 
   return (
