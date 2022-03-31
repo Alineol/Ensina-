@@ -4,7 +4,7 @@ import MenuInferior from '../components/MenuInferior';
 
 function Profile() {
   return (
-    <div className="profile-page">
+    <div className="page">
       <Header pageTitle="Profile" showSearchButton={ false } />
       <MenuInferior />
     </div>

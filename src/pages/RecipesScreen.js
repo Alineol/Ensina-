@@ -12,7 +12,7 @@ function RecipesScreen(props) {
   const { pathname } = location;
 
   return (
-    <div className="recipesScreen">
+    <div className="page">
       <Header showSearchButton pageTitle={ pathname === '/foods' ? 'Foods' : 'Drinks' } />
       <PrincipalScreenFilters pathname={ pathname } />
       {pathname === '/foods' ? <FoodsCards { ...props } /> : <DrinksCards { ...props } />}

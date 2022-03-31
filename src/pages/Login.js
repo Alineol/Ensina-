@@ -26,7 +26,7 @@ function Login() {
   };
 
   return (
-    <div className="login-page">
+    <div className="page">
       <form>
         <input
           className="email-input"
