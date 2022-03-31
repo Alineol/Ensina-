@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import MenuInferior from '../components/MenuInferior';
+import { getFoodsByIngredientApi } from '../services/fetchApiSearchBar';
+import context from '../context/context';
 
-function ExploreFoodsByIngredient() {
+function ExploreFoodsByIngredient(props) {
+  const { history } = props;
+  const { setRecipes, setShowFilteredRecipes } = useContext(context);
+
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
@@ -16,11 +22,20 @@ function ExploreFoodsByIngredient() {
     getIngredients();
   }, [setIngredients]);
 
+  const handleCardClick = async (ingredient) => {
+    const recipes = await getFoodsByIngredientApi(ingredient);
+    const maxIndex = 12;
+    const twelveRecipes = recipes.meals.slice(0, maxIndex);
+    setRecipes(twelveRecipes);
+    setShowFilteredRecipes(true);
+    history.push('/foods');
+  };
   const createIngredientCard = (() => ingredients.map(({ strIngredient,
     idIngredient }, index) => {
     const img = `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png`;
     return (
       <button
+        onClick={ () => handleCardClick(strIngredient) }
         type="button"
         key={ idIngredient }
         data-testid={ `${index}-ingredient-card` }
@@ -45,5 +60,9 @@ function ExploreFoodsByIngredient() {
     </div>
   );
 }
+
+ExploreFoodsByIngredient.propTypes = {
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 export default ExploreFoodsByIngredient;

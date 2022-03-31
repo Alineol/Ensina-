@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import MenuInferior from '../components/MenuInferior';
 import { getDrinksByIngredientApi } from '../services/fetchApiSearchBar';
@@ -7,7 +8,7 @@ import context from '../context/context';
 function ExploreDrinksByIngredient(props) {
   const { history } = props;
   const [ingredients, setIngredients] = useState([]);
-  const { setRecipes, setShowFilteredRecipes  } = useContext(context);
+  const { setRecipes, setShowFilteredRecipes } = useContext(context);
   useEffect(() => {
     const getIngredients = async () => {
       const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
@@ -57,5 +58,9 @@ function ExploreDrinksByIngredient(props) {
     </div>
   );
 }
+
+ExploreDrinksByIngredient.propTypes = {
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 export default ExploreDrinksByIngredient;
