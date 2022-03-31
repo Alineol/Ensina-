@@ -69,12 +69,12 @@ function App() {
             path="/explore/foods/nationalities"
             component={ ExploreFoodsByNationality }
           />
-          <Route
-            component={ NotFoundPage }
-          />
           <Route path="/profile" component={ Profile } />
           <Route path="/done-recipes" component={ DoneRecipes } />
           <Route path="/favorite-recipes" component={ FavoriteRecipes } />
+          <Route
+            component={ NotFoundPage }
+          />
         </Switch>
       </Provider>
     </BrowserRouter>
