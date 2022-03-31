@@ -5,7 +5,9 @@ import context from './context';
 function Provider({ children }) {
   const [user, setUser] = useState({ email: '' });
   const [recipes, setRecipes] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
   const [showFilteredRecipes, setShowFilteredRecipes] = useState(false);
+  // const [natioanlities, setNationalities] = useState([]);
   const contextValue = {
     user,
     setUser,
@@ -13,6 +15,8 @@ function Provider({ children }) {
     setRecipes,
     showFilteredRecipes,
     setShowFilteredRecipes,
+    ingredients,
+    setIngredients,
   };
 
   return (
