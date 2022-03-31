@@ -9,7 +9,6 @@ function ExploreFoods(props) {
     const data = await response.json();
     return (data.meals[0].idMeal);
   };
-
   const { history } = props;
   return (
     <>
