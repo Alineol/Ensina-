@@ -1,19 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import Recipe from '../components/Recipe';
 
 function FoodInProgress() {
+  const { id } = useParams();
+  const [recipe, setRecipe] = useState(null);
+
+  const adaptToRecipe = (data) => {
+    if (!data.meals) {
+      return;
+    }
+
+    const singleRecipe = data.meals[0];
+
+    const ingredients = Object
+      .entries(singleRecipe)
+      .filter(([key, value]) => key.includes('strIngredient') && value)
+      .map((ingredient) => ingredient[1]);
+
+    setRecipe({
+      name: singleRecipe.strMeal,
+      photo: singleRecipe.strMealThumb,
+      category: singleRecipe.strCategory,
+      ingredients,
+      instructions: singleRecipe.strInstructions,
+    });
+  };
+
+  useEffect(() => {
+    const fetchRecipeApi = async () => {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+      const data = await response.json();
+      adaptToRecipe(data);
+      console.dir(data);
+    };
+
+    fetchRecipeApi();
+  }, [id]);
+
   return (
     <div>
-      <h1>Food in progreess page</h1>
-      <img data-testid="recipe-photo" src="img" alt="RecipePhoto" />
-      <h2 data-testid="recipe-title"> Nome da Receita</h2>
-      <button type="button" data-testid="share-btn">Compartilhar</button>
-      <button type="button" data-testid="favorite-btn">Favorito</button>
-      <p data-testid="recipe-category">texto da categoria</p>
-      <h3>Ingredients</h3>
-      <li>Lista ingredientes</li>
-      <h3>Instructions</h3>
-      <p data-testid="instructions">Texto instruções</p>
-      <button type="button" data-testid="finish-recipe-btn">Finish Recipe</button>
+      <h1>Food in progress page</h1>
+      {
+        recipe && <Recipe
+          recipe={ recipe }
+          inProgress
+        />
+      }
 
     </div>
 
