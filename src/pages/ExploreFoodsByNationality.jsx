@@ -6,7 +6,7 @@ import MenuInferior from '../components/MenuInferior';
 function ExploreFoodsByNationality(props) {
   const { history } = props;
   const [natioanlities, setNationalities] = useState([]);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState('');
   const [recipes, setRecipes] = useState([]);
   const maxIndex = 12;
 
@@ -14,8 +14,7 @@ function ExploreFoodsByNationality(props) {
     const getNationalies = async () => {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
       const data = await response.json();
-      const twelveNationalities = data.meals.slice(0, maxIndex);
-      setNationalities(twelveNationalities);
+      setNationalities(data.meals);
     };
     getNationalies();
   }, []);
@@ -27,8 +26,17 @@ function ExploreFoodsByNationality(props) {
       const twelveRecipes = data.meals.slice(0, maxIndex);
       setRecipes(twelveRecipes);
     };
-    if (selected.length > 0) {
+    const fetchAllFoodsApi = async () => {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+      const data = await response.json();
+      const twelveRecipes = data.meals.slice(0, maxIndex);
+      setRecipes(twelveRecipes);
+    };
+    if (selected.length > 0 && selected !== 'All') {
       getRecipes();
+    }
+    if (selected === '' || selected === 'All') {
+      fetchAllFoodsApi();
     }
   }, [selected]);
 
@@ -53,13 +61,24 @@ function ExploreFoodsByNationality(props) {
     </button>
   ));
 
+  const handleChange = (e) => {
+    setSelected(e);
+  };
+
   return (
     <div className="page">
       <Header pageTitle="Explore Nationalities" showSearchButton />
       <select
         data-testid="explore-by-nationality-dropdown"
-        onChange={ (e) => setSelected(e.target.value) }
+        onChange={ (e) => handleChange(e.target.value) }
       >
+        <option
+          data-testid="All-option"
+          type="button"
+          key={ 6 }
+        >
+          All
+        </option>
         {natioanlities[0] && natioanlities.map((nationality, index) => (
           <option
             data-testid={ `${nationality.strArea}-option` }
