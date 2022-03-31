@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Header from '../components/Header';
 import MenuInferior from '../components/MenuInferior';
+import { getDrinksByIngredientApi } from '../services/fetchApiSearchBar';
+import context from '../context/context';
 
-function ExploreDrinksByIngredient() {
+function ExploreDrinksByIngredient(props) {
+  const { history } = props;
   const [ingredients, setIngredients] = useState([]);
-
+  const { setRecipes, setShowFilteredRecipes  } = useContext(context);
   useEffect(() => {
     const getIngredients = async () => {
       const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
@@ -16,10 +19,20 @@ function ExploreDrinksByIngredient() {
     getIngredients();
   }, [setIngredients]);
 
+  const handleCardClick = async (ingredient) => {
+    const recipes = await getDrinksByIngredientApi(ingredient);
+    const maxIndex = 12;
+    const twelveRecipes = recipes.drinks.slice(0, maxIndex);
+    setRecipes(twelveRecipes);
+    setShowFilteredRecipes(true);
+    history.push('/drinks');
+  };
+
   const createIngredientCard = (() => ingredients.map(({ strIngredient1 }, index) => {
     const img = `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png`;
     return (
       <button
+        onClick={ () => handleCardClick(strIngredient1) }
         type="button"
         key={ index }
         data-testid={ `${index}-ingredient-card` }
