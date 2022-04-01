@@ -20,6 +20,7 @@ import ExploreFoodsByNationality from './pages/ExploreFoodsByNationality';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import NotFoundPage from './pages/NotFoundPage';
 // import Foods from './pages/Foods';
 
 function App() {
@@ -71,6 +72,9 @@ function App() {
           <Route path="/profile" component={ Profile } />
           <Route path="/done-recipes" component={ DoneRecipes } />
           <Route path="/favorite-recipes" component={ FavoriteRecipes } />
+          <Route
+            component={ NotFoundPage }
+          />
         </Switch>
       </Provider>
     </BrowserRouter>
