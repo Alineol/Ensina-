@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Recipe from '../components/Recipe';
+import { createInProgressStorage } from '../services/helpers';
 
 function FoodInProgress() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
+
+  useEffect(() => {
+    createInProgressStorage();
+  }, []);
 
   const adaptToRecipe = (data) => {
     if (!data.meals) {

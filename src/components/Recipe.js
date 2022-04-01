@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Ingredient from './Ingredient';
+import context from '../context/context';
 
 function Recipe({ recipe, viewMode }) {
+  // const { setIngredientChecked } = useContext(context);
+  // useEffect(() => {
+  //   console.log('lalaln');
+  //   return () => { setIngredientChecked([]); };
+  // }, []);
+
   const renderIngredients = () => (
     recipe.ingredients
         && recipe.ingredients.map((ingredient, index) => {
