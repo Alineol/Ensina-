@@ -1,6 +1,6 @@
 const callApi = async (api, filter) => {
-  const requestByIngredient = await fetch(`${api}${filter}`);
-  const responseJson = await requestByIngredient.json();
+  const request = await fetch(`${api}${filter}`);
+  const responseJson = await request.json();
   return responseJson !== undefined ? responseJson : [];
 };
 

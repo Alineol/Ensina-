@@ -117,7 +117,9 @@ export default function SearchBarFilters() {
 
   const setRecipesIfExists = (recipesToSet) => {
     if (isNotArrayEmpty(recipesToSet)) {
-      setRecipes(recipesToSet);
+      const maxIndex = 12;
+      const twelveRecipes = recipesToSet.slice(0, maxIndex);
+      setRecipes(twelveRecipes);
     } else {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
