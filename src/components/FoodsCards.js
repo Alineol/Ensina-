@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import context from '../context/context';
+import isNotArrayEmpty from '../services/helpers';
 
 function FoodsCards(props) {
   const { history } = props;
@@ -18,7 +19,7 @@ function FoodsCards(props) {
     }
   }, [setRecipes, showFilteredRecipes]);
 
-  if (recipes[0] !== undefined) {
+  if (isNotArrayEmpty(recipes)) {
     return (
       <section className="recipes-section">
         {recipes.map((recipe, index) => (
