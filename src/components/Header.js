@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
+import context from '../context/context';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 function Header({ pageTitle, showSearchButton }) {
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const { setPageTitle } = useContext(context);
+
+  useEffect(() => {
+    setPageTitle(pageTitle);
+  }, [pageTitle, setPageTitle]);
 
   return (
     <header data-testid="header">
@@ -23,7 +30,7 @@ function Header({ pageTitle, showSearchButton }) {
           <img src={ searchIcon } data-testid="search-top-btn" alt="search" />
         </button>
       )}
-      {showSearchBar && <input data-testid="search-input" />}
+      {showSearchBar && <SearchBar />}
     </header>
   );
 }
