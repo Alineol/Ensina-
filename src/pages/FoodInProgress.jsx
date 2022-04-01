@@ -40,14 +40,12 @@ function FoodInProgress() {
 
   return (
     <div>
-      <h1>Food in progress page</h1>
       {
         recipe && <Recipe
           recipe={ recipe }
-          inProgress
+          viewMode="inProgress"
         />
       }
-
     </div>
 
   );

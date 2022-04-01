@@ -32,6 +32,7 @@ function DrinkInProgress() {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
       const data = await response.json();
       adaptToRecipe(data);
+      console.dir(data);
     };
 
     fetchRecipeApi();
@@ -43,7 +44,7 @@ function DrinkInProgress() {
       {
         recipe && <Recipe
           recipe={ recipe }
-          inProgress
+          viewMode="inProgress"
         />
       }
 
