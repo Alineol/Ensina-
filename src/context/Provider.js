@@ -8,9 +8,11 @@ function Provider({ children }) {
   // const [doneRecipes, setDoceRecipes] = useState([]);
   // const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
   const [showFilteredRecipes, setShowFilteredRecipes] = useState(false);
   const [pageTitle, setPageTitle] = useState('');
 
+  // const [natioanlities, setNationalities] = useState([]);
   const contextValue = {
     user,
     setUser,
@@ -22,6 +24,8 @@ function Provider({ children }) {
     setRenderFoodRecipes,
     pageTitle,
     setPageTitle,
+    ingredients,
+    setIngredients,
   };
 
   return (
