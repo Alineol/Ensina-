@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import MenuInferior from '../components/MenuInferior';
 
 function Profile(props) {
+  const [email, setEmail] = useState('');
+
   const { history } = props;
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  useEffect(() => {
+    const savedEmail = JSON.parse(localStorage.getItem('user'));
+    if (savedEmail) {
+      setEmail(savedEmail.email);
+    }
+  }, []);
+
   return (
     <div className="page">
       <Header pageTitle="Profile" showSearchButton={ false } />
