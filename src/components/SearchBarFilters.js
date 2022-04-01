@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import React, { useContext, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import context from '../context/context';
+import isNotArrayEmpty from '../services/helpers';
 import FoodsCards from './FoodsCards';
-// import FoodDetails from '../pages/FoodDetails';
 import DrinksCards from './DrinksCards';
-// import DrinkDetails from '../pages/DrinkDetails';
 import {
   getFoodsByIngredientApi,
   getFoodsByNameApi,
@@ -14,7 +13,7 @@ import {
   getDrinksByFirstLetterApi } from '../services/fetchApiSearchBar';
 
 export default function SearchBarFilters() {
-  const { setRecipes, recipes, pageTitle } = useContext(context);
+  const { setRecipes, recipes, pageTitle, setShowFilteredRecipes } = useContext(context);
   const history = useHistory();
 
   const [filters, setFilters] = useState({
@@ -35,7 +34,12 @@ export default function SearchBarFilters() {
     const { name, value } = target;
     setFilter(name, value);
   };
-  const handleRadioChange = ({ target: { name, checked } }) => setFilter(name, checked);
+  const handleRadioChange = ({ target: { name, checked } }) => {
+    setFilter('ingredientFilterType', false);
+    setFilter('nameFilterType', false);
+    setFilter('firstLetterFilterType', false);
+    setFilter(name, checked);
+  };
 
   const validateFields = (searchInputText,
     ingredientFilterType,
@@ -97,17 +101,27 @@ export default function SearchBarFilters() {
       return <DrinksCards />;
     }
   };
-  // eslint-disable-next-line no-debugger
-  debugger;
-  const handleRedirect = () => {
+
+  const handleRedirect = async () => {
     if (pageTitle === 'Foods' && recipes.length === 1) {
       history.push(`/foods/${recipes[0].idMeal}`);
     }
     if (pageTitle === 'Drinks' && recipes.length === 1) {
       history.push(`/drinks/${recipes[0].idDrinks}`);
-      // return <DrinkDetails />;
     }
     cardRecipeRedirect();
+  };
+
+  useEffect(() => {
+    handleRedirect();
+  }, [recipes]);
+
+  const setRecipesIfExists = (recipesToSet) => {
+    if (isNotArrayEmpty(recipesToSet)) {
+      setRecipes(recipesToSet);
+    } else {
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
   };
 
   const handleClickButton = async () => {
@@ -119,16 +133,16 @@ export default function SearchBarFilters() {
     if (validateFields(searchInputText, ingredientFilterType,
       nameFilterType, firstLetterFilterType)) {
       if (ingredientFilterType) {
-        setRecipes(await getRecipesByIngredient(searchInputText));
+        setRecipesIfExists(await getRecipesByIngredient(searchInputText));
       }
       if (nameFilterType) {
-        setRecipes(await getRecipesByName(searchInputText));
+        setRecipesIfExists(await getRecipesByName(searchInputText));
       }
       if (firstLetterFilterType) {
-        setRecipes(await getRecipesByFirstLetter(searchInputText));
+        setRecipesIfExists(await getRecipesByFirstLetter(searchInputText));
       }
     }
-    handleRedirect();
+    setShowFilteredRecipes(true);
   };
 
   return (
