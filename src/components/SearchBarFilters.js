@@ -59,7 +59,6 @@ export default function SearchBarFilters() {
     }
     return true;
   };
-
   const getRecipesByIngredient = async (textFilter) => {
     if (pageTitle === 'Foods') {
       const foods = await getFoodsByIngredientApi(textFilter);
@@ -107,7 +106,7 @@ export default function SearchBarFilters() {
       history.push(`/foods/${recipes[0].idMeal}`);
     }
     if (pageTitle === 'Drinks' && recipes.length === 1) {
-      history.push(`/drinks/${recipes[0].idDrinks}`);
+      history.push(`/drinks/${recipes[0].idDrink}`);
     }
     cardRecipeRedirect();
   };

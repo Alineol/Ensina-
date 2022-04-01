@@ -7,15 +7,15 @@ function DrinksCards(props) {
   const { history } = props;
   const { recipes, setRecipes, showFilteredRecipes } = useContext(context);
   useEffect(() => {
-    const fetchFoodsApi = async () => {
-      const maxIndex = 12;
+    const maxIndex = 12;
+    const fetchDrinksApi = async () => {
       const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
       const data = await response.json();
       const twelveRecipes = data.drinks.slice(0, maxIndex);
       setRecipes(twelveRecipes);
     };
     if (showFilteredRecipes === false) {
-      fetchFoodsApi();
+      fetchDrinksApi();
     }
   }, [setRecipes, showFilteredRecipes]);
 
@@ -24,9 +24,10 @@ function DrinksCards(props) {
       <section className="recipes-section">
         {recipes.map((recipe, index) => (
           <button
-            type="button"
             key={ recipe.idDrink }
+            type="button"
             data-testid={ `${index}-recipe-card` }
+            tabIndex={ index }
             onClick={ () => history.push(`/drinks/${recipe.idDrink}`) }
           >
             <img
