@@ -15,6 +15,17 @@
   max-height: 80vh;
 }
 
+.suggestionSection {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  width: 1100px;
+}
+
+.card {
+  flex-grow: 5;
+}
+
 /*
 #iceLeft {
   animation: clink .8s infinite ease;

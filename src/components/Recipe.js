@@ -25,7 +25,7 @@ function Recipe({ recipe, viewMode }) {
         }));
 
   return (
-    <div>
+    <div style={ { width: '400px' } }>
       <img
         data-testid="recipe-photo"
         src={ recipe.photo }
@@ -70,33 +70,12 @@ function Recipe({ recipe, viewMode }) {
           && <button type="button" data-testid="finish-recipe-btn">Finish Recipe</button>
         }
       </section>
-      <section>
-
-        {
-          viewMode === 'details'
-          && <iframe
-            title="teste"
-            width="450"
-            height="350"
-            src={ recipe.video }
-            frameBorder="0"
-            allowFullScreen
-            data-testid="video"
-          />
-        }
-      </section>
       {/* <label htmlFor="card">
         {
           viewMode === 'details'
           && <input name="card" data-testid={ `${index}-recomendation-card` } />
         }
       </label> */}
-      <section>
-        {
-          viewMode === 'details'
-          && <button type="button" data-testid="start-recipe-btn">Start Recipe</button>
-        }
-      </section>
     </div>
   );
 }
@@ -108,7 +87,6 @@ Recipe.propTypes = {
     category: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
     instructions: PropTypes.string.isRequired,
-    video: PropTypes.string,
   }).isRequired,
   viewMode: PropTypes.oneOf(['details', 'inProgress']).isRequired,
 };
