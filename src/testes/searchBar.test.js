@@ -1,7 +1,9 @@
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import React from 'react';
 import App from '../App';
 import testData from '../testData';
+// mockar cada retorno da api.
 
 const mockFetch = () => {
   jest.spyOn(global, 'fetch')
