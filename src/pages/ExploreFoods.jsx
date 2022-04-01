@@ -11,7 +11,7 @@ function ExploreFoods(props) {
   };
   const { history } = props;
   return (
-    <>
+    <div className="page">
       <Header pageTitle="Explore Foods" showSearchButton={ false } />
       <div className="explore-div">
         <button
@@ -37,7 +37,7 @@ function ExploreFoods(props) {
         </button>
       </div>
       <MenuInferior />
-    </>
+    </div>
   );
 }
 ExploreFoods.propTypes = {

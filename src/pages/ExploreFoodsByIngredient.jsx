@@ -51,7 +51,7 @@ function ExploreFoodsByIngredient(props) {
   }));
 
   return (
-    <div className="Page">
+    <div className="page">
       <Header pageTitle="Explore Ingredients" showSearchButton={ false } />
       <section className="Ingredients-div">
         {ingredients[0] ? createIngredientCard() : (<p>Carregando...</p>)}

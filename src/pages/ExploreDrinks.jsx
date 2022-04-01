@@ -11,7 +11,7 @@ function ExploreDrinks(props) {
     return (data.drinks[0].idDrink);
   };
   return (
-    <>
+    <div className="page">
       <Header pageTitle="Explore Drinks" showSearchButton={ false } />
       <div className="explore-div">
         <button
@@ -30,7 +30,7 @@ function ExploreDrinks(props) {
         </button>
       </div>
       <MenuInferior />
-    </>
+    </div>
   );
 }
 ExploreDrinks.propTypes = {

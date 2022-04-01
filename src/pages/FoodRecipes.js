@@ -3,7 +3,9 @@ import React from 'react';
 
 function RecipesScreen() {
   return (
-    <p>pagina de receitas</p>
+    <div className="page">
+      <p>pagina de receitas</p>
+    </div>
   );
 }
 

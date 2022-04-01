@@ -6,7 +6,7 @@ import MenuInferior from '../components/MenuInferior';
 function Explore(props) {
   const { history } = props;
   return (
-    <>
+    <div className="page">
       <Header pageTitle="Explore" showSearchButton={ false } />
       <div className="explore-div">
         <button
@@ -25,7 +25,7 @@ function Explore(props) {
         </button>
       </div>
       <MenuInferior />
-    </>
+    </div>
   );
 }
 Explore.propTypes = {
