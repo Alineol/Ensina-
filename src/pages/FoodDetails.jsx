@@ -9,6 +9,7 @@ function FoodDetails() {
 
   const adaptToRecipe = (data) => {
     if (!data.meals) {
+      console.log('lala');
       return;
     }
 

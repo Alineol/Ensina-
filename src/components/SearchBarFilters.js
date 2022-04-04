@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import context from '../context/context';
-import isNotArrayEmpty from '../services/helpers';
+import { isNotArrayEmpty } from '../services/helpers';
 import FoodsCards from './FoodsCards';
 import DrinksCards from './DrinksCards';
 import {

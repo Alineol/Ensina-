@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import context from '../context/context';
-import isNotArrayEmpty from '../services/helpers';
+import { isNotArrayEmpty } from '../services/helpers';
 
 function FoodsCards(props) {
   const { history } = props;

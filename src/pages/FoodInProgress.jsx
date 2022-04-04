@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Recipe from '../components/Recipe';
-import { createInProgressStorage } from '../services/helpers';
+import { createInProgressStorage,
+  SaveProgressinLocalSotorage } from '../services/helpers';
+import context from '../context/context';
+import './FoodInProgress.css';
 
 function FoodInProgress() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
+  const { ingredientChecked } = useContext(context);
+
+  useEffect(() => {
+    SaveProgressinLocalSotorage(ingredientChecked, id, 'food');
+  }, [ingredientChecked]);
 
   useEffect(() => {
     createInProgressStorage();
@@ -37,11 +45,10 @@ function FoodInProgress() {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
       const data = await response.json();
       adaptToRecipe(data);
-      console.dir(data);
     };
 
     fetchRecipeApi();
-  }, [id]);
+  }, []);
 
   return (
     <div>

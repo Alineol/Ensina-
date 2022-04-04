@@ -1,15 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Ingredient from './Ingredient';
-import context from '../context/context';
+// import context from '../context/context';
+// import { SaveProgressinLocalSotorage } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
-  // const { setIngredientChecked } = useContext(context);
-  // useEffect(() => {
-  //   console.log('lalaln');
-  //   return () => { setIngredientChecked([]); };
-  // }, []);
-
   const renderIngredients = () => (
     recipe.ingredients
         && recipe.ingredients.map((ingredient, index) => {
