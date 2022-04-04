@@ -33,7 +33,7 @@ function DrinkDetails() {
 
     setRecipe({
       name: singleRecipe.strDrink,
-      photo: singleRecipe.strDrinkThumb,
+      image: singleRecipe.strDrinkThumb,
       category: singleRecipe.strAlcoholic,
       ingredients: ingredientsWithMeasures,
       instructions: singleRecipe.strInstructions,

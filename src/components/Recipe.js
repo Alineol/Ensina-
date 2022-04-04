@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Ingredient from './Ingredient';
 import context from '../context/context';
-
+import { SaveFavoriteRecipe, checkFavorite } from '../services/helpers';
 // import context from '../context/context';
 // import { SaveProgressinLocalSotorage } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
   const { copyToClipboard } = useContext(context);
+  const [img, setImage] = useState(checkFavorite(recipe));
 
   const renderIngredients = () => (
     recipe.ingredients
@@ -34,7 +35,7 @@ function Recipe({ recipe, viewMode }) {
     <div style={ { width: '400px' } }>
       <img
         data-testid="recipe-photo"
-        src={ recipe.photo }
+        src={ recipe.image }
         alt="RecipePhoto"
         height="300px"
         width="400px"
@@ -60,8 +61,11 @@ function Recipe({ recipe, viewMode }) {
       <button
         type="button"
         data-testid="favorite-btn"
+        className="favorite-btn"
+        onClick={ () => { SaveFavoriteRecipe(recipe); } }
       >
-        Favorito
+
+        <img src={ img } alt="favoritar" />
       </button>
 
       <section>
@@ -93,7 +97,7 @@ function Recipe({ recipe, viewMode }) {
 Recipe.propTypes = {
   recipe: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
     instructions: PropTypes.string.isRequired,

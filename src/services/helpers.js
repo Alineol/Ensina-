@@ -1,3 +1,6 @@
+import whiteHeart from '../images/whiteHeartIcon.svg';
+import blackHeart from '../images/blackHeartIcon.svg';
+
 export function isNotArrayEmpty(arr) {
   return Array.isArray(arr) && arr.length;
 }
@@ -108,3 +111,44 @@ export function checkCheked(pathname, name, id) {
     }
   }
 }
+
+export const SaveFavoriteRecipe = ({
+  id, type, nationality, category, alcoholicOrNot, name, image }) => {
+  const savedFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  if (!savedFavorites) {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([{
+      id,
+      type,
+      nationality,
+      category,
+      alcoholicOrNot,
+      name,
+      image,
+    }]));
+  }
+  if (savedFavorites) {
+    console.log(savedFavorites);
+    localStorage.setItem('favoriteRecipes', JSON.stringify([...savedFavorites, {
+      id,
+      type,
+      nationality,
+      category,
+      alcoholicOrNot,
+      name,
+      image,
+    }]));
+  }
+};
+
+export const checkFavorite = ({ id }) => {
+  const savedFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  if (!savedFavorites) {
+    return whiteHeart;
+  }
+  if (savedFavorites) {
+    const isFavorite = savedFavorites.some((recipe) => recipe.id === id);
+    if (isFavorite) {
+      return blackHeart;
+    } return whiteHeart;
+  }
+};

@@ -23,6 +23,8 @@ function DrinkInProgress() {
     }
 
     const singleRecipe = data.drinks[0];
+    const { strDrink,
+      strDrinkThumb, strCategory, strInstructions, strAlcoholic } = data.drinks[0];
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -30,11 +32,15 @@ function DrinkInProgress() {
       .map((ingredient) => ingredient[1]);
 
     setRecipe({
-      name: singleRecipe.strDrink,
-      photo: singleRecipe.strDrinkThumb,
-      category: singleRecipe.strCategory,
+      name: strDrink,
+      image: strDrinkThumb,
+      category: strCategory,
       ingredients,
-      instructions: singleRecipe.strInstructions,
+      instructions: strInstructions,
+      type: 'drink',
+      nationality: '',
+      alcoholicOrNot: strAlcoholic,
+      id,
     });
   };
 
