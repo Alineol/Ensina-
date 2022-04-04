@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Ingredient from './Ingredient';
+import context from '../context/context';
+
 // import context from '../context/context';
 // import { SaveProgressinLocalSotorage } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
+  const { copyToClipboard } = useContext(context);
+
   const renderIngredients = () => (
     recipe.ingredients
         && recipe.ingredients.map((ingredient, index) => {
@@ -35,19 +39,24 @@ function Recipe({ recipe, viewMode }) {
         height="300px"
         width="400px"
       />
-
       <h2 data-testid="recipe-title">
         {recipe.name}
       </h2>
       <p data-testid="recipe-category">{recipe.category}</p>
-
       <button
         type="button"
         data-testid="share-btn"
+        onClick={ (e) => {
+          global.alert('Link copied!');
+          const url = window.location.href;
+          const index = url.indexOf('/in');
+          const toClipBoard = url.substring(0, index);
+          copyToClipboard(toClipBoard);
+          e.target.innerText = 'Link copied!';
+        } }
       >
         Compartilhar
       </button>
-
       <button
         type="button"
         data-testid="favorite-btn"
@@ -63,7 +72,6 @@ function Recipe({ recipe, viewMode }) {
           }
         </ul>
       </section>
-
       <section>
         <h3>Instructions</h3>
         <p data-testid="instructions">{recipe.instructions}</p>
