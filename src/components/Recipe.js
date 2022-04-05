@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Ingredient from './Ingredient';
 import context from '../context/context';
-import { SaveFavoriteRecipe, checkFavorite } from '../services/helpers';
+import { SaveFavoriteRecipe, checkFavorite,
+  handleFavoriteBtn } from '../services/helpers';
 // import context from '../context/context';
 // import { SaveProgressinLocalSotorage } from '../services/helpers';
 
@@ -62,10 +63,14 @@ function Recipe({ recipe, viewMode }) {
         type="button"
         data-testid="favorite-btn"
         className="favorite-btn"
-        onClick={ () => { SaveFavoriteRecipe(recipe); } }
+        src={ img }
+        onClick={ () => {
+          SaveFavoriteRecipe(recipe);
+          handleFavoriteBtn(img, setImage);
+        } }
       >
 
-        <img src={ img } alt="favoritar" />
+        {/* <img src={ img } alt="favoritar" /> */}
       </button>
 
       <section>

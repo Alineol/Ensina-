@@ -25,6 +25,9 @@ function FoodInProgress() {
     }
 
     const singleRecipe = data.meals[0];
+    console.log(singleRecipe);
+    const { strMeal,
+      strMealThumb, strCategory, strInstructions, strArea } = data.meals[0];
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -32,11 +35,15 @@ function FoodInProgress() {
       .map((ingredient) => ingredient[1]);
 
     setRecipe({
-      name: singleRecipe.strMeal,
-      photo: singleRecipe.strMealThumb,
-      category: singleRecipe.strCategory,
+      name: strMeal,
+      image: strMealThumb,
+      category: strCategory,
       ingredients,
-      instructions: singleRecipe.strInstructions,
+      instructions: strInstructions,
+      alcoholicOrNot: '',
+      nationality: strArea,
+      id,
+      type: 'food',
     });
   };
 

@@ -102,6 +102,7 @@ export function checkCheked(pathname, name, id) {
     }
   } if (pathname.includes('drinks')) {
     const saved = JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails;
+    console.log(saved);
     const findId = Object.keys(saved).some((key) => key === id);
     if (findId) {
       const hasIngredient = saved[id].some((ingredient) => ingredient === name);
@@ -127,16 +128,23 @@ export const SaveFavoriteRecipe = ({
     }]));
   }
   if (savedFavorites) {
-    console.log(savedFavorites);
-    localStorage.setItem('favoriteRecipes', JSON.stringify([...savedFavorites, {
-      id,
-      type,
-      nationality,
-      category,
-      alcoholicOrNot,
-      name,
-      image,
-    }]));
+    const findId = savedFavorites.some((favorite) => favorite.id === id);
+    if (!findId) {
+      console.log(savedFavorites);
+      localStorage.setItem('favoriteRecipes', JSON.stringify([...savedFavorites, {
+        id,
+        type,
+        nationality,
+        category,
+        alcoholicOrNot,
+        name,
+        image,
+      }]));
+    }
+    if (findId) {
+      const newFavoritsList = savedFavorites.filter((favorite) => favorite.id !== id);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoritsList));
+    }
   }
 };
 
@@ -151,4 +159,10 @@ export const checkFavorite = ({ id }) => {
       return blackHeart;
     } return whiteHeart;
   }
+};
+
+export const handleFavoriteBtn = (src, setImage) => {
+  if (src.includes('blackHeartIcon')) {
+    setImage(whiteHeart);
+  } else { setImage(blackHeart); }
 };
