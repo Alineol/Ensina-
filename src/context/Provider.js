@@ -14,6 +14,7 @@ function Provider({ children }) {
   const [showFilteredRecipes, setShowFilteredRecipes] = useState(false);
   const [pageTitle, setPageTitle] = useState('');
   const [ingredientChecked, setIngredientChecked] = useState([]);
+  const [ingredientClick, setIngredientClick] = useState(true);
 
   // const [natioanlities, setNationalities] = useState([]);
   const contextValue = {
@@ -33,6 +34,8 @@ function Provider({ children }) {
     setIngredientChecked,
     clipboard,
     copyToClipboard,
+    ingredientClick,
+    setIngredientClick,
   };
 
   return (

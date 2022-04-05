@@ -166,3 +166,19 @@ export const handleFavoriteBtn = (src, setImage) => {
     setImage(whiteHeart);
   } else { setImage(blackHeart); }
 };
+
+export const checkRecipeProgress = (recipe) => {
+  if (recipe.type === 'food') {
+    const progressRecipe = JSON.parse(localStorage.getItem('inProgressRecipes'))
+      .meals[recipe.id];
+    if (progressRecipe) {
+      console.log(progressRecipe.length);
+      console.log(recipe.ingredients.length);
+      if (progressRecipe.length === recipe.ingredients.length) {
+        setDisabled(false);
+      } else {
+        setDisabled(true);
+      }
+    }
+  }
+};

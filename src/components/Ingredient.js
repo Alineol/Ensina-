@@ -8,7 +8,8 @@ import { checkCheked } from '../services/helpers';
 function Ingredient({ name, selectable, isSelected, dataTestId }) {
   const { pathname } = useHistory().location;
   const { id } = useParams();
-  const { setIngredientChecked } = useContext(context);
+  const { setIngredientChecked, ingredientClick,
+    setIngredientClick } = useContext(context);
   const [selected, setSelected] = useState(false);
   const [check, setCheck] = useState(checkCheked(pathname, name, id));
 
@@ -39,6 +40,7 @@ function Ingredient({ name, selectable, isSelected, dataTestId }) {
           className="ingredienteProgress"
           onChange={ (e) => handleOnChangeInput(e.target.value) }
           checked={ check }
+          onClick={ () => setIngredientClick(!ingredientClick) }
         />
         { name}
       </label>

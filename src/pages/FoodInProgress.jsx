@@ -25,7 +25,6 @@ function FoodInProgress() {
     }
 
     const singleRecipe = data.meals[0];
-    console.log(singleRecipe);
     const { strMeal,
       strMealThumb, strCategory, strInstructions, strArea } = data.meals[0];
 

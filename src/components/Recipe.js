@@ -8,8 +8,11 @@ import { SaveFavoriteRecipe, checkFavorite,
 // import { SaveProgressinLocalSotorage } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
-  const { copyToClipboard } = useContext(context);
+  const { copyToClipboard,
+  } = useContext(context);
   const [img, setImage] = useState(checkFavorite(recipe));
+  const [disabled] = useState(true);
+  // const { ingredientClick } = useContext(context);
 
   const renderIngredients = () => (
     recipe.ingredients
@@ -86,7 +89,14 @@ function Recipe({ recipe, viewMode }) {
         <p data-testid="instructions">{recipe.instructions}</p>
         {
           viewMode === 'inProgress'
-          && <button type="button" data-testid="finish-recipe-btn">Finish Recipe</button>
+            ? (
+              <button
+                type="button"
+                data-testid="finish-recipe-btn"
+                disabled={ disabled }
+              >
+                Finish Recipe
+              </button>) : null
         }
       </section>
       {/* <label htmlFor="card">
@@ -106,6 +116,8 @@ Recipe.propTypes = {
     category: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
     instructions: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
   viewMode: PropTypes.oneOf(['details', 'inProgress']).isRequired,
 };
