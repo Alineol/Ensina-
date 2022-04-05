@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import useClipboard from 'react-hook-clipboard';
 import context from './context';
 
 function Provider({ children }) {
@@ -7,10 +8,13 @@ function Provider({ children }) {
   const [renderFoodRecipes, setRenderFoodRecipes] = useState(true);
   // const [doneRecipes, setDoceRecipes] = useState([]);
   // const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [clipboard, copyToClipboard] = useClipboard();
   const [recipes, setRecipes] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [showFilteredRecipes, setShowFilteredRecipes] = useState(false);
   const [pageTitle, setPageTitle] = useState('');
+  const [ingredientChecked, setIngredientChecked] = useState([]);
+  const [ingredientClick, setIngredientClick] = useState(true);
 
   // const [natioanlities, setNationalities] = useState([]);
   const contextValue = {
@@ -26,6 +30,12 @@ function Provider({ children }) {
     setPageTitle,
     ingredients,
     setIngredients,
+    ingredientChecked,
+    setIngredientChecked,
+    clipboard,
+    copyToClipboard,
+    ingredientClick,
+    setIngredientClick,
   };
 
   return (
