@@ -4,7 +4,6 @@ import Recipe from '../components/Recipe';
 import { createInProgressStorage,
   SaveProgressinLocalSotorage } from '../services/helpers';
 import context from '../context/context';
-import './FoodInProgress.css';
 
 function FoodInProgress() {
   const { id } = useParams();
