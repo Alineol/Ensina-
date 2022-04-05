@@ -1,18 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Ingredient from './Ingredient';
 import context from '../context/context';
 import { SaveFavoriteRecipe, checkFavorite,
-  handleFavoriteBtn } from '../services/helpers';
+  handleFavoriteBtn, checkRecipeProgress } from '../services/helpers';
 // import context from '../context/context';
 // import { SaveProgressinLocalSotorage } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
-  const { copyToClipboard,
+  const { copyToClipboard, ingredientClick,
   } = useContext(context);
   const [img, setImage] = useState(checkFavorite(recipe));
-  const [disabled] = useState(true);
-  // const { ingredientClick } = useContext(context);
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    checkRecipeProgress(recipe, setDisabled);
+  }, [ingredientClick]);
 
   const renderIngredients = () => (
     recipe.ingredients

@@ -8,11 +8,11 @@ import context from '../context/context';
 function FoodInProgress() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const { ingredientChecked } = useContext(context);
+  const { ingredientChecked, ingredientClick } = useContext(context);
 
   useEffect(() => {
     SaveProgressinLocalSotorage(ingredientChecked, id, 'food');
-  }, [ingredientChecked]);
+  }, [ingredientClick]);
 
   useEffect(() => {
     createInProgressStorage();

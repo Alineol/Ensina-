@@ -91,26 +91,27 @@ export const SaveProgressinLocalSotorage = (ingredient, recipeId, type) => {
 };
 
 export function checkCheked(pathname, name, id) {
-  if (pathname.includes('foods')) {
-    const saved = JSON.parse(localStorage.getItem('inProgressRecipes')).meals;
-    const findId = Object.keys(saved).some((key) => key === id);
-    if (findId) {
+  const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (pathname.includes('foods') && saved) {
+    const findId = Object.keys(saved.meals).some((key) => key === id);
+    if (findId && saved) {
       const hasIngredient = saved[id].some((ingredient) => ingredient === name);
       if (hasIngredient) {
         return true;
       } return false;
     }
-  } if (pathname.includes('drinks')) {
-    const saved = JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails;
-    console.log(saved);
-    const findId = Object.keys(saved).some((key) => key === id);
-    if (findId) {
+  } if (pathname.includes('drinks') && saved) {
+    // const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    // console.log(saved);
+    const findId = Object.keys(saved.cocktails).some((key) => key === id);
+    if (findId && saved) {
       const hasIngredient = saved[id].some((ingredient) => ingredient === name);
       if (hasIngredient) {
         return true;
       } return false;
     }
   }
+  return false;
 }
 
 export const SaveFavoriteRecipe = ({
@@ -167,7 +168,7 @@ export const handleFavoriteBtn = (src, setImage) => {
   } else { setImage(blackHeart); }
 };
 
-export const checkRecipeProgress = (recipe) => {
+export const checkRecipeProgress = (recipe, setDisabled) => {
   if (recipe.type === 'food') {
     const progressRecipe = JSON.parse(localStorage.getItem('inProgressRecipes'))
       .meals[recipe.id];

@@ -34,7 +34,7 @@ function FoodDetails() {
 
     setRecipe({
       name: singleRecipe.strMeal,
-      photo: singleRecipe.strMealThumb,
+      image: singleRecipe.strMealThumb,
       category: singleRecipe.strCategory,
       ingredients: ingredientsWithMeasures,
       instructions: singleRecipe.strInstructions,
