@@ -63,7 +63,13 @@ function Recipe({ recipe, viewMode }) {
       <h2 data-testid="recipe-title">
         {recipe.name}
       </h2>
-      <p data-testid="recipe-category">{recipe.category}</p>
+      <p data-testid="recipe-category">
+        {
+          window.location.href.includes('foods')
+            ? recipe.category
+            : recipe.alcoholicOrNot
+        }
+      </p>
       <button
         type="button"
         data-testid="share-btn"
@@ -78,6 +84,7 @@ function Recipe({ recipe, viewMode }) {
         src={ img }
         onClick={ () => {
           SaveFavoriteRecipe(recipe);
+          console.log(localStorage);
           handleFavoriteBtn(img, setImage);
         } }
       >
@@ -123,6 +130,7 @@ Recipe.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
+    alcoholicOrNot: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
     instructions: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,

@@ -34,9 +34,13 @@ function DrinkDetails() {
     setRecipe({
       name: singleRecipe.strDrink,
       image: singleRecipe.strDrinkThumb,
-      category: singleRecipe.strAlcoholic,
+      category: singleRecipe.strCategory,
       ingredients: ingredientsWithMeasures,
       instructions: singleRecipe.strInstructions,
+      type: 'drink',
+      nationality: '',
+      alcoholicOrNot: singleRecipe.strAlcoholic,
+      id,
       video: singleRecipe.strVideo,
     });
   };

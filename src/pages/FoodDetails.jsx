@@ -15,6 +15,7 @@ function FoodDetails() {
     }
 
     const singleRecipe = data.meals[0];
+    console.log(singleRecipe);
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -38,6 +39,10 @@ function FoodDetails() {
       category: singleRecipe.strCategory,
       ingredients: ingredientsWithMeasures,
       instructions: singleRecipe.strInstructions,
+      alcoholicOrNot: '',
+      nationality: singleRecipe.strArea,
+      id,
+      type: 'food',
       video: singleRecipe.strYoutube,
     });
   };
