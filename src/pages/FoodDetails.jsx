@@ -23,14 +23,13 @@ function FoodDetails() {
       .entries(singleRecipe)
       .filter(([key, value]) => key.includes('strMeasure') && value);
 
-    const ingredientsWithMeasures = ingredients
-      .map(([iKey, iValue]) => {
-        const measure = measures.find(([mKey, mValue]) => {
-          const measureKey = iKey.replace('Ingredient', 'Measure');
-          return mKey === measureKey && mValue;
-        });
-        return `${iValue} ${measure[1]}`;
-      });
+    const ingredientsWithMeasures = ingredients.map((ingredient, index) => {
+      if (measures[index]) {
+        console.log(measures[index]);
+        return `${ingredient[1]} ${measures[index][1]}`;
+      }
+      return ingredient[1];
+    });
 
     setRecipe({
       name: singleRecipe.strMeal,
