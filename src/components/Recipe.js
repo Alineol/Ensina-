@@ -35,6 +35,22 @@ function Recipe({ recipe, viewMode }) {
             />);
         }));
 
+  const handleClickCopyLinkButton = (e) => {
+    const linkCopied = 'Link copied!';
+    if (viewMode === 'inProgress') {
+      global.alert(linkCopied);
+      const url = window.location.href;
+      const index = url.indexOf('/in');
+      const toClipBoard = url.substring(0, index);
+      copyToClipboard(toClipBoard);
+      e.target.innerText = linkCopied;
+    } else if (viewMode === 'details') {
+      global.alert(linkCopied);
+      const url = window.location.href;
+      copyToClipboard(url);
+      e.target.innerText = linkCopied;
+    }
+  };
   return (
     <div style={ { width: '400px' } }>
       <img
@@ -51,14 +67,7 @@ function Recipe({ recipe, viewMode }) {
       <button
         type="button"
         data-testid="share-btn"
-        onClick={ (e) => {
-          global.alert('Link copied!');
-          const url = window.location.href;
-          const index = url.indexOf('/in');
-          const toClipBoard = url.substring(0, index);
-          copyToClipboard(toClipBoard);
-          e.target.innerText = 'Link copied!';
-        } }
+        onClick={ handleClickCopyLinkButton }
       >
         Compartilhar
       </button>
