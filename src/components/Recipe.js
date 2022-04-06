@@ -1,18 +1,42 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Ingredient from './Ingredient';
 import context from '../context/context';
 import { SaveFavoriteRecipe, checkFavorite,
   handleFavoriteBtn } from '../services/helpers';
-// import context from '../context/context';
-// import { SaveProgressinLocalSotorage } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
-  const { copyToClipboard,
+  const { copyToClipboard, progress,
   } = useContext(context);
   const [img, setImage] = useState(checkFavorite(recipe));
-  const [disabled] = useState(true);
-  // const { ingredientClick } = useContext(context);
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    const enableFinishButton = () => {
+      if (recipe.ingredients.length === progress.length) {
+        setDisabled(false);
+      } else { setDisabled(true); }
+    };
+    enableFinishButton();
+  }, [progress]);
+
+  const handleClickCopyLinkButton = (e) => {
+    const linkCopied = 'Link copied!';
+    if (viewMode === 'inProgress') {
+      global.alert(linkCopied);
+      const url = window.location.href;
+      const index = url.indexOf('/in');
+      const toClipBoard = url.substring(0, index);
+      copyToClipboard(toClipBoard);
+      e.target.innerText = linkCopied;
+    } else if (viewMode === 'details') {
+      global.alert(linkCopied);
+      const url = window.location.href;
+      copyToClipboard(url);
+      e.target.innerText = linkCopied;
+    }
+  };
 
   const renderIngredients = () => (
     recipe.ingredients
@@ -35,22 +59,6 @@ function Recipe({ recipe, viewMode }) {
             />);
         }));
 
-  const handleClickCopyLinkButton = (e) => {
-    const linkCopied = 'Link copied!';
-    if (viewMode === 'inProgress') {
-      global.alert(linkCopied);
-      const url = window.location.href;
-      const index = url.indexOf('/in');
-      const toClipBoard = url.substring(0, index);
-      copyToClipboard(toClipBoard);
-      e.target.innerText = linkCopied;
-    } else if (viewMode === 'details') {
-      global.alert(linkCopied);
-      const url = window.location.href;
-      copyToClipboard(url);
-      e.target.innerText = linkCopied;
-    }
-  };
   return (
     <div style={ { width: '400px' } }>
       <img
@@ -106,21 +114,18 @@ function Recipe({ recipe, viewMode }) {
         {
           viewMode === 'inProgress'
             ? (
-              <button
-                type="button"
-                data-testid="finish-recipe-btn"
-                disabled={ disabled }
-              >
-                Finish Recipe
-              </button>) : null
+              <Link to="/done-recipes">
+                <button
+                  type="button"
+                  data-testid="finish-recipe-btn"
+                  disabled={ disabled }
+                >
+                  Finish Recipe
+                </button>
+              </Link>
+            ) : null
         }
       </section>
-      {/* <label htmlFor="card">
-        {
-          viewMode === 'details'
-          && <input name="card" data-testid={ `${index}-recomendation-card` } />
-        }
-      </label> */}
     </div>
   );
 }
@@ -130,11 +135,11 @@ Recipe.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    alcoholicOrNot: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
     instructions: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    alcoholicOrNot: PropTypes.string.isRequired,
   }).isRequired,
   viewMode: PropTypes.oneOf(['details', 'inProgress']).isRequired,
 };
