@@ -5,88 +5,58 @@ export function isNotArrayEmpty(arr) {
   return Array.isArray(arr) && arr.length;
 }
 
-export const createInProgressStorage = () => {
-  if (!JSON.parse(localStorage.getItem('inProgressRecipes'))) {
-    localStorage.setItem('inProgressRecipes', JSON.stringify({
+const SaveFoodsInLocal = (progress, recipeId) => {
+  const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (saved) {
+    saved.meals[recipeId] = progress;
+    localStorage.setItem('inProgressRecipes', JSON.stringify(saved));
+  }
+  if (!saved) {
+    const object = {
       cocktails: {},
+      meals: { [recipeId]: progress },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(object));
+  }
+};
+
+// export const checkIngredient = (ingredient, progress, setProgress) => {
+//   console.log('check ingredient');
+//   console.log(ingredient);
+//   if (progress[0] && progress.includes(ingredient)) {
+//     console.log('eu estou');
+//     const newList = progress.filter((item) => item !== ingredient);
+//     console.log(newList);
+//     setProgress(newList);
+//   }
+//   if (progress[0] && !progress.includes(ingredient)) {
+//     console.log('eu não estou');
+//     const newArray = progress + ingredient;
+//     console.log(newArray);
+//     setProgress([newArray]);
+//   }
+// };
+const SaveDrinksinLocal = (progress, recipeId) => {
+  const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (saved) {
+    saved.cocktails[recipeId] = progress;
+    localStorage.setItem('inProgressRecipes', JSON.stringify(saved));
+  }
+  if (!saved) {
+    const object = {
       meals: {},
-    }));
+      cocktails: { [recipeId]: progress },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(object));
   }
 };
 
-const SaveFoodInLocal = (ingredient, recipeId) => {
-  const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  if (saved) {
-    const drinks = saved.cocktails;
-    const findId = Object.keys(saved.meals).some((id) => id === recipeId);
-    if (!findId && ingredient.length > 0) {
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: { ...drinks },
-        meals: { ...saved.meals, [recipeId]: [ingredient] },
-      }));
-    }
-    if (findId && ingredient.length > 0) {
-      const checkIngredient = saved.meals[recipeId].some((item) => item === ingredient);
-      if (checkIngredient) {
-        const newIngredientsList = saved.meals[recipeId]
-          .filter((item) => item !== ingredient);
-        saved.meals[recipeId] = newIngredientsList;
-        localStorage.setItem('inProgressRecipes', JSON.stringify({
-          cocktails: { ...drinks },
-          meals: { ...saved.meals },
-        }));
-      } else {
-        const newIngredientsList = saved.meals[recipeId].concat(ingredient);
-        saved.meals[recipeId] = newIngredientsList;
-        localStorage.setItem('inProgressRecipes', JSON.stringify({
-          cocktails: { ...drinks },
-          meals: { ...saved.meals },
-        }));
-      }
-    }
-  }
-};
-
-const SaveDrinksinLocal = (ingredient, recipeId) => {
-  const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  if (saved) {
-    const foods = saved.meals;
-    const findId = Object.keys(saved.cocktails).some((id) => id === recipeId);
-    if (!findId && ingredient.length > 0) {
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: { ...saved.cocktails, [recipeId]: [ingredient] },
-        meals: { ...foods },
-      }));
-    }
-    if (findId && ingredient.length > 0) {
-      const checkIngredient = saved.cocktails[recipeId]
-        .some((item) => item === ingredient);
-      if (checkIngredient) {
-        const newIngredientsList = saved.cocktails[recipeId]
-          .filter((item) => item !== ingredient);
-        saved.cocktails[recipeId] = newIngredientsList;
-        localStorage.setItem('inProgressRecipes', JSON.stringify({
-          cocktails: { ...saved.cocktails },
-          meals: { ...foods },
-        }));
-      } else {
-        const newIngredientsList = saved.cocktails[recipeId].concat(ingredient);
-        saved.cocktails[recipeId] = newIngredientsList;
-        localStorage.setItem('inProgressRecipes', JSON.stringify({
-          cocktails: { ...saved.cocktails },
-          meals: { ...foods },
-        }));
-      }
-    }
-  }
-};
-
-export const SaveProgressinLocalSotorage = (ingredient, recipeId, type) => {
+export const SaveProgressinLocalSotorage = (progress, recipeId, type) => {
   if (type === 'food') {
-    SaveFoodInLocal(ingredient, recipeId);
+    SaveFoodsInLocal(progress, recipeId);
   }
   if (type === 'drink') {
-    SaveDrinksinLocal(ingredient, recipeId);
+    SaveDrinksinLocal(progress, recipeId);
   }
 };
 
@@ -178,3 +148,13 @@ export const checkRecipeProgress = (recipe, setDisabled) => {
     }
   }
 };
+
+// export const checkProgressList = (progressList, newIngredient) => {
+//   const hasIngredient = progressList.some((ingredient) => ingredient === newIngredient);
+//   if (hasIngredient) { return progressList; }
+//   if (!hasIngredient) {
+//     console.log(hasIngredient);
+//     const newIngredientsList = [...progressList, newIngredient];
+//     return newIngredientsList;
+//   }
+// };

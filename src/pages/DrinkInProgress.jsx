@@ -1,21 +1,35 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Recipe from '../components/Recipe';
-import { createInProgressStorage,
+import {
   SaveProgressinLocalSotorage } from '../services/helpers';
 import context from '../context/context';
 
 function DrinkInProgress() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const { ingredientChecked } = useContext(context);
+  const { ingredientChecked, ingredientClick,
+    progress, setProgress } = useContext(context);
 
   useEffect(() => {
-    createInProgressStorage();
-  }, []);
+    if (progress.length > 0) {
+      SaveProgressinLocalSotorage(progress, id, 'drink');
+    }
+  }, [progress, id]);
+
   useEffect(() => {
-    SaveProgressinLocalSotorage(ingredientChecked, id, 'drink');
-  }, [ingredientChecked]);
+    const checkIngredient = async () => {
+      if (progress.includes(ingredientChecked)) {
+        const newProgress = progress.filter((item) => item !== ingredientChecked);
+        setProgress(newProgress);
+      }
+      if (!progress.includes(ingredientChecked)) {
+        const newProgress = progress.concat(ingredientChecked);
+        setProgress(newProgress);
+      }
+    };
+    checkIngredient();
+  }, [ingredientClick]);
 
   const adaptToRecipe = (data) => {
     if (!data.drinks) {
@@ -42,6 +56,10 @@ function DrinkInProgress() {
       alcoholicOrNot: strAlcoholic,
       id,
     });
+    const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (saved && saved.cocktails[id]) {
+      setProgress(saved.cocktails[id]);
+    }
   };
 
   useEffect(() => {

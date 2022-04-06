@@ -1,21 +1,25 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Ingredient from './Ingredient';
 import context from '../context/context';
 import { SaveFavoriteRecipe, checkFavorite,
-  handleFavoriteBtn, checkRecipeProgress } from '../services/helpers';
-// import context from '../context/context';
-// import { SaveProgressinLocalSotorage } from '../services/helpers';
+  handleFavoriteBtn } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
-  const { copyToClipboard, ingredientClick,
+  const { copyToClipboard, progress,
   } = useContext(context);
   const [img, setImage] = useState(checkFavorite(recipe));
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    checkRecipeProgress(recipe, setDisabled);
-  }, [ingredientClick]);
+    const enableFinishButton = () => {
+      if (recipe.ingredients.length === progress.length) {
+        setDisabled(false);
+      } else { setDisabled(true); }
+    };
+    enableFinishButton();
+  }, [progress]);
 
   const renderIngredients = () => (
     recipe.ingredients
@@ -93,13 +97,16 @@ function Recipe({ recipe, viewMode }) {
         {
           viewMode === 'inProgress'
             ? (
-              <button
-                type="button"
-                data-testid="finish-recipe-btn"
-                disabled={ disabled }
-              >
-                Finish Recipe
-              </button>) : null
+              <Link to="/done-recipes">
+                <button
+                  type="button"
+                  data-testid="finish-recipe-btn"
+                  disabled={ disabled }
+                >
+                  Finish Recipe
+                </button>
+              </Link>
+            ) : null
         }
       </section>
       {/* <label htmlFor="card">
