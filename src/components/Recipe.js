@@ -21,6 +21,23 @@ function Recipe({ recipe, viewMode }) {
     enableFinishButton();
   }, [progress]);
 
+  const handleClickCopyLinkButton = (e) => {
+    const linkCopied = 'Link copied!';
+    if (viewMode === 'inProgress') {
+      global.alert(linkCopied);
+      const url = window.location.href;
+      const index = url.indexOf('/in');
+      const toClipBoard = url.substring(0, index);
+      copyToClipboard(toClipBoard);
+      e.target.innerText = linkCopied;
+    } else if (viewMode === 'details') {
+      global.alert(linkCopied);
+      const url = window.location.href;
+      copyToClipboard(url);
+      e.target.innerText = linkCopied;
+    }
+  };
+
   const renderIngredients = () => (
     recipe.ingredients
         && recipe.ingredients.map((ingredient, index) => {
@@ -54,18 +71,18 @@ function Recipe({ recipe, viewMode }) {
       <h2 data-testid="recipe-title">
         {recipe.name}
       </h2>
-      <p data-testid="recipe-category">{recipe.category}</p>
+      <p data-testid="recipe-category">
+        {
+          window.location.href.includes('foods')
+            ? recipe.category
+            : recipe.alcoholicOrNot
+        }
+
+      </p>
       <button
         type="button"
         data-testid="share-btn"
-        onClick={ (e) => {
-          global.alert('Link copied!');
-          const url = window.location.href;
-          const index = url.indexOf('/in');
-          const toClipBoard = url.substring(0, index);
-          copyToClipboard(toClipBoard);
-          e.target.innerText = 'Link copied!';
-        } }
+        onClick={ handleClickCopyLinkButton }
       >
         Compartilhar
       </button>
@@ -109,12 +126,6 @@ function Recipe({ recipe, viewMode }) {
             ) : null
         }
       </section>
-      {/* <label htmlFor="card">
-        {
-          viewMode === 'details'
-          && <input name="card" data-testid={ `${index}-recomendation-card` } />
-        }
-      </label> */}
     </div>
   );
 }
@@ -128,6 +139,7 @@ Recipe.propTypes = {
     instructions: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    alcoholicOrNot: PropTypes.string.isRequired,
   }).isRequired,
   viewMode: PropTypes.oneOf(['details', 'inProgress']).isRequired,
 };
