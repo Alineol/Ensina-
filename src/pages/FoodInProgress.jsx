@@ -1,28 +1,39 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Recipe from '../components/Recipe';
-import { createInProgressStorage,
-  SaveProgressinLocalSotorage } from '../services/helpers';
+import { SaveProgressinLocalSotorage } from '../services/helpers';
 import context from '../context/context';
 
 function FoodInProgress() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const { ingredientChecked } = useContext(context);
+  const { ingredientChecked, ingredientClick,
+    progress, setProgress } = useContext(context);
 
   useEffect(() => {
-    SaveProgressinLocalSotorage(ingredientChecked, id, 'food');
-  }, [ingredientChecked]);
+    if (progress.length > 0) {
+      SaveProgressinLocalSotorage(progress, id, 'food');
+    }
+  }, [progress, id]);
 
   useEffect(() => {
-    createInProgressStorage();
-  }, []);
+    const checkIngredient = async () => {
+      if (progress.includes(ingredientChecked)) {
+        const newProgress = progress.filter((item) => item !== ingredientChecked);
+        setProgress(newProgress);
+      }
+      if (!progress.includes(ingredientChecked)) {
+        const newProgress = progress.concat(ingredientChecked);
+        setProgress(newProgress);
+      }
+    };
+    checkIngredient();
+  }, [ingredientClick]);
 
   const adaptToRecipe = (data) => {
     if (!data.meals) {
       return;
     }
-
     const singleRecipe = data.meals[0];
     const { strMeal,
       strMealThumb, strCategory, strInstructions, strArea } = data.meals[0];
@@ -43,6 +54,10 @@ function FoodInProgress() {
       id,
       type: 'food',
     });
+    const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (saved && saved.meals[id]) {
+      setProgress(saved.meals[id]);
+    }
   };
 
   useEffect(() => {
