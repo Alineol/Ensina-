@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
+// import DoneFoodsCard from '../components/DoneFoodsCard';
 
 function DoneRecipes() {
   return (
     <div className="page">
       <Header pageTitle="Done Recipes" showSearchButton={ false } />
-      <p>lalalala</p>
+      <p>pagina</p>
     </div>
   );
 }

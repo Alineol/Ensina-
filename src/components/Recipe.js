@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Ingredient from './Ingredient';
 import context from '../context/context';
 import { SaveFavoriteRecipe, checkFavorite,
-  handleFavoriteBtn } from '../services/helpers';
+  handleFavoriteBtn, SaveDoneRecipe } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
   const { copyToClipboard, progress,
@@ -59,6 +59,17 @@ function Recipe({ recipe, viewMode }) {
             />);
         }));
 
+  const handleFinishClickBtn = () => {
+    delete recipe.ingredients;
+    delete recipe.instructions;
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    recipe.doneDate = `${day}/${month}/${year}`;
+    SaveDoneRecipe(recipe);
+  };
+
   return (
     <div style={ { width: '400px' } }>
       <img
@@ -92,12 +103,10 @@ function Recipe({ recipe, viewMode }) {
         src={ img }
         onClick={ () => {
           SaveFavoriteRecipe(recipe);
-          console.log(localStorage);
           handleFavoriteBtn(img, setImage);
         } }
       >
-
-        {/* <img src={ img } alt="favoritar" /> */}
+        <img src={ img } alt="favoritar" />
       </button>
 
       <section>
@@ -119,6 +128,7 @@ function Recipe({ recipe, viewMode }) {
                   type="button"
                   data-testid="finish-recipe-btn"
                   disabled={ disabled }
+                  onClick={ handleFinishClickBtn }
                 >
                   Finish Recipe
                 </button>
@@ -132,14 +142,15 @@ function Recipe({ recipe, viewMode }) {
 
 Recipe.propTypes = {
   recipe: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
-    instructions: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    alcoholicOrNot: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    category: PropTypes.string,
+    ingredients: PropTypes.arrayOf(PropTypes.string),
+    instructions: PropTypes.string,
+    type: PropTypes.string,
+    id: PropTypes.string,
+    alcoholicOrNot: PropTypes.string,
+    doneDate: PropTypes.string,
   }).isRequired,
   viewMode: PropTypes.oneOf(['details', 'inProgress']).isRequired,
 };
