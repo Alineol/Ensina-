@@ -142,3 +142,17 @@ export const SaveDoneRecipe = (recipeToSave) => {
     localStorage.setItem('doneRecipes', JSON.stringify([recipeToSave]));
   }
 };
+
+export const handleFinishClickBtn = (recipe) => {
+  delete recipe.ingredients;
+  delete recipe.instructions;
+  if (recipe.type === 'food') {
+    recipe.tags = recipe.tags.split((/\s*,\s*/));
+  }
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  recipe.doneDate = `${day}/${month}/${year}`;
+  SaveDoneRecipe(recipe);
+};

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Ingredient from './Ingredient';
 import context from '../context/context';
 import { SaveFavoriteRecipe, checkFavorite,
-  handleFavoriteBtn, SaveDoneRecipe } from '../services/helpers';
+  handleFavoriteBtn, handleFinishClickBtn } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
   const { copyToClipboard, progress,
@@ -58,17 +58,6 @@ function Recipe({ recipe, viewMode }) {
               isSelected={ false }
             />);
         }));
-
-  const handleFinishClickBtn = () => {
-    delete recipe.ingredients;
-    delete recipe.instructions;
-    const date = new Date();
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    recipe.doneDate = `${day}/${month}/${year}`;
-    SaveDoneRecipe(recipe);
-  };
 
   return (
     <div style={ { width: '400px' } }>
@@ -128,7 +117,7 @@ function Recipe({ recipe, viewMode }) {
                   type="button"
                   data-testid="finish-recipe-btn"
                   disabled={ disabled }
-                  onClick={ handleFinishClickBtn }
+                  onClick={ () => handleFinishClickBtn(recipe) }
                 >
                   Finish Recipe
                 </button>
