@@ -77,7 +77,6 @@ function Recipe({ recipe, viewMode }) {
             ? recipe.category
             : recipe.alcoholicOrNot
         }
-
       </p>
       <button
         type="button"
@@ -93,6 +92,7 @@ function Recipe({ recipe, viewMode }) {
         src={ img }
         onClick={ () => {
           SaveFavoriteRecipe(recipe);
+          console.log(localStorage);
           handleFavoriteBtn(img, setImage);
         } }
       >

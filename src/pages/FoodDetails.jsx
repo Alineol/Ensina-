@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 import DrinkSuggestion from '../components/DrinkSuggestion';
 import Recipe from '../components/Recipe';
 
@@ -14,6 +15,7 @@ function FoodDetails() {
     }
 
     const singleRecipe = data.meals[0];
+    console.log(singleRecipe);
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -37,6 +39,10 @@ function FoodDetails() {
       category: singleRecipe.strCategory,
       ingredients: ingredientsWithMeasures,
       instructions: singleRecipe.strInstructions,
+      alcoholicOrNot: '',
+      nationality: singleRecipe.strArea,
+      id,
+      type: 'food',
       video: singleRecipe.strYoutube,
     });
   };
@@ -50,6 +56,15 @@ function FoodDetails() {
 
     fetchRecipeApi();
   }, [id]);
+
+  const checkMealInProgress = () => {
+    const checkMeals = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (checkMeals) {
+      const isMealOnLocalStorage = Object.keys(checkMeals.meals)
+        .some((keys) => keys === id);
+      return isMealOnLocalStorage;
+    }
+  };
 
   return (
     recipe && (
@@ -75,12 +90,17 @@ function FoodDetails() {
           <DrinkSuggestion numberOfSuggestions={ 6 } />
         </section>
         <section>
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-          >
-            Start Recipe
-          </button>
+          <Link to={ `/foods/${id}/in-progress` }>
+            <button
+              className="start-recipe-btn"
+              type="button"
+              data-testid="start-recipe-btn"
+            >
+              { checkMealInProgress()
+                ? 'Continue Recipe'
+                : 'Start Recipe' }
+            </button>
+          </Link>
         </section>
       </div>
     )
