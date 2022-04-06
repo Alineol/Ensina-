@@ -5,6 +5,7 @@ function DoneRecipes() {
   return (
     <div className="page">
       <Header pageTitle="Done Recipes" showSearchButton={ false } />
+      <p>lalalala</p>
     </div>
   );
 }
