@@ -147,11 +147,12 @@ export default function SearchBarFilters() {
   };
 
   return (
-    <div>
+    <div className="search-bar-div">
       <input
         data-testid="search-input"
         type="text"
         name="searchInputText"
+        className="search-text"
         value={ filters.searchInputText }
         onChange={ handleInputTextChange }
       />
