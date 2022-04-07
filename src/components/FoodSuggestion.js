@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card';
+import CardSuggestion from './CardSuggestion';
 
 function FoodSuggestion({ numberOfSuggestions }) {
   const [suggestions, setSuggestions] = useState([]);
@@ -35,7 +35,7 @@ function FoodSuggestion({ numberOfSuggestions }) {
     <div className="suggestionSection">
       {
         suggestions && suggestions.map((recipe, index) => (
-          <Card
+          <CardSuggestion
             key={ index }
             photo={ recipe.photo }
             category={ recipe.category }
