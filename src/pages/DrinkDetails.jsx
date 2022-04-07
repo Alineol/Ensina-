@@ -14,6 +14,8 @@ function DrinkDetails() {
     }
 
     const singleRecipe = data.drinks[0];
+    const { strDrink, strDrinkThumb, strCategory, strInstructions,
+      strAlcoholic, strVideo } = data.drinks[0];
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -32,16 +34,16 @@ function DrinkDetails() {
     });
 
     setRecipe({
-      name: singleRecipe.strDrink,
-      image: singleRecipe.strDrinkThumb,
-      category: singleRecipe.strCategory,
+      name: strDrink,
+      image: strDrinkThumb,
+      category: strCategory,
       ingredients: ingredientsWithMeasures,
-      instructions: singleRecipe.strInstructions,
+      instructions: strInstructions,
       type: 'drink',
       nationality: '',
-      alcoholicOrNot: singleRecipe.strAlcoholic,
+      alcoholicOrNot: strAlcoholic,
       id,
-      video: singleRecipe.strVideo,
+      video: strVideo,
     });
   };
 

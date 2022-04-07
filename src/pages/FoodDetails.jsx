@@ -15,7 +15,9 @@ function FoodDetails() {
     }
 
     const singleRecipe = data.meals[0];
-    console.log(singleRecipe);
+    const { strMeal,
+      strMealThumb, strCategory, strInstructions,
+      strArea, strTags, strYoutube } = data.meals[0];
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -27,23 +29,23 @@ function FoodDetails() {
 
     const ingredientsWithMeasures = ingredients.map((ingredient, index) => {
       if (measures[index]) {
-        console.log(measures[index]);
         return `${ingredient[1]} ${measures[index][1]}`;
       }
       return ingredient[1];
     });
 
     setRecipe({
-      name: singleRecipe.strMeal,
-      image: singleRecipe.strMealThumb,
-      category: singleRecipe.strCategory,
+      name: strMeal,
+      image: strMealThumb,
+      category: strCategory,
       ingredients: ingredientsWithMeasures,
-      instructions: singleRecipe.strInstructions,
+      instructions: strInstructions,
       alcoholicOrNot: '',
-      nationality: singleRecipe.strArea,
+      nationality: strArea,
       id,
       type: 'food',
-      video: singleRecipe.strYoutube,
+      video: strYoutube,
+      tags: strTags,
     });
   };
 
