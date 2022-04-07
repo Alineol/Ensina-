@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Card from './CardSuggestion';
+import Card from './Card';
 
 function FoodSuggestion({ numberOfSuggestions }) {
   const [suggestions, setSuggestions] = useState([]);
