@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
+import context from '../context/context';
 
 export default function DoneRecipeCard({ filter }) {
+  const { copyToClipboard,
+  } = useContext(context);
   const [doneRecipes, setDoneRecipes] = useState([]);
 
   useEffect(() => {
@@ -19,18 +23,27 @@ export default function DoneRecipeCard({ filter }) {
       setDoneRecipes(drinkList);
     }
   }, [filter]);
+
+  const handleShareClick = (recipe, e) => {
+    const url = window.location.host;
+    copyToClipboard(`http://${url}/${recipe.type}s/${recipe.id}`);
+    e.target.innerText = 'Link copied!';
+  };
+
   const createCard = () => doneRecipes.map((recipe, index) => (
     <div key={ recipe.id }>
-      <img
-        width="60px"
-        key={ recipe.id }
-        src={ recipe.image }
-        alt={ recipe.name }
-        data-testid={ `${index}-horizontal-image` }
-      />
-      <p data-testid={ `${index}-horizontal-name` }>
-        { recipe.name }
-      </p>
+      <Link to={ `/${recipe.type}s/${recipe.id}` }>
+        <img
+          width="60px"
+          key={ recipe.id }
+          src={ recipe.image }
+          alt={ recipe.name }
+          data-testid={ `${index}-horizontal-image` }
+        />
+        <p data-testid={ `${index}-horizontal-name` }>
+          { recipe.name }
+        </p>
+      </Link>
       {recipe.type === 'drink' && (
         <>
           <p data-testid={ `${index}-horizontal-top-text` }>{recipe.alcoholicOrNot}</p>
@@ -61,6 +74,7 @@ export default function DoneRecipeCard({ filter }) {
         type="button"
         data-testid={ `${index}-horizontal-share-btn` }
         src={ shareIcon }
+        onClick={ (e) => handleShareClick(recipe, e) }
       >
         Compartilhar
       </button>

@@ -72,7 +72,7 @@ function FoodInProgress() {
   }, []);
 
   return (
-    <div>
+    <div className="page">
       {
         recipe && <Recipe
           recipe={ recipe }

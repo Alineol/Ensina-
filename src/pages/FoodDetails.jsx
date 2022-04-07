@@ -70,25 +70,24 @@ function FoodDetails() {
 
   return (
     recipe && (
-      <div>
-        <section>
+      <div className="page">
+        <section className="recipe-section">
           <Recipe
             recipe={ recipe }
             viewMode="details"
           />
         </section>
-        <section>
-          <iframe
-            title="teste"
-            width="450"
-            height="350"
-            src={ recipe.video }
-            frameBorder="0"
-            allowFullScreen
-            data-testid="video"
-          />
-        </section>
-        <section>
+        <iframe
+          title="teste"
+          width="450"
+          height="350"
+          src={ recipe.video }
+          frameBorder="0"
+          allowFullScreen
+          data-testid="video"
+          className="details-video"
+        />
+        <section className="sugestions-section">
           <DrinkSuggestion numberOfSuggestions={ 6 } />
         </section>
         <section>
