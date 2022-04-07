@@ -18,6 +18,7 @@ function FoodDetails() {
     const { strMeal,
       strMealThumb, strCategory, strInstructions,
       strArea, strTags, strYoutube } = data.meals[0];
+    const video = strYoutube.replace('watch?v=', 'embed/');
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -44,7 +45,7 @@ function FoodDetails() {
       nationality: strArea,
       id,
       type: 'food',
-      video: strYoutube,
+      video,
       tags: strTags,
     });
   };
@@ -84,6 +85,8 @@ function FoodDetails() {
           src={ recipe.video }
           frameBorder="0"
           allowFullScreen
+          allow="accelerometer; autoplay;
+           clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           data-testid="video"
           className="details-video"
         />
