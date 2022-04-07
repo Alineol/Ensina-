@@ -184,6 +184,7 @@ export default function SearchBarFilters() {
         data-testid="exec-search-btn"
         type="button"
         name="search-button"
+        className="search-bar-btn"
         onClick={ handleClickButton }
       >
         Search

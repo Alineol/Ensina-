@@ -67,35 +67,42 @@ function Recipe({ recipe, viewMode }) {
         alt="RecipePhoto"
         className="recipe-image"
       />
-      <h6 data-testid="recipe-title">
-        {recipe.name}
-      </h6>
-      <p data-testid="recipe-category">
+      <div className="recipe-title-btns-div">
+        <h6 data-testid="recipe-title">
+          {recipe.name}
+        </h6>
+        <div>
+
+          <button
+            type="button"
+            data-testid="share-btn"
+            className="share-btn"
+            onClick={ handleClickCopyLinkButton }
+          >
+            Compartilhar
+          </button>
+          <button
+            type="button"
+            className="favorite-btn"
+            // data-testid="favorite-btn"
+            // className="favorite-btn"
+            // src={ img }
+            onClick={ () => {
+              SaveFavoriteRecipe(recipe);
+              handleFavoriteBtn(img, setImage);
+            } }
+          >
+            <img src={ img } data-testid="favorite-btn" alt="favoritar" />
+          </button>
+        </div>
+      </div>
+      <span data-testid="recipe-category" className="recipe-category">
         {
           window.location.href.includes('foods')
             ? recipe.category
             : recipe.alcoholicOrNot
         }
-      </p>
-      <button
-        type="button"
-        data-testid="share-btn"
-        onClick={ handleClickCopyLinkButton }
-      >
-        Compartilhar
-      </button>
-      <button
-        type="button"
-        data-testid="favorite-btn"
-        className="favorite-btn"
-        src={ img }
-        onClick={ () => {
-          SaveFavoriteRecipe(recipe);
-          handleFavoriteBtn(img, setImage);
-        } }
-      >
-        <img src={ img } alt="favoritar" />
-      </button>
+      </span>
 
       <section className="ingredients-section">
         <h6>Ingredients</h6>
@@ -108,7 +115,7 @@ function Recipe({ recipe, viewMode }) {
           }
         </ul>
       </section>
-      <section>
+      <section className="instructions-section">
         <h6>Instructions</h6>
         <p data-testid="instructions">{recipe.instructions}</p>
         {
@@ -118,6 +125,7 @@ function Recipe({ recipe, viewMode }) {
                 <button
                   type="button"
                   data-testid="finish-recipe-btn"
+                  className="finish-recipe-btn"
                   disabled={ disabled }
                   onClick={ () => handleFinishClickBtn(recipe) }
                 >
