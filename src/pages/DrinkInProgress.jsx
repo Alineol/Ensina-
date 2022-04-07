@@ -74,7 +74,6 @@ function DrinkInProgress() {
 
   return (
     <div className="page">
-      <h1>Drink in progress page</h1>
       {
         recipe && <Recipe
           recipe={ recipe }

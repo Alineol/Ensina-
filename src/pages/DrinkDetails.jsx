@@ -75,17 +75,16 @@ function DrinkDetails() {
             viewMode="details"
           />
         </section>
-        <section>
-          <iframe
-            title="teste"
-            width="450"
-            height="350"
-            src={ recipe.video }
-            frameBorder="0"
-            allowFullScreen
-            data-testid="video"
-          />
-        </section>
+        {/* <section className="details-video"> */}
+        <iframe
+          title="teste"
+          src={ recipe.video }
+          frameBorder="0"
+          allowFullScreen
+          data-testid="video"
+          className="details-video"
+        />
+        {/* </section> */}
         <section className="sugestions-section">
           <FoodSuggestion numberOfSuggestions={ 6 } />
         </section>

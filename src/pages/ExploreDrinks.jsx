@@ -18,6 +18,7 @@ function ExploreDrinks(props) {
           onClick={ () => history.push('/explore/drinks/ingredients') }
           type="button"
           data-testid="explore-by-ingredient"
+          className="explore-selector-btn"
         >
           By Ingredient
         </button>
@@ -25,6 +26,7 @@ function ExploreDrinks(props) {
           onClick={ async () => history.push(`/drinks/${await getRandomDrink()}`) }
           type="button"
           data-testid="explore-surprise"
+          className="explore-selector-btn"
         >
           Surprise me!
         </button>
