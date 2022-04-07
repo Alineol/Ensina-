@@ -3,18 +3,20 @@ import PropTypes from 'prop-types';
 
 function Card({ photo, title, category, index }) {
   return (
-    <div
+    <section
       data-testid={ `${index}-recomendation-card` }
-      className="sugestion-card"
+      className="card"
     >
-      <p data-testid={ `${index}-recomendation-title` }>{title}</p>
       <img
         src={ photo }
         alt={ title }
-        className="sugestion-img"
+        width="100px"
       />
       <p>{category}</p>
-    </div>
+      <h6 data-testid={ `${index}-recomendation-title` }>
+        {title}
+      </h6>
+    </section>
   );
 }
 

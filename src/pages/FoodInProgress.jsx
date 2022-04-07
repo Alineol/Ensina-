@@ -36,7 +36,7 @@ function FoodInProgress() {
     }
     const singleRecipe = data.meals[0];
     const { strMeal,
-      strMealThumb, strCategory, strInstructions, strArea } = data.meals[0];
+      strMealThumb, strCategory, strInstructions, strArea, strTags } = data.meals[0];
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -53,6 +53,7 @@ function FoodInProgress() {
       nationality: strArea,
       id,
       type: 'food',
+      tags: strTags,
     });
     const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (saved && saved.meals[id]) {
@@ -71,7 +72,7 @@ function FoodInProgress() {
   }, []);
 
   return (
-    <div>
+    <div className="page">
       {
         recipe && <Recipe
           recipe={ recipe }

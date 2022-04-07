@@ -20,22 +20,6 @@ const SaveFoodsInLocal = (progress, recipeId) => {
   }
 };
 
-// export const checkIngredient = (ingredient, progress, setProgress) => {
-//   console.log('check ingredient');
-//   console.log(ingredient);
-//   if (progress[0] && progress.includes(ingredient)) {
-//     console.log('eu estou');
-//     const newList = progress.filter((item) => item !== ingredient);
-//     console.log(newList);
-//     setProgress(newList);
-//   }
-//   if (progress[0] && !progress.includes(ingredient)) {
-//     console.log('eu não estou');
-//     const newArray = progress + ingredient;
-//     console.log(newArray);
-//     setProgress([newArray]);
-//   }
-// };
 const SaveDrinksinLocal = (progress, recipeId) => {
   const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
   if (saved) {
@@ -96,7 +80,6 @@ export const SaveFavoriteRecipe = ({
   if (savedFavorites) {
     const findId = savedFavorites.some((favorite) => favorite.id === id);
     if (!findId) {
-      console.log(savedFavorites);
       localStorage.setItem('favoriteRecipes', JSON.stringify([...savedFavorites, {
         id,
         type,
@@ -149,12 +132,27 @@ export const checkRecipeProgress = (recipe, setDisabled) => {
   }
 };
 
-// export const checkProgressList = (progressList, newIngredient) => {
-//   const hasIngredient = progressList.some((ingredient) => ingredient === newIngredient);
-//   if (hasIngredient) { return progressList; }
-//   if (!hasIngredient) {
-//     console.log(hasIngredient);
-//     const newIngredientsList = [...progressList, newIngredient];
-//     return newIngredientsList;
-//   }
-// };
+export const SaveDoneRecipe = (recipeToSave) => {
+  const saved = JSON.parse(localStorage.getItem('doneRecipes'));
+  if (saved) {
+    const newSaved = [...saved, recipeToSave];
+    localStorage.setItem('doneRecipes', JSON.stringify(newSaved));
+  }
+  if (!saved) {
+    localStorage.setItem('doneRecipes', JSON.stringify([recipeToSave]));
+  }
+};
+
+export const handleFinishClickBtn = (recipe) => {
+  delete recipe.ingredients;
+  delete recipe.instructions;
+  if (recipe.type === 'food') {
+    recipe.tags = recipe.tags.split((/\s*,\s*/));
+  }
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  recipe.doneDate = `${day}/${month}/${year}`;
+  SaveDoneRecipe(recipe);
+};

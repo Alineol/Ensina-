@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import CardSuggestion from './CardSuggestion';
+import Card from './CardSuggestion';
 
 function FoodSuggestion({ numberOfSuggestions }) {
   const [suggestions, setSuggestions] = useState([]);
@@ -31,22 +31,14 @@ function FoodSuggestion({ numberOfSuggestions }) {
     fetchFoodsApi();
   }, [numberOfSuggestions]);
 
-  return (
-    <div className="suggestionSection">
-      {
-        suggestions && suggestions.map((recipe, index) => (
-          <CardSuggestion
-            key={ index }
-            photo={ recipe.photo }
-            category={ recipe.category }
-            title={ recipe.name }
-            index={ index }
-          />))
-      }
-
-    </div>
-
-  );
+  return suggestions && suggestions.map((recipe, index) => (
+    <Card
+      key={ index }
+      photo={ recipe.photo }
+      category={ recipe.category }
+      title={ recipe.name }
+      index={ index }
+    />));
 }
 
 FoodSuggestion.propTypes = {

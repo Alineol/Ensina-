@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Ingredient from './Ingredient';
 import context from '../context/context';
 import { SaveFavoriteRecipe, checkFavorite,
-  handleFavoriteBtn } from '../services/helpers';
+  handleFavoriteBtn, handleFinishClickBtn } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
   const { copyToClipboard, progress,
@@ -60,17 +60,16 @@ function Recipe({ recipe, viewMode }) {
         }));
 
   return (
-    <div style={ { width: '400px' } }>
+    <>
       <img
         data-testid="recipe-photo"
         src={ recipe.image }
         alt="RecipePhoto"
-        height="300px"
-        width="400px"
+        className="recipe-image"
       />
-      <h2 data-testid="recipe-title">
+      <h6 data-testid="recipe-title">
         {recipe.name}
-      </h2>
+      </h6>
       <p data-testid="recipe-category">
         {
           window.location.href.includes('foods')
@@ -92,24 +91,25 @@ function Recipe({ recipe, viewMode }) {
         src={ img }
         onClick={ () => {
           SaveFavoriteRecipe(recipe);
-          console.log(localStorage);
           handleFavoriteBtn(img, setImage);
         } }
       >
-
-        {/* <img src={ img } alt="favoritar" /> */}
+        <img src={ img } alt="favoritar" />
       </button>
 
-      <section>
-        <h3>Ingredients</h3>
-        <ul style={ { listStyle: viewMode === 'inProgress' ? 'none' : null } }>
+      <section className="ingredients-section">
+        <h6>Ingredients</h6>
+        <ul
+          className="ingredients-list"
+          style={ { listStyle: viewMode === 'inProgress' ? 'none' : null } }
+        >
           {
             recipe.ingredients && renderIngredients()
           }
         </ul>
       </section>
       <section>
-        <h3>Instructions</h3>
+        <h6>Instructions</h6>
         <p data-testid="instructions">{recipe.instructions}</p>
         {
           viewMode === 'inProgress'
@@ -119,6 +119,7 @@ function Recipe({ recipe, viewMode }) {
                   type="button"
                   data-testid="finish-recipe-btn"
                   disabled={ disabled }
+                  onClick={ () => handleFinishClickBtn(recipe) }
                 >
                   Finish Recipe
                 </button>
@@ -126,20 +127,21 @@ function Recipe({ recipe, viewMode }) {
             ) : null
         }
       </section>
-    </div>
+    </>
   );
 }
 
 Recipe.propTypes = {
   recipe: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
-    instructions: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    alcoholicOrNot: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    category: PropTypes.string,
+    ingredients: PropTypes.arrayOf(PropTypes.string),
+    instructions: PropTypes.string,
+    type: PropTypes.string,
+    id: PropTypes.string,
+    alcoholicOrNot: PropTypes.string,
+    doneDate: PropTypes.string,
   }).isRequired,
   viewMode: PropTypes.oneOf(['details', 'inProgress']).isRequired,
 };

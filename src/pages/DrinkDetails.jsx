@@ -14,6 +14,8 @@ function DrinkDetails() {
     }
 
     const singleRecipe = data.drinks[0];
+    const { strDrink, strDrinkThumb, strCategory, strInstructions,
+      strAlcoholic, strVideo } = data.drinks[0];
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -32,16 +34,16 @@ function DrinkDetails() {
     });
 
     setRecipe({
-      name: singleRecipe.strDrink,
-      image: singleRecipe.strDrinkThumb,
-      category: singleRecipe.strCategory,
+      name: strDrink,
+      image: strDrinkThumb,
+      category: strCategory,
       ingredients: ingredientsWithMeasures,
-      instructions: singleRecipe.strInstructions,
+      instructions: strInstructions,
       type: 'drink',
       nationality: '',
-      alcoholicOrNot: singleRecipe.strAlcoholic,
+      alcoholicOrNot: strAlcoholic,
       id,
-      video: singleRecipe.strVideo,
+      video: strVideo,
     });
   };
 
@@ -66,8 +68,8 @@ function DrinkDetails() {
 
   return (
     recipe && (
-      <div>
-        <section>
+      <div className="page">
+        <section className="recipe-section">
           <Recipe
             recipe={ recipe }
             viewMode="details"
@@ -84,22 +86,20 @@ function DrinkDetails() {
             data-testid="video"
           />
         </section>
-        <section>
+        <section className="sugestions-section">
           <FoodSuggestion numberOfSuggestions={ 6 } />
         </section>
-        <section>
-          <Link to={ `/drinks/${id}/in-progress` }>
-            <button
-              className="start-recipe-btn"
-              type="button"
-              data-testid="start-recipe-btn"
-            >
-              { checkDrinkInProgress()
-                ? 'Continue Recipe'
-                : 'Start Recipe' }
-            </button>
-          </Link>
-        </section>
+        <Link to={ `/drinks/${id}/in-progress` }>
+          <button
+            className="start-recipe-btn"
+            type="button"
+            data-testid="start-recipe-btn"
+          >
+            { checkDrinkInProgress()
+              ? 'Continue Recipe'
+              : 'Start Recipe' }
+          </button>
+        </Link>
       </div>
     )
   );
