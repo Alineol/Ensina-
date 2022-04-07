@@ -9,15 +9,31 @@ function MenuInferior() {
     <div
       data-testid="footer"
       style={ { bottom: '0', position: 'fixed' } }
+      className="footer"
     >
       <Link to="/drinks">
-        <img data-testid="drinks-bottom-btn" src={ drinkIcon } alt="Drink" />
+        <img
+          data-testid="drinks-bottom-btn"
+          src={ drinkIcon }
+          className="foot-img"
+          alt="Drink"
+        />
       </Link>
       <Link to="/explore">
-        <img data-testid="explore-bottom-btn" src={ exploreIcon } alt="Explore" />
+        <img
+          data-testid="explore-bottom-btn"
+          className="foot-img"
+          src={ exploreIcon }
+          alt="Explore"
+        />
       </Link>
       <Link to="/foods">
-        <img data-testid="food-bottom-btn" src={ mealIcon } alt="Food" />
+        <img
+          className="foot-img"
+          data-testid="food-bottom-btn"
+          src={ mealIcon }
+          alt="Food"
+        />
       </Link>
     </div>
   );

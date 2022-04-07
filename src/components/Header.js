@@ -15,19 +15,29 @@ function Header({ pageTitle, showSearchButton }) {
   }, [pageTitle, setPageTitle]);
 
   return (
-    <header data-testid="header">
+    <header data-testid="header" className="header">
       <Link to="/profile">
-        <img src={ profileIcon } data-testid="profile-top-btn" alt="profile" />
+        <img
+          src={ profileIcon }
+          data-testid="profile-top-btn"
+          alt="profile"
+          className="profile-icon"
+        />
       </Link>
-      <h1 data-testid="page-title">{pageTitle}</h1>
+      <h4 data-testid="page-title" className="page-title">{pageTitle}</h4>
       {showSearchButton && (
         <button
           type="button"
+          className="search-icon"
           onClick={ () => {
             setShowSearchBar(!showSearchBar);
           } }
         >
-          <img src={ searchIcon } data-testid="search-top-btn" alt="search" />
+          <img
+            src={ searchIcon }
+            data-testid="search-top-btn"
+            alt="search"
+          />
         </button>
       )}
       {showSearchBar && <SearchBar />}

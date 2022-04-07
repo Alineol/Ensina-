@@ -21,19 +21,21 @@ function FoodsCards(props) {
 
   if (isNotArrayEmpty(recipes)) {
     return (
-      <section className="recipes-section">
+      <section className="recipesList-section">
         {recipes.map((recipe, index) => (
           <button
             key={ recipe.idMeal }
             type="button"
             data-testid={ `${index}-recipe-card` }
             tabIndex={ index }
+            className="recipe-btn"
             onClick={ () => history.push(`/foods/${recipe.idMeal}`) }
           >
             <img
               src={ recipe.strMealThumb }
               alt={ recipe.strMeal }
               width="100px"
+              className="recipe-principal-img"
               data-testid={ `${index}-card-img` }
             />
             <p data-testid={ `${index}-card-name` }>
