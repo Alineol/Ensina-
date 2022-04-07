@@ -71,7 +71,7 @@ function FoodDetails() {
   return (
     recipe && (
       <div className="page">
-        <section>
+        <section className="recipe-section">
           <Recipe
             recipe={ recipe }
             viewMode="details"

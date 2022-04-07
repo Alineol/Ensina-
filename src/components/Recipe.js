@@ -60,17 +60,16 @@ function Recipe({ recipe, viewMode }) {
         }));
 
   return (
-    <div style={ { width: '400px' } }>
+    <>
       <img
         data-testid="recipe-photo"
         src={ recipe.image }
         alt="RecipePhoto"
-        height="300px"
-        width="400px"
+        className="recipe-image"
       />
-      <h2 data-testid="recipe-title">
+      <h6 data-testid="recipe-title">
         {recipe.name}
-      </h2>
+      </h6>
       <p data-testid="recipe-category">
         {
           window.location.href.includes('foods')
@@ -98,16 +97,19 @@ function Recipe({ recipe, viewMode }) {
         <img src={ img } alt="favoritar" />
       </button>
 
-      <section>
-        <h3>Ingredients</h3>
-        <ul style={ { listStyle: viewMode === 'inProgress' ? 'none' : null } }>
+      <section className="ingredients-section">
+        <h6>Ingredients</h6>
+        <ul
+          className="ingredients-list"
+          style={ { listStyle: viewMode === 'inProgress' ? 'none' : null } }
+        >
           {
             recipe.ingredients && renderIngredients()
           }
         </ul>
       </section>
       <section>
-        <h3>Instructions</h3>
+        <h6>Instructions</h6>
         <p data-testid="instructions">{recipe.instructions}</p>
         {
           viewMode === 'inProgress'
@@ -125,7 +127,7 @@ function Recipe({ recipe, viewMode }) {
             ) : null
         }
       </section>
-    </div>
+    </>
   );
 }
 

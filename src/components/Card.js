@@ -11,7 +11,7 @@ function Card({ photo, title, category, index }) {
       <img
         src={ photo }
         alt={ title }
-        className="details-img"
+        className="sugestion-img"
       />
       <p>{category}</p>
     </div>
