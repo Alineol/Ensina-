@@ -37,11 +37,13 @@ function ExploreDrinksByIngredient(props) {
         type="button"
         key={ index }
         data-testid={ `${index}-ingredient-card` }
+        className="explore-result-btn"
       >
         <img
           src={ img }
           alt={ strIngredient1 }
           data-testid={ `${index}-card-img` }
+          className="explore-result-img"
         />
         <p data-testid={ `${index}-card-name` }>{strIngredient1}</p>
       </button>

@@ -47,12 +47,14 @@ function ExploreFoodsByNationality(props) {
       data-testid={ `${index}-recipe-card` }
       tabIndex={ index }
       onClick={ () => history.push(`/foods/${recipe.idMeal}`) }
+      className="explore-result-btn"
     >
       <img
         src={ recipe.strMealThumb }
         alt={ recipe.strMeal }
         width="100px"
         data-testid={ `${index}-card-img` }
+        className="explore-result-img"
       />
       <p data-testid={ `${index}-card-name` }>
         {recipe.strMeal}
