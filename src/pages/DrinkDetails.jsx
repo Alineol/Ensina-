@@ -66,7 +66,7 @@ function DrinkDetails() {
 
   return (
     recipe && (
-      <div>
+      <div className="page">
         <section>
           <Recipe
             recipe={ recipe }
@@ -84,22 +84,20 @@ function DrinkDetails() {
             data-testid="video"
           />
         </section>
-        <section>
+        <section className="sugestions-section">
           <FoodSuggestion numberOfSuggestions={ 6 } />
         </section>
-        <section>
-          <Link to={ `/drinks/${id}/in-progress` }>
-            <button
-              className="start-recipe-btn"
-              type="button"
-              data-testid="start-recipe-btn"
-            >
-              { checkDrinkInProgress()
-                ? 'Continue Recipe'
-                : 'Start Recipe' }
-            </button>
-          </Link>
-        </section>
+        <Link to={ `/drinks/${id}/in-progress` }>
+          <button
+            className="start-recipe-btn"
+            type="button"
+            data-testid="start-recipe-btn"
+          >
+            { checkDrinkInProgress()
+              ? 'Continue Recipe'
+              : 'Start Recipe' }
+          </button>
+        </Link>
       </div>
     )
   );

@@ -31,22 +31,14 @@ function FoodSuggestion({ numberOfSuggestions }) {
     fetchFoodsApi();
   }, [numberOfSuggestions]);
 
-  return (
-    <div className="suggestionSection">
-      {
-        suggestions && suggestions.map((recipe, index) => (
-          <Card
-            key={ index }
-            photo={ recipe.photo }
-            category={ recipe.category }
-            title={ recipe.name }
-            index={ index }
-          />))
-      }
-
-    </div>
-
-  );
+  return suggestions && suggestions.map((recipe, index) => (
+    <Card
+      key={ index }
+      photo={ recipe.photo }
+      category={ recipe.category }
+      title={ recipe.name }
+      index={ index }
+    />));
 }
 
 FoodSuggestion.propTypes = {

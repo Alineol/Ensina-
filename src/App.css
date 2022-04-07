@@ -1,3 +1,40 @@
+@media screen and ( max-width : 768px ) {
+  .page {
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    border: solid blue;
+    align-items: center;
+  }
+
+  .details-video{
+    width: fit-content;
+  }
+  .sugestions-section {
+    display: flex;
+    overflow-x:scroll;
+    width: 70%;
+    align-self: center;
+    margin: 10px 0 40px;
+    /* border: solid; */
+  }
+  
+  .sugestion-card {
+    margin:  0 25px;
+    width: 100px;
+    height: 100px;
+    border: solid blue;
+    text-align: center;
+    box-sizing:content-box;
+    padding: 10px;
+    font-size: 10px;
+  }
+  .details-img {
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+  }
+}
 .meals {
   align-items: center;
   background: #0fa36b;
@@ -10,36 +47,6 @@
   width: 100%;
 }
 
-/* .rocksGlass {
-  animation: shake 1s infinite ease;
-  max-height: 80vh;
-} */
-
-.suggestionSection {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  width: 1100px;
-}
-
-.card {
-  flex-grow: 5;
-}
-
-/*
-#iceLeft {
-  animation: clink .8s infinite ease;
-  opacity: 0.6;
-  transform-origin: 36px 66px;
-}
-
-#iceRight {
-  animation: clink .8s .2s infinite ease;
-  opacity: 0.6;
-  transform-origin: 60px 78px;
-}
-*/
-
 .meals > .logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
@@ -51,6 +58,7 @@
 .start-recipe-btn {
   bottom: 0;
   position: fixed;
+  align-self: center;
 }
 
 @keyframes shake {
