@@ -7,8 +7,11 @@ import { SaveFavoriteRecipe, checkFavorite,
   handleFavoriteBtn, handleFinishClickBtn } from '../services/helpers';
 
 function Recipe({ recipe, viewMode }) {
-  const { copyToClipboard, progress,
+  const {
+    copyToClipboard,
+    progress,
   } = useContext(context);
+
   const [img, setImage] = useState(checkFavorite(recipe));
   const [disabled, setDisabled] = useState(true);
 

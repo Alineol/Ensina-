@@ -47,13 +47,15 @@ export const SaveProgressinLocalSotorage = (progress, recipeId, type) => {
 export function checkCheked(pathname, name, id) {
   const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
   if (saved) {
-    if (pathname.includes('foods') && saved.meals[id]) {
+    const { meals, cocktails } = saved;
+
+    if (pathname.includes('foods') && meals && meals[id]) {
       const hasIngredient = saved.meals[id].some((ingredient) => ingredient === name);
       if (hasIngredient) {
         return true;
       } return false;
     }
-    if (pathname.includes('drinks') && saved.cocktails[id]) {
+    if (pathname.includes('drinks') && cocktails && cocktails[id]) {
       const hasIngredient = saved.cocktails[id].some((ingredient) => ingredient === name);
       if (hasIngredient) {
         return true;

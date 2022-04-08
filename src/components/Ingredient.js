@@ -6,7 +6,7 @@ import context from '../context/context';
 import { checkCheked } from '../services/helpers';
 
 function Ingredient({ name, selectable, isSelected, dataTestId }) {
-  const { pathname } = useHistory().location;
+  const { location: { pathname } } = useHistory();
   const { id } = useParams();
   const { setIngredientChecked, ingredientClick,
     setIngredientClick } = useContext(context);
