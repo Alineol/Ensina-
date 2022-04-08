@@ -15,7 +15,7 @@ function DrinkDetails() {
 
     const singleRecipe = data.drinks[0];
     const { strDrink, strDrinkThumb, strCategory, strInstructions,
-      strAlcoholic, strVideo } = data.drinks[0];
+      strAlcoholic } = data.drinks[0];
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -43,7 +43,7 @@ function DrinkDetails() {
       nationality: '',
       alcoholicOrNot: strAlcoholic,
       id,
-      video: strVideo,
+      // video,
     });
   };
 
@@ -78,14 +78,6 @@ function DrinkDetails() {
             viewMode="details"
           />
         </section>
-        <iframe
-          title="teste"
-          src={ recipe.video }
-          frameBorder="0"
-          allowFullScreen
-          data-testid="video"
-          className="details-video"
-        />
         <section className="sugestions-section">
           <FoodSuggestion numberOfSuggestions={ 6 } />
         </section>
