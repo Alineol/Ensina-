@@ -59,9 +59,12 @@ function DrinkDetails() {
 
   const checkDrinkInProgress = () => {
     const checkDrinks = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (checkDrinks) {
-      const isDrinkOnLocalStorage = Object.keys(checkDrinks.cocktails)
+
+    if (checkDrinks && checkDrinks.cocktails) {
+      const isDrinkOnLocalStorage = Object
+        .keys(checkDrinks.cocktails)
         .some((keys) => keys === id);
+
       return isDrinkOnLocalStorage;
     }
   };
