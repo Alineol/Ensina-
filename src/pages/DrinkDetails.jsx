@@ -78,7 +78,6 @@ function DrinkDetails() {
             viewMode="details"
           />
         </section>
-        {/* <section className="details-video"> */}
         <iframe
           title="teste"
           src={ recipe.video }
@@ -87,7 +86,6 @@ function DrinkDetails() {
           data-testid="video"
           className="details-video"
         />
-        {/* </section> */}
         <section className="sugestions-section">
           <FoodSuggestion numberOfSuggestions={ 6 } />
         </section>
