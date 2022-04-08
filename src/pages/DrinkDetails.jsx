@@ -27,7 +27,6 @@ function DrinkDetails() {
 
     const ingredientsWithMeasures = ingredients.map((ingredient, index) => {
       if (measures[index]) {
-        console.log(measures[index]);
         return `${ingredient[1]} ${measures[index][1]}`;
       }
       return ingredient[1];
