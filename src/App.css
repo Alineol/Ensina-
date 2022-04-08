@@ -1,9 +1,9 @@
 .page {
   align-items: center;
-  /* border: solid blue; */
+  border: solid  1px blue;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: fit-content;
   max-width: 100vw;
 }
 
@@ -87,6 +87,7 @@
    align-self:flex-start
  }
 
+
  .recipe-btn, .explore-result-btn {
   border: solid 1px #00A296;
   margin: 1px 2px;
@@ -102,7 +103,7 @@
     margin: 0;
   }
 
-  .recipe-principal-img, .explore-result-img {
+  .recipe-principal-img, .explore-result-img, .done-recipe-img {
     width: 50px;
     height: 50px;
   }
@@ -141,55 +142,55 @@
     border-radius: 10px;
   } */
 
-  .finish-recipe-btn {
+.finish-recipe-btn {
     align-self: center;
   }
 
-  .favorite-btn {
+.favorite-btn {
     border: 0;
     background-color: white;
   }
 
-  .favorite-btn img {
+.favorite-btn img {
     width: 25px;
   }
 
   /* .favorite-btn ::before {
     filter: invert();  } */
 
-  .ingredients-section {
+.ingredients-section {
     align-self: baseline;
     padding-left: 2px;
     font-size: 12px;
     color: #441C55;
   }
 
-  .ingredients-list {
+.ingredients-list {
     margin: 0;
     padding: 0 15px;
   }
 
-  .instructions-section {
+.instructions-section {
     color: #441C55;
     /* border: solid 1px; */
     /* height: 38%;
     overflow-y: scroll; */
   }
 
-  .instructions-section p {
+.instructions-section p {
     font-size: 13px;
   }
 
-  .recipe-image {
+.recipe-image {
     height: 30vh;
     width: 100%;
   }
 
-  .details-video {
+.details-video {
     width: 80%;
   }
 
-  .sugestions-section {
+.sugestions-section {
 
     /* border: solid; */
     align-self: center;
@@ -199,7 +200,7 @@
     width: 70%;
   }
 
-  .sugestion-card {
+.sugestion-card {
     border: solid  1px #7b1fa2;
     border-radius: 20px;
     box-sizing: content-box;
@@ -212,11 +213,11 @@
     color:#441C55
   }
 
-  .sugestion-card p {
+.sugestion-card p {
     margin: 0;
   }
 
-  .sugestion-img {
+.sugestion-img {
     border-radius: 100%;
     height: 50px;
     width: 50px;
@@ -224,7 +225,7 @@
   
 
   
-  .start-recipe-btn {
+.start-recipe-btn {
     align-self: center;
     bottom: 0;
     right: 50px;
@@ -233,14 +234,76 @@
     margin-bottom: 2px;
   }
 
-  .explore-selector-btn {
+.explore-selector-btn, .done-filter-btn {
     background-color: white;
     color: #00A296;
     border-radius: 10px;
     border:  solid 1px #00A296;
     margin: 10px;
   }
+
+.done-recipes-section {
+  display: flex;
+  flex-direction: column;
+  /* border: solid 1px; */
+  width: 100%;
+  align-items: center;
+}
   
+.done-recipe-card {
+    border: solid 1px #00A296;
+    margin: 2% 0px;
+    border-radius: 20px;
+    color: #00A296;
+    font-size: 10px;
+    width: 95%;
+    display:flex;
+    height: 100px;
+    overflow: hidden;
+  }
+
+.done-recipe-img-a {
+    width: 50%;
+    height: 100%;
+  }
+
+.done-recipe-img {
+  height: 100%;
+  width: 100%;
+}
+
+.informations-done-div {
+  color: #441C55;
+  width: 50%;
+  padding: 1%;
+}
+
+.informations-done-div a {
+  color: #441C55;
+}
+
+.informations-done-div a:hover {
+  color:#7b1fa2;
+  text-decoration: none;
+}
+
+.done-recipes-section button {
+  height: 10%;
+  background-color: white;
+  border: 0px;
+  padding:  2% ;
+}
+.done-share-icon {
+  width: 15px;
+}
+
+.informations-done-div button {
+  background-color: white;
+  border: 0px;
+}
+
+
+
   @keyframes shake {
 
   0% {
