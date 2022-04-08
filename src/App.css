@@ -1,4 +1,5 @@
 .page {
+
   /* border: solid  1px blue; */
   align-items: center;
   display: flex;
@@ -246,24 +247,25 @@
   flex-direction: column;
   width: 100%;
 }
-  
+
 .done-recipe-card, .favorite-recipe-card {
-    border-radius: 20px;
-    border: solid 1px #00A296;
-    color: #00A296;
-    display:flex;
-    font-size: 10px;
-    height: 100px;
-    margin: 2% 0px;
-    overflow: hidden;
-    width: 80%;
-  }
+  border: solid 1px #00a296;
+  border-radius: 20px;
+  color: #00a296;
+  display: flex;
+  font-size: 10px;
+  height: 100px;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  overflow: hidden;
+  width: 80%;
+}
 
 
 .done-recipe-img-a, .favorite-recipe-img-a {
   height: 100%;
   width: 50%;
-  }
+}
 
 .done-recipe-img, .favorite-recipe-img {
   height: 100%;
@@ -271,33 +273,34 @@
 }
 
 .informations-done-div, .informations-favorite-div {
-  color: #441C55;
+  color: #441c55;
   padding: 2%;
   width: 50%;
 }
 
 .informations-done-div a, .informations-favorite-div a {
-  color: #441C55;
+  color: #441c55;
 }
 
 .informations-done-div a:hover {
-  color:#7b1fa2;
+  color: #7b1fa2;
   text-decoration: none;
 }
 
 .done-recipes-section button {
   background-color: white;
-  border: 0px;
+  border: none;
   height: 10%;
-  padding:  2% ;
+  padding: 2%;
 }
+
 .done-share-icon, .favorite-share-icon {
   width: 20px;
 }
 
 .informations-done-div button {
   background-color: white;
-  border: 0px;
+  border: none;
 }
 
 .done-tags {
@@ -311,55 +314,5 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding:  0% 20%;
+  padding: 0% 20%;
 }
-
-
-  @keyframes shake {
-
-  0% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-  
-  100% {
-    transform: rotate(5deg);
-  }
-}
-
-@keyframes clink {
-  
-  0% {
-    transform: rotate(-10deg);
-  }
-  
-  50% {
-    transform: rotate(20deg);
-  }
-  
-  100% {
-    transform: rotate(-10deg);
-  }
-}
-/* .meals {
-  align-items: center;
-  background: #0fa36b;
-  color: #464646;
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  height: 100vh;
-  justify-content: center;
-  width: 100%;
-}
-
-.meals > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
-  font-weight: 900;
-} */
