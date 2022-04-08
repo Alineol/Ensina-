@@ -64,11 +64,17 @@ export default function DoneRecipeCard({ filter }) {
         </p>
         {recipe.type === 'food' && (
           <>
-            <span data-testid={ `${index}-${recipe.tags[0]}-horizontal-tag` }>
+            <span
+              className="done-tags"
+              data-testid={ `${index}-${recipe.tags[0]}-horizontal-tag` }
+            >
               {recipe.tags[0]}
             </span>
             {recipe.tags[1] && (
-              <span data-testid={ `${index}-${recipe.tags[1]}-horizontal-tag` }>
+              <span
+                className="done-tags"
+                data-testid={ `${index}-${recipe.tags[1]}-horizontal-tag` }
+              >
                 {recipe.tags[1]}
               </span>
             )}
