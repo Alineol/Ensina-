@@ -206,7 +206,7 @@
     box-sizing: content-box;
     font-size: 10px;
     height: 80px;
-    margin: 0 9%;
+    margin: 1% 9%;
     padding: 10px;
     text-align: center;
     width: 100px;
@@ -302,6 +302,12 @@
   border: 0px;
 }
 
+.done-tags {
+  margin: 1%;
+  background-color: #a665c2;
+  border-radius: 20px;
+  padding: 2%;
+}
 
 
   @keyframes shake {
