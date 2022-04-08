@@ -258,9 +258,12 @@
   margin-bottom: 2%;
   margin-top: 2%;
   overflow: hidden;
-  width: 80%;
+  width: 90%;
 }
 
+.favorite-recipe-card {
+  width: 80%;
+}
 
 .done-recipe-img-a, .favorite-recipe-img-a {
   height: 100%;
