@@ -87,9 +87,6 @@ function Recipe({ recipe, viewMode }) {
           <button
             type="button"
             className="favorite-btn"
-            // data-testid="favorite-btn"
-            // className="favorite-btn"
-            // src={ img }
             onClick={ () => {
               SaveFavoriteRecipe(recipe);
               handleFavoriteBtn(img, setImage);
