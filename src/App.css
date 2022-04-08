@@ -1,6 +1,6 @@
 .page {
-  align-items: center;
   /* border: solid  1px blue; */
+  align-items: center;
   display: flex;
   flex-direction: column;
   height: fit-content;
@@ -8,10 +8,10 @@
 }
 
   .footer {
-    height: 40px;
-    padding: 2px 5px;
     flex-direction:row;
+    height: 40px;
     justify-content: space-between;
+    padding: 2px 5px;
   }
 
   .foot-img {
@@ -19,10 +19,10 @@
   }
 
   .header, .footer {
+    align-items: center;
     background-color: #7b1fa2;
     display: flex;
     width: 100%;
-    align-items: center;
   }
   
   .header {
@@ -35,34 +35,34 @@
   } 
 
   .icons-header {
-    width: 100%;
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    width: 100%;
   }
   
   .filter-principal-btn, .search-bar-btn {
     background-color: white;
-    color: #00A296;
     border-radius: 10px;
     border:  solid 1px #00A296;
+    color: #00A296;
     margin-left: 2px;
   }
 
   .search-bar-div {
     display: flex;
-    justify-content: space-between;
     font-size: 10px;
-    width: 100%;
-    padding: 0 1px;
+    justify-content: space-between;
     margin: 1px 0;
+    padding: 0 1px;
+    width: 100%;
     }
 
     .search-text {
-      height: 20px;
-      width: 70px;
       border-radius: 10px;
       border:#7b1fa2;
+      height: 20px;
+      width: 70px;
     }
 
     .search-icon {
@@ -71,32 +71,32 @@
     }
 
   .principal-filters-section {
-    margin:  15px 10px;
     font-size: 10px;
-    width: 95%;
+    margin:  15px 10px;
     text-align: center;
+    width: 95%;
   }
 
  .recipesList-section, .Ingredients-div {
-   width: 100%;
+   align-items: flex-start;
+   align-self:flex-start;
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
    margin-bottom: 30px;
-   align-items: flex-start;
-   align-self:flex-start
+   width: 100%;
  }
 
 
  .recipe-btn, .explore-result-btn {
+  background-color: white;
   border: solid 1px #00A296;
-  margin: 1px 2px;
   color: #00A296;
   font-size: 10px;
   height: 90px;
-  width: 80px;
-  background-color: white;
+  margin: 1px 2px;
   overflow: hidden;
+  width: 80px;
   }
 
   .recipe-btn p {
@@ -104,8 +104,8 @@
   }
 
   .recipe-principal-img, .explore-result-img, .done-recipe-img {
-    width: 50px;
     height: 50px;
+    width: 50px;
   }
 
   .recipe-section {
@@ -114,11 +114,11 @@
   }
 
   .recipe-title-btns-div {
-    display: flex;
-    width: 90%;
-    justify-content: space-between;
     color: #441C55;
+    display: flex;
+    justify-content: space-between;
     margin-top: 1px;
+    width: 90%;
   }
 
   .recipe-title-btns-div div {
@@ -127,29 +127,29 @@
 
   .recipe-category{
     align-self: baseline;
-    font-size: 13px;
     color: #441C55;
+    font-size: 13px;
     padding: 1%
   }
 
   .share-btn, .finish-recipe-btn:enabled , .start-recipe-btn {
-    color: #00A296;
-    border: solid 1px #00A296;
     background-color: white;
     border-radius: 10px;
+    border: solid 1px #00A296;
+    color: #00A296;
   }
 
-  /* .finish-recipe-btn:disabled {
+  .finish-recipe-btn:disabled {
     border-radius: 10px;
-  } */
+  }
 
 .finish-recipe-btn {
     align-self: center;
   }
 
 .favorite-btn {
-    border: 0;
     background-color: white;
+    border: 0;
   }
 
 .favorite-btn img {
@@ -157,14 +157,11 @@
     filter: invert(70%)
   }
 
-  /* .favorite-btn ::before {
-    filter: invert();  } */
-
 .ingredients-section {
     align-self: baseline;
-    padding-left: 2px;
-    font-size: 12px;
     color: #441C55;
+    font-size: 12px;
+    padding-left: 2px;
   }
 
 .ingredients-list {
@@ -175,9 +172,6 @@
 .instructions-section {
     color: #441C55;
     padding: 2%;
-    /* border: solid 1px; */
-    /* height: 38%;
-    overflow-y: scroll; */
   }
 
 .instructions-section p {
@@ -194,27 +188,26 @@
   }
 
 .sugestions-section {
-
     /* border: solid; */
     align-self: center;
     display: flex;
     margin: 10px 0 40px;
     overflow-x: scroll;
-    width: 70%;
     overflow-y: hidden;
+    width: 70%;
   }
 
 .sugestion-card {
-    border: solid  1px #7b1fa2;
     border-radius: 20px;
+    border: solid  1px #7b1fa2;
     box-sizing: content-box;
+    color:#441C55;
     font-size: 10px;
     height: 90px;
     margin: 1% 9%;
     padding: 10px;
     text-align: center;
     width: 100px;
-    color:#441C55
   }
 
 .sugestion-card p {
@@ -232,44 +225,44 @@
 .start-recipe-btn {
     align-self: center;
     bottom: 0;
-    right: 50px;
     left: 50px;
-    position: fixed;
     margin-bottom: 2px;
+    position: fixed;
+    right: 50px;
   }
 
 .explore-selector-btn, .done-filter-btn {
     background-color: white;
-    color: #00A296;
     border-radius: 10px;
     border:  solid 1px #00A296;
+    color: #00A296;
     margin: 10px;
   }
 
 .done-recipes-section {
+  /* border: solid 1px; */
+  align-items: center;
   display: flex;
   flex-direction: column;
-  /* border: solid 1px; */
   width: 100%;
-  align-items: center;
 }
   
 .done-recipe-card, .favorite-recipe-card {
-    border: solid 1px #00A296;
-    margin: 2% 0px;
     border-radius: 20px;
+    border: solid 1px #00A296;
     color: #00A296;
-    font-size: 10px;
-    width: 80%;
     display:flex;
+    font-size: 10px;
     height: 100px;
+    margin: 2% 0px;
     overflow: hidden;
+    width: 80%;
   }
 
 
 .done-recipe-img-a, .favorite-recipe-img-a {
-    width: 50%;
-    height: 100%;
+  height: 100%;
+  width: 50%;
   }
 
 .done-recipe-img, .favorite-recipe-img {
@@ -279,8 +272,8 @@
 
 .informations-done-div, .informations-favorite-div {
   color: #441C55;
-  width: 50%;
   padding: 2%;
+  width: 50%;
 }
 
 .informations-done-div a, .informations-favorite-div a {
@@ -293,9 +286,9 @@
 }
 
 .done-recipes-section button {
-  height: 10%;
   background-color: white;
   border: 0px;
+  height: 10%;
   padding:  2% ;
 }
 .done-share-icon, .favorite-share-icon {
@@ -308,17 +301,17 @@
 }
 
 .done-tags {
-  margin: 1%;
   background-color: #a665c2;
   border-radius: 20px;
+  margin: 1%;
   padding: 2%;
 }
 
 .favorites-page-btns {
+  align-items: center;
   display: flex;
   justify-content: space-between;
   padding:  0% 20%;
-  align-items: center;
 }
 
 
