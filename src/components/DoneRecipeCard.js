@@ -31,59 +31,65 @@ export default function DoneRecipeCard({ filter }) {
   };
 
   const createCard = () => doneRecipes.map((recipe, index) => (
-    <div key={ recipe.id }>
-      <Link to={ `/${recipe.type}s/${recipe.id}` }>
+    <div key={ recipe.id } className="done-recipe-card">
+      <Link
+        className="done-recipe-img-a"
+        to={ `/${recipe.type}s/${recipe.id}` }
+      >
         <img
           width="60px"
           key={ recipe.id }
           src={ recipe.image }
           alt={ recipe.name }
           data-testid={ `${index}-horizontal-image` }
+          className="done-recipe-img"
         />
-        <p data-testid={ `${index}-horizontal-name` }>
-          { recipe.name }
-        </p>
       </Link>
-      {recipe.type === 'drink' && (
-        <>
-          <p data-testid={ `${index}-horizontal-top-text` }>{recipe.alcoholicOrNot}</p>
-          {/* <p>
-            { recipe.alcoholicOrNot }
-          </p> */}
-        </>
-      )}
-      {recipe.type === 'food' && (
-        <>
-          <p data-testid={ `${index}-horizontal-top-text` }>
-            { `${recipe.nationality} - ${recipe.category}` }
-          </p>
-          <p data-testid={ `${index}-${recipe.tags[0]}-horizontal-tag` }>
-            {recipe.tags[0]}
-          </p>
-          {recipe.tags[1] && (
-            <p data-testid={ `${index}-${recipe.tags[1]}-horizontal-tag` }>
-              {recipe.tags[1]}
-            </p>
-          )}
-        </>
-      )}
-      <p data-testid={ `${index}-horizontal-done-date` }>
-        { recipe.doneDate }
-      </p>
+      <div className="informations-done-div">
+        <div className="done-horizontal-top-text">
+          <span data-testid={ `${index}-horizontal-top-text` }>
+            {recipe.type === 'drink' ? recipe.alcoholicOrNot
+              : `${recipe.nationality} - ${recipe.category}`}
+          </span>
+        </div>
+        <Link
+          to={ `/${recipe.type}s/${recipe.id}` }
+        >
+          <h6 data-testid={ `${index}-horizontal-name` }>
+            { recipe.name }
+          </h6>
+        </Link>
+        <p data-testid={ `${index}-horizontal-done-date` }>
+          { `Done date: ${recipe.doneDate}`}
+        </p>
+        {recipe.type === 'food' && (
+          <>
+            <span data-testid={ `${index}-${recipe.tags[0]}-horizontal-tag` }>
+              {recipe.tags[0]}
+            </span>
+            {recipe.tags[1] && (
+              <span data-testid={ `${index}-${recipe.tags[1]}-horizontal-tag` }>
+                {recipe.tags[1]}
+              </span>
+            )}
+          </>
+        )}
+
+      </div>
       <button
         type="button"
         data-testid={ `${index}-horizontal-share-btn` }
         src={ shareIcon }
         onClick={ (e) => handleShareClick(recipe, e) }
       >
-        Compartilhar
+        <img src={ shareIcon } className="done-share-icon" alt="shareIcon" />
       </button>
     </div>
   ));
   return (
-    <section>
+    <section className="done-recipes-section">
       {doneRecipes[0] ? createCard()
-        : (<p>Carregando...</p>)}
+        : (<p>We could not find done recipes. </p>)}
     </section>
   );
 }
