@@ -427,6 +427,11 @@
     margin-bottom: 5px;
   }
 
+  .recipes-explore-nationality  {
+    max-width: 600px;
+    align-self: center
+  }
+
 
 }
 
