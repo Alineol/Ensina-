@@ -72,6 +72,7 @@ function ExploreFoodsByNationality(props) {
       <Header pageTitle="Explore Nationalities" showSearchButton />
       <select
         data-testid="explore-by-nationality-dropdown"
+        className="explore-nationality-dropdrown"
         onChange={ (e) => handleChange(e.target.value) }
       >
         <option
@@ -91,7 +92,7 @@ function ExploreFoodsByNationality(props) {
           </option>
         ))}
       </select>
-      <div className="Recipes">
+      <div className="recipes-explore-nationality">
         {recipes[0] && createCards()}
       </div>
       <MenuInferior />
