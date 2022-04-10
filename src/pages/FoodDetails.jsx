@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import DrinkSuggestion from '../components/DrinkSuggestion';
 import Recipe from '../components/Recipe';
 
-function FoodDetails() {
+function FoodDetails(props) {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
 
@@ -93,22 +93,28 @@ function FoodDetails() {
         <section className="sugestions-section">
           <DrinkSuggestion numberOfSuggestions={ 6 } />
         </section>
-        <section>
-          <Link to={ `/foods/${id}/in-progress` }>
-            <button
-              className="start-recipe-btn"
-              type="button"
-              data-testid="start-recipe-btn"
-            >
-              { checkMealInProgress()
-                ? 'Continue Recipe'
-                : 'Start Recipe' }
-            </button>
-          </Link>
-        </section>
+        {/* <Link to={ `/foods/${id}/in-progress` }> */}
+        <button
+          className="start-recipe-btn"
+          type="button"
+          data-testid="start-recipe-btn"
+          onClick={ () => {
+            const { history } = props;
+            history.push(`/foods/${id}/in-progress`);
+          } }
+        >
+          { checkMealInProgress()
+            ? 'Continue Recipe'
+            : 'Start Recipe' }
+        </button>
+        {/* </Link> */}
       </div>
     )
   );
 }
+
+FoodDetails.propTypes = {
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 export default FoodDetails;
