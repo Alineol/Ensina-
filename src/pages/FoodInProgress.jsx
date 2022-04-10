@@ -73,12 +73,14 @@ function FoodInProgress() {
 
   return (
     <div className="page">
-      {
-        recipe && <Recipe
-          recipe={ recipe }
-          viewMode="inProgress"
-        />
-      }
+      <section className="recipe-section">
+        {
+          recipe && <Recipe
+            recipe={ recipe }
+            viewMode="inProgress"
+          />
+        }
+      </section>
     </div>
 
   );
