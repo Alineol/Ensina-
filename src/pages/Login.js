@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import context from '../context/context';
+import panelaImg from '../images/panela.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -27,8 +28,9 @@ function Login() {
 
   return (
     <div className="main-login">
+      <img src={ panelaImg } alt="panela" className="login-image" />
       <div className="card-login">
-        <form>
+        <form className=" form-login">
           <h1> LOGIN </h1>
           <input
             className="login-input"
