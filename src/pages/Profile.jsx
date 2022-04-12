@@ -17,38 +17,34 @@ function Profile(props) {
   return (
     <div className="page">
       <Header pageTitle="Profile" showSearchButton={ false } />
-      <div>
-        <p data-testid="profile-email">{email}</p>
-      </div>
       <div className="main-profile">
-        <div>
-          <button
-            data-testid="profile-done-btn"
-            className="menu-btn"
-            type="button"
-            onClick={ () => history.push('/done-recipes') }
-          >
-            Done Recipes
-          </button>
-          <button
-            data-testid="profile-favorite-btn"
-            type="button"
-            className="menu-btn"
-            onClick={ () => history.push('/favorite-recipes') }
-          >
-            Favorite Recipes
-          </button>
-        </div>
-        <div>
-          <button
-            data-testid="profile-logout-btn"
-            className="logout-btn"
-            type="button"
-            onClick={ () => { localStorage.clear(); history.push('/'); } }
-          >
-            Logout
-          </button>
-        </div>
+        <p data-testid="profile-email">
+          {`User: ${email}`}
+        </p>
+        <button
+          data-testid="profile-done-btn"
+          className="menu-btn"
+          type="button"
+          onClick={ () => history.push('/done-recipes') }
+        >
+          Done Recipes
+        </button>
+        <button
+          data-testid="profile-favorite-btn"
+          type="button"
+          className="menu-btn"
+          onClick={ () => history.push('/favorite-recipes') }
+        >
+          Favorite Recipes
+        </button>
+        <button
+          data-testid="profile-logout-btn"
+          className="logout-btn"
+          type="button"
+          onClick={ () => { localStorage.clear(); history.push('/'); } }
+        >
+          Logout
+        </button>
       </div>
       <MenuInferior />
     </div>

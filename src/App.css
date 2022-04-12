@@ -1,9 +1,9 @@
 .page {
   align-items: center;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: Raleway , sans-serif;
-  height: 100%;
   max-width: 100vw;
   background-color: #dbc1f82d;
 }
@@ -116,47 +116,31 @@
   cursor: pointer;
   box-shadow: 0 10px 40px -15px #782D95;
 }
+
 .btn-login:hover {
   width: 101%;
   box-shadow: 0 15px 45px -12px #782D95;
 }
+
 .main-profile {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin-top: 40%;
   background-color: #dbc1f82d;
-  width: 100vw;
-  height: 40vh;
   display: flex;
+  flex-direction: column;
+  width: 90%;
   align-items: center;
-  justify-content: center;
-  direction: column;
 }
+
 .main-profile > p {
-  width: 80%;
-  display: flex;
-  direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   color: #782D95;
   font-weight: 600;
   padding: 10px;
   margin: 0px;
 }
-.card-profile {
-  width: 80%;
-  color: #782D95;
-  font-weight: 600;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  direction: column;
-  position: relative;
-  margin: 0px;
-}
+
 .menu-btn {
-  width: 100%;
+  width: 70%;
   border: none;
   border-radius: 10px;
   padding: 15px;
@@ -166,24 +150,26 @@
   box-sizing: border-box;
   margin-bottom: 15px;
 }
+
 .logout-btn {
-  width: 100%;
-  padding: 16px 0px;
-  margin: 10px;
+  background-color: #782D95;
   border: none;
   border-radius: 8px;
-  outline: none;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: 3px;
-  background-color: #782D95;
+  box-shadow: 0 10px 40px -15px #782D95;
   color: white;
   cursor: pointer;
-  box-shadow: 0 10px 40px -15px #782D95;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin: 10px;
+  outline: none;
+  padding: 16px 0px;
+  text-transform: uppercase;
+  width: 60%;
 }
+
 .logout-btn:hover {
-  width: 101%;
+  width: 61%;
   box-shadow: 0 15px 45px -12px #782D95;
 }
 
@@ -192,7 +178,9 @@
   border: solid 1px #00a296;
   border-radius: 10px;
   color: #00a296;
-  margin-left: 2px;
+  margin-top: 1%;
+  margin-left: 1%;
+  font-weight: bold;
 }
 
 .search-bar-div {
@@ -239,12 +227,11 @@
 
 
 .recipe-btn, .explore-result-btn {
-  background-color: white;
   border: solid 1px #00a296;
   color: #00a296;
   font-size: 10px;
   height: 17vh;
-  margin: 1px 2px;
+  margin: 1%;
   overflow: hidden;
   width: 25%;
 }
@@ -490,7 +477,7 @@
   padding: 0% 20%;
 }
 
-@media screen  and ( min-width : 1000px  ) {
+@media screen  and ( min-width : 800px  ) {
 
   .card-login {
     width: 300px;
