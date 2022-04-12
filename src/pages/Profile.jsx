@@ -15,7 +15,7 @@ function Profile(props) {
   }, []);
 
   return (
-    <div>
+    <div className="page">
       <Header pageTitle="Profile" showSearchButton={ false } />
       <div>
         <p data-testid="profile-email">{email}</p>
