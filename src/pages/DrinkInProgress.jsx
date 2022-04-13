@@ -73,14 +73,16 @@ function DrinkInProgress() {
   }, [id]);
 
   return (
-    <div>
-      <h1>Drink in progress page</h1>
-      {
-        recipe && <Recipe
-          recipe={ recipe }
-          viewMode="inProgress"
-        />
-      }
+    <div className="page">
+      <section className="recipe-section">
+
+        {
+          recipe && <Recipe
+            recipe={ recipe }
+            viewMode="inProgress"
+          />
+        }
+      </section>
 
     </div>
 

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import FoodSuggestion from '../components/FoodSuggestion';
 import Recipe from '../components/Recipe';
 
-function DrinkDetails() {
+function DrinkDetails(props) {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
 
@@ -15,7 +15,7 @@ function DrinkDetails() {
 
     const singleRecipe = data.drinks[0];
     const { strDrink, strDrinkThumb, strCategory, strInstructions,
-      strAlcoholic, strVideo } = data.drinks[0];
+      strAlcoholic } = data.drinks[0];
 
     const ingredients = Object
       .entries(singleRecipe)
@@ -27,7 +27,6 @@ function DrinkDetails() {
 
     const ingredientsWithMeasures = ingredients.map((ingredient, index) => {
       if (measures[index]) {
-        console.log(measures[index]);
         return `${ingredient[1]} ${measures[index][1]}`;
       }
       return ingredient[1];
@@ -43,7 +42,7 @@ function DrinkDetails() {
       nationality: '',
       alcoholicOrNot: strAlcoholic,
       id,
-      video: strVideo,
+      // video,
     });
   };
 
@@ -78,34 +77,31 @@ function DrinkDetails() {
             viewMode="details"
           />
         </section>
-        <section>
-          <iframe
-            title="teste"
-            width="450"
-            height="350"
-            src={ recipe.video }
-            frameBorder="0"
-            allowFullScreen
-            data-testid="video"
-          />
-        </section>
         <section className="sugestions-section">
           <FoodSuggestion numberOfSuggestions={ 6 } />
         </section>
-        <Link to={ `/drinks/${id}/in-progress` }>
-          <button
-            className="start-recipe-btn"
-            type="button"
-            data-testid="start-recipe-btn"
-          >
-            { checkDrinkInProgress()
-              ? 'Continue Recipe'
-              : 'Start Recipe' }
-          </button>
-        </Link>
+        {/* <Link to={ `/drinks/${id}/in-progress` }> */}
+        <button
+          type="button"
+          data-testid="start-recipe-btn"
+          className="start-recipe-btn"
+          onClick={ () => {
+            const { history } = props;
+            history.push(`/drinks/${id}/in-progress`);
+          } }
+        >
+          { checkDrinkInProgress()
+            ? 'Continue Recipe'
+            : 'Start Recipe' }
+        </button>
+        {/* </Link> */}
       </div>
     )
   );
 }
+
+DrinkDetails.propTypes = {
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 export default DrinkDetails;

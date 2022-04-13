@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import context from '../context/context';
+import panelaImg from '../images/panela.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -26,41 +27,45 @@ function Login() {
   };
 
   return (
-    <div className="page">
-      <form>
-        <input
-          className="email-input"
-          type="email"
-          placeholder="Email"
-          data-testid="email-input"
-          required
-          name="email"
-          value={ email }
-          onChange={ (e) => setEmail(e.target.value) }
-        />
-        <input
-          id="UserName"
-          className="name-input"
-          type="password"
-          placeholder="Senha"
-          data-testid="password-input"
-          required
-          name="userName"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
-        />
-        <Link to="/foods">
-          <button
-            data-testid="login-submit-btn"
-            className="btn-login"
-            type="button"
-            disabled={ disabled }
-            onClick={ handleLoginClick }
-          >
-            Play
-          </button>
-        </Link>
-      </form>
+    <div className="main-login">
+      <img src={ panelaImg } alt="panela" className="login-image" />
+      <div className="card-login">
+        <form className=" form-login">
+          <h1> LOGIN </h1>
+          <input
+            className="login-input"
+            type="email"
+            placeholder="Email"
+            data-testid="email-input"
+            required
+            name="email"
+            value={ email }
+            onChange={ (e) => setEmail(e.target.value) }
+          />
+          <input
+            id="UserName"
+            className="login-input"
+            type="password"
+            placeholder="Password"
+            data-testid="password-input"
+            required
+            name="userName"
+            value={ password }
+            onChange={ (e) => setPassword(e.target.value) }
+          />
+          <Link to="/foods">
+            <button
+              data-testid="login-submit-btn"
+              className="btn-login"
+              type="button"
+              disabled={ disabled }
+              onClick={ handleLoginClick }
+            >
+              Enter
+            </button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }

@@ -17,13 +17,13 @@ function DoneRecipes() {
             type="button"
             data-testid={ `filter-by-${option}-btn` }
             onClick={ () => setFilter(option) }
+            className="done-filter-btn"
           >
             {option}
           </button>
         ))}
       </section>
       <DoneRecipeCard filter={ filter } />
-      <p>pagina</p>
     </div>
   );
 }

@@ -21,7 +21,7 @@ function DrinksCards(props) {
 
   if (isNotArrayEmpty(recipes)) {
     return (
-      <section className="recipes-section">
+      <section className="recipesList-section">
         {recipes.map((recipe, index) => (
           <button
             key={ recipe.idDrink }
@@ -29,12 +29,14 @@ function DrinksCards(props) {
             data-testid={ `${index}-recipe-card` }
             tabIndex={ index }
             onClick={ () => history.push(`/drinks/${recipe.idDrink}`) }
+            className="recipe-btn"
           >
             <img
               src={ recipe.strDrinkThumb }
               alt={ recipe.strDrink }
               width="100px"
               data-testid={ `${index}-card-img` }
+              className="recipe-principal-img"
             />
             <p data-testid={ `${index}-card-name` }>
               {recipe.strDrink}

@@ -16,14 +16,13 @@ function FavoriteRecipes() {
             type="button"
             data-testid={ `filter-by-${option}-btn` }
             onClick={ () => setFilter(option) }
+            className="done-filter-btn"
           >
             {option}
           </button>
         ))}
       </section>
-      <section>
-        <CardFavorite filter={ filter } />
-      </section>
+      <CardFavorite filter={ filter } />
     </div>
   );
 }

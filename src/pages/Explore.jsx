@@ -13,6 +13,7 @@ function Explore(props) {
           onClick={ () => history.push('/explore/foods') }
           type="button"
           data-testid="explore-foods"
+          className="explore-selector-btn"
         >
           Explore Foods
         </button>
@@ -20,6 +21,7 @@ function Explore(props) {
           onClick={ () => history.push('/explore/drinks') }
           type="button"
           data-testid="explore-drinks"
+          className="explore-selector-btn"
         >
           Explore Drinks
         </button>

@@ -64,6 +64,7 @@ function PrincipalScreenFilters(props) {
       data-testid={ `${strCategory}-category-filter` }
       type="button"
       key={ index }
+      className="filter-principal-btn"
       onClick={ () => handleButtonClick(strCategory) }
       // onFocus={ (e) => handleOnFocus(e) }
     >
@@ -72,17 +73,18 @@ function PrincipalScreenFilters(props) {
   ));
 
   return (
-    <div>
+    <section className="principal-filters-section">
       {filtersList[0] ? createButtonsFilters() : (<p>Carregando...</p>)}
       <button
         data-testid="All-category-filter"
         type="button"
         key={ 6 }
         onClick={ () => setShowFilteredRecipes(false) }
+        className="filter-principal-btn"
       >
         All
       </button>
-    </div>
+    </section>
   );
 }
 PrincipalScreenFilters.propTypes = {
