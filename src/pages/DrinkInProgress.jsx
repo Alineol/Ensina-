@@ -31,6 +31,18 @@ function DrinkInProgress() {
     checkIngredient();
   }, [ingredientClick]);
 
+  useEffect(() => {
+    const savedProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (savedProgress) {
+      if (savedProgress.cocktails[id]) {
+        const saved = savedProgress.cocktails[id];
+        setProgress(saved);
+      }
+    } else {
+      setProgress([]);
+    }
+  }, [id]);
+
   const adaptToRecipe = (data) => {
     if (!data.drinks) {
       return;
