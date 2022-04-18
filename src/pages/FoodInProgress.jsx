@@ -20,12 +20,10 @@ function FoodInProgress() {
     const savedProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (savedProgress) {
       if (savedProgress.meals[id]) {
-        console.log('lele');
         const saved = savedProgress.meals[id];
         setProgress(saved);
       }
     } else {
-      console.log('lalala');
       setProgress([]);
     }
   }, [id]);
