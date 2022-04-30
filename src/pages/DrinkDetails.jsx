@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import FoodSuggestion from '../components/FoodSuggestion';
 import Recipe from '../components/Recipe';
+import context from '../context/context';
 
 function DrinkDetails(props) {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
+  const { setProgress } = useContext(context);
 
   const adaptToRecipe = (data) => {
     if (!data.drinks) {
@@ -42,7 +44,6 @@ function DrinkDetails(props) {
       nationality: '',
       alcoholicOrNot: strAlcoholic,
       id,
-      // video,
     });
   };
 
@@ -80,13 +81,13 @@ function DrinkDetails(props) {
         <section className="sugestions-section">
           <FoodSuggestion numberOfSuggestions={ 6 } />
         </section>
-        {/* <Link to={ `/drinks/${id}/in-progress` }> */}
         <button
           type="button"
           data-testid="start-recipe-btn"
           className="start-recipe-btn"
           onClick={ () => {
             const { history } = props;
+            setProgress([]);
             history.push(`/drinks/${id}/in-progress`);
           } }
         >
@@ -94,7 +95,6 @@ function DrinkDetails(props) {
             ? 'Continue Recipe'
             : 'Start Recipe' }
         </button>
-        {/* </Link> */}
       </div>
     )
   );
