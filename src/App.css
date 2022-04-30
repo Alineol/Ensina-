@@ -223,6 +223,9 @@
   margin-top: 30px;
 }
 
+.ingredienteProgress:checked + label {
+  text-decoration: line-through;
+}
 
 .recipe-btn, .explore-result-btn {
   border: solid 1px #00a296;
