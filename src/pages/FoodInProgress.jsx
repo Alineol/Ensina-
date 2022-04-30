@@ -14,19 +14,11 @@ function FoodInProgress() {
     if (progress.length > 0) {
       SaveProgressinLocalSotorage(progress, id, 'food');
     }
-  }, [progress, id]);
+  }, [progress]);
 
-  useEffect(() => {
-    const savedProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (savedProgress) {
-      if (savedProgress.meals[id]) {
-        const saved = savedProgress.meals[id];
-        setProgress(saved);
-      }
-    } else {
-      setProgress([]);
-    }
-  }, [id]);
+  useEffect(() => () => {
+    setProgress([]);
+  }, []);
 
   useEffect(() => {
     const checkIngredient = async () => {
@@ -67,10 +59,6 @@ function FoodInProgress() {
       type: 'food',
       tags: strTags,
     });
-    const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (saved && saved.meals[id]) {
-      setProgress(saved.meals[id]);
-    }
   };
 
   useEffect(() => {
@@ -78,6 +66,9 @@ function FoodInProgress() {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
       const data = await response.json();
       adaptToRecipe(data);
+      if (JSON.parse(localStorage.getItem('inProgressRecipes')).meals[id]) {
+        setProgress(JSON.parse(localStorage.getItem('inProgressRecipes')).meals[id]);
+      }
     };
 
     fetchRecipeApi();
