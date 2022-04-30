@@ -8,6 +8,7 @@ import { SaveFavoriteRecipe, checkFavorite,
 function Recipe({ recipe, viewMode, props }) {
   const {
     copyToClipboard,
+    setProgress,
     progress,
   } = useContext(context);
 
@@ -21,7 +22,7 @@ function Recipe({ recipe, viewMode, props }) {
       } else { setDisabled(true); }
     };
     enableFinishButton();
-  }, [progress, recipe.id]);
+  });
 
   const handleClickCopyLinkButton = (e) => {
     const linkCopied = 'Link copied!';
@@ -56,8 +57,8 @@ function Recipe({ recipe, viewMode, props }) {
               key={ index }
               dataTestId={ dataTestId }
               name={ ingredient }
+              possition={ index }
               selectable={ selectable }
-              isSelected={ false }
             />);
         }));
 
@@ -125,7 +126,7 @@ function Recipe({ recipe, viewMode, props }) {
                 data-testid="finish-recipe-btn"
                 className="finish-recipe-btn"
                 disabled={ disabled }
-                onClick={ () => handleFinishClickBtn(recipe, props) }
+                onClick={ () => handleFinishClickBtn(recipe, props, setProgress) }
               >
                 Finish Recipe
               </button>
@@ -148,6 +149,7 @@ Recipe.propTypes = {
     alcoholicOrNot: PropTypes.string,
     doneDate: PropTypes.string,
   }).isRequired,
+  props: PropTypes.objectOf(PropTypes.object).isRequired,
   viewMode: PropTypes.oneOf(['details', 'inProgress']).isRequired,
 };
 
