@@ -53,7 +53,8 @@ export function checkCheked(pathname, name, id) {
       const hasIngredient = saved.meals[id].some((ingredient) => ingredient === name);
       if (hasIngredient) {
         return true;
-      } return false;
+      }
+      return false;
     }
     if (pathname.includes('drinks') && cocktails && cocktails[id]) {
       const hasIngredient = saved.cocktails[id].some((ingredient) => ingredient === name);
@@ -137,18 +138,23 @@ export const checkRecipeProgress = (recipe, setDisabled) => {
 export const SaveDoneRecipe = (recipeToSave) => {
   const saved = JSON.parse(localStorage.getItem('doneRecipes'));
   if (saved) {
-    const newSaved = [...saved, recipeToSave];
-    localStorage.setItem('doneRecipes', JSON.stringify(newSaved));
+    const check = saved.some((recipe) => recipe.id === recipeToSave.id);
+    console.log(check);
+    if (!check) {
+      const newSaved = [...saved, recipeToSave];
+      localStorage.setItem('doneRecipes', JSON.stringify(newSaved));
+    }
   }
   if (!saved) {
     localStorage.setItem('doneRecipes', JSON.stringify([recipeToSave]));
   }
 };
 
-export const handleFinishClickBtn = (recipe) => {
+export const handleFinishClickBtn = (recipe, props) => {
+  const { history } = props;
   delete recipe.ingredients;
   delete recipe.instructions;
-  if (recipe.type === 'food') {
+  if (recipe.type === 'food' && recipe.tags) {
     recipe.tags = recipe.tags.split((/\s*,\s*/));
   }
   const date = new Date();
@@ -157,4 +163,5 @@ export const handleFinishClickBtn = (recipe) => {
   const year = date.getFullYear();
   recipe.doneDate = `${day}/${month}/${year}`;
   SaveDoneRecipe(recipe);
+  history.push('/done-recipes');
 };
