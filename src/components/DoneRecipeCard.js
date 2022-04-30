@@ -62,7 +62,7 @@ export default function DoneRecipeCard({ filter }) {
         <p data-testid={ `${index}-horizontal-done-date` }>
           { `Done date: ${recipe.doneDate}`}
         </p>
-        {recipe.type === 'food' && (
+        {recipe.tags && (
           <>
             <span
               className="done-tags"
