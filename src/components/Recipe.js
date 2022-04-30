@@ -1,12 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Ingredient from './Ingredient';
 import context from '../context/context';
 import { SaveFavoriteRecipe, checkFavorite,
   handleFavoriteBtn, handleFinishClickBtn } from '../services/helpers';
 
-function Recipe({ recipe, viewMode }) {
+function Recipe({ recipe, viewMode, props }) {
   const {
     copyToClipboard,
     progress,
@@ -22,7 +21,7 @@ function Recipe({ recipe, viewMode }) {
       } else { setDisabled(true); }
     };
     enableFinishButton();
-  }, [progress]);
+  }, [progress, recipe.id]);
 
   const handleClickCopyLinkButton = (e) => {
     const linkCopied = 'Link copied!';
@@ -121,17 +120,15 @@ function Recipe({ recipe, viewMode }) {
         {
           viewMode === 'inProgress'
             ? (
-              <Link to="/done-recipes">
-                <button
-                  type="button"
-                  data-testid="finish-recipe-btn"
-                  className="finish-recipe-btn"
-                  disabled={ disabled }
-                  onClick={ () => handleFinishClickBtn(recipe) }
-                >
-                  Finish Recipe
-                </button>
-              </Link>
+              <button
+                type="button"
+                data-testid="finish-recipe-btn"
+                className="finish-recipe-btn"
+                disabled={ disabled }
+                onClick={ () => handleFinishClickBtn(recipe, props) }
+              >
+                Finish Recipe
+              </button>
             ) : null
         }
       </section>
