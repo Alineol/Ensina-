@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import context from '../context/context';
 import { checkCheked } from '../services/helpers';
 
-function Ingredient({ name, selectable, dataTestId }) {
+function Ingredient({ name, selectable, dataTestId, possition }) {
   const { location: { pathname } } = useHistory();
   const { id } = useParams();
   const { setIngredientChecked, progress, setProgress } = useContext(context);
@@ -16,14 +16,14 @@ function Ingredient({ name, selectable, dataTestId }) {
     setIngredientChecked(ingredient);
   };
 
-  const checkIngredient = () => {
-    if (progress.includes(name)) {
-      const newProgress = progress.filter((item) => item !== name);
-      setProgress(newProgress);
+  const checkIngredient = async () => {
+    if (progress.includes(possition)) {
+      const newProgress = progress.filter((item) => item !== possition);
+      await setProgress(newProgress);
     }
-    if (!progress.includes(name)) {
-      const newProgress = progress.concat(name);
-      setProgress(newProgress);
+    if (!progress.includes(possition)) {
+      const newProgress = progress.concat(possition);
+      await setProgress(newProgress);
     }
   };
 
