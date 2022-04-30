@@ -7,32 +7,7 @@ import context from '../context/context';
 function FoodInProgress(props) {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const { ingredientChecked, ingredientClick,
-    progress, setProgress } = useContext(context);
-
-  useEffect(() => {
-    if (progress.length > 0) {
-      SaveProgressinLocalSotorage(progress, id, 'food');
-    }
-  }, [progress]);
-
-  useEffect(() => () => {
-    setProgress([]);
-  }, []);
-
-  useEffect(() => {
-    const checkIngredient = async () => {
-      if (progress.includes(ingredientChecked)) {
-        const newProgress = progress.filter((item) => item !== ingredientChecked);
-        setProgress(newProgress);
-      }
-      if (!progress.includes(ingredientChecked)) {
-        const newProgress = progress.concat(ingredientChecked);
-        setProgress(newProgress);
-      }
-    };
-    checkIngredient();
-  }, [ingredientClick]);
+  const { progress, setProgress } = useContext(context);
 
   const adaptToRecipe = (data) => {
     if (!data.meals) {
@@ -73,6 +48,12 @@ function FoodInProgress(props) {
 
     fetchRecipeApi();
   }, []);
+
+  useEffect(() => {
+    if (progress.length > 0) {
+      SaveProgressinLocalSotorage(progress, id, 'food');
+    }
+  }, [progress, id]);
 
   return (
     <div className="page">
