@@ -4,7 +4,7 @@ import Recipe from '../components/Recipe';
 import { SaveProgressinLocalSotorage } from '../services/helpers';
 import context from '../context/context';
 
-function FoodInProgress() {
+function FoodInProgress(props) {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const { ingredientChecked, ingredientClick,
@@ -79,6 +79,7 @@ function FoodInProgress() {
       <section className="recipe-section">
         {
           recipe && <Recipe
+            props={ props }
             recipe={ recipe }
             viewMode="inProgress"
           />
