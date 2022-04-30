@@ -8,13 +8,23 @@ import { checkCheked } from '../services/helpers';
 function Ingredient({ name, selectable, dataTestId }) {
   const { location: { pathname } } = useHistory();
   const { id } = useParams();
-  const { setIngredientChecked, ingredientClick,
-    setIngredientClick } = useContext(context);
+  const { setIngredientChecked, progress, setProgress } = useContext(context);
   const [check, setCheck] = useState(checkCheked(pathname, name, id));
 
   const handleOnChangeInput = (ingredient) => {
     setCheck(!check);
     setIngredientChecked(ingredient);
+  };
+
+  const checkIngredient = () => {
+    if (progress.includes(name)) {
+      const newProgress = progress.filter((item) => item !== name);
+      setProgress(newProgress);
+    }
+    if (!progress.includes(name)) {
+      const newProgress = progress.concat(name);
+      setProgress(newProgress);
+    }
   };
 
   const renderSelectableIngredient = () => (
@@ -27,7 +37,7 @@ function Ingredient({ name, selectable, dataTestId }) {
         className="ingredienteProgress"
         onChange={ (e) => handleOnChangeInput(e.target.value) }
         checked={ check }
-        onClick={ () => setIngredientClick(!ingredientClick) }
+        onClick={ checkIngredient }
       />
       <label
         htmlFor={ `${name}-ingredient` }
