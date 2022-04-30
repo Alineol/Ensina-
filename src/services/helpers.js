@@ -150,7 +150,7 @@ export const SaveDoneRecipe = (recipeToSave) => {
   }
 };
 
-export const handleFinishClickBtn = (recipe, props) => {
+export const handleFinishClickBtn = (recipe, props, setProgress) => {
   const { history } = props;
   delete recipe.ingredients;
   delete recipe.instructions;
@@ -163,5 +163,6 @@ export const handleFinishClickBtn = (recipe, props) => {
   const year = date.getFullYear();
   recipe.doneDate = `${day}/${month}/${year}`;
   SaveDoneRecipe(recipe);
+  setProgress([]);
   history.push('/done-recipes');
 };
