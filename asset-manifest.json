@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ensinaE/static/css/main.6dd97f34.css",
-    "main.js": "/ensinaE/static/js/main.94e95603.js",
+    "main.css": "/ensinaE/static/css/main.8cde4ced.css",
+    "main.js": "/ensinaE/static/js/main.590b83ca.js",
     "static/media/Raleway-VariableFont_wght.ttf": "/ensinaE/static/media/Raleway-VariableFont_wght.3fefe681f4c62116679b.ttf",
     "static/media/exploreIcon.svg": "/ensinaE/static/media/exploreIcon.076346236f69318885d7f53b65f0e4c7.svg",
     "static/media/mealIcon.svg": "/ensinaE/static/media/mealIcon.40029e7f1422ba5a1bf1c10fa4f59030.svg",
@@ -13,11 +13,11 @@
     "static/media/blackHeartIcon.svg": "/ensinaE/static/media/blackHeartIcon.083cb006913d197c95857ebfa2161db7.svg",
     "static/media/drinkIcon.svg": "/ensinaE/static/media/drinkIcon.efc0d3c156e5da73e44a826c8d67b142.svg",
     "index.html": "/ensinaE/index.html",
-    "main.6dd97f34.css.map": "/ensinaE/static/css/main.6dd97f34.css.map",
-    "main.94e95603.js.map": "/ensinaE/static/js/main.94e95603.js.map"
+    "main.8cde4ced.css.map": "/ensinaE/static/css/main.8cde4ced.css.map",
+    "main.590b83ca.js.map": "/ensinaE/static/js/main.590b83ca.js.map"
   },
   "entrypoints": [
-    "static/css/main.6dd97f34.css",
-    "static/js/main.94e95603.js"
+    "static/css/main.8cde4ced.css",
+    "static/js/main.590b83ca.js"
   ]
 }
