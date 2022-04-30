@@ -1,47 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Recipe from '../components/Recipe';
-import {
-  SaveProgressinLocalSotorage } from '../services/helpers';
+import { SaveProgressinLocalSotorage } from '../services/helpers';
 import context from '../context/context';
 
-function DrinkInProgress() {
+function DrinkInProgress(props) {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const { ingredientChecked, ingredientClick,
-    progress, setProgress } = useContext(context);
+  const { progress, setProgress } = useContext(context);
 
-  useEffect(() => {
-    if (progress.length > 0) {
-      SaveProgressinLocalSotorage(progress, id, 'drink');
-    }
-  }, [progress, id]);
-
-  useEffect(() => {
-    const checkIngredient = async () => {
-      if (progress.includes(ingredientChecked)) {
-        const newProgress = progress.filter((item) => item !== ingredientChecked);
-        setProgress(newProgress);
-      }
-      if (!progress.includes(ingredientChecked)) {
-        const newProgress = progress.concat(ingredientChecked);
-        setProgress(newProgress);
-      }
-    };
-    checkIngredient();
-  }, [ingredientClick]);
-
-  useEffect(() => {
-    const savedProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (savedProgress) {
-      if (savedProgress.cocktails[id]) {
-        const saved = savedProgress.cocktails[id];
-        setProgress(saved);
-      }
-    } else {
-      setProgress([]);
-    }
-  }, [id]);
+  // useEffect(() => () => {
+  //   setProgress([]);
+  // }, []);
+  // useEffect(() => { setProgress([]); }, [id]);
 
   const adaptToRecipe = (data) => {
     if (!data.drinks) {
@@ -68,10 +39,6 @@ function DrinkInProgress() {
       alcoholicOrNot: strAlcoholic,
       id,
     });
-    const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (saved && saved.cocktails[id]) {
-      setProgress(saved.cocktails[id]);
-    }
   };
 
   useEffect(() => {
@@ -79,10 +46,19 @@ function DrinkInProgress() {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
       const data = await response.json();
       adaptToRecipe(data);
+      if (JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails[id]) {
+        setProgress(JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails[id]);
+      }
     };
 
     fetchRecipeApi();
-  }, [id]);
+  }, []);
+
+  useEffect(() => {
+    if (progress.length > 0) {
+      SaveProgressinLocalSotorage(progress, id, 'drink');
+    }
+  }, [progress, id]);
 
   return (
     <div className="page">
@@ -90,6 +66,7 @@ function DrinkInProgress() {
 
         {
           recipe && <Recipe
+            props={ props }
             recipe={ recipe }
             viewMode="inProgress"
           />
