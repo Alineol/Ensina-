@@ -9,7 +9,7 @@ function Ingredient({ name, selectable, dataTestId, possition }) {
   const { location: { pathname } } = useHistory();
   const { id } = useParams();
   const { setIngredientChecked, progress, setProgress } = useContext(context);
-  const [check, setCheck] = useState(checkCheked(pathname, name, id));
+  const [check, setCheck] = useState(checkCheked(pathname, possition, id));
 
   const handleOnChangeInput = (ingredient) => {
     setCheck(!check);

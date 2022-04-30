@@ -44,20 +44,23 @@ export const SaveProgressinLocalSotorage = (progress, recipeId, type) => {
   }
 };
 
-export function checkCheked(pathname, name, id) {
+export function checkCheked(pathname, possition, id) {
+  console.log(possition);
   const saved = JSON.parse(localStorage.getItem('inProgressRecipes'));
   if (saved) {
     const { meals, cocktails } = saved;
 
     if (pathname.includes('foods') && meals && meals[id]) {
-      const hasIngredient = saved.meals[id].some((ingredient) => ingredient === name);
+      const hasIngredient = saved
+        .meals[id].some((ingredient) => ingredient === possition);
       if (hasIngredient) {
         return true;
       }
       return false;
     }
     if (pathname.includes('drinks') && cocktails && cocktails[id]) {
-      const hasIngredient = saved.cocktails[id].some((ingredient) => ingredient === name);
+      const hasIngredient = saved
+        .cocktails[id].some((ingredient) => ingredient === possition);
       if (hasIngredient) {
         return true;
       } return false;
