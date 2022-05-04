@@ -15,7 +15,7 @@ Integrantes: Aline Salema, Aline Oliveira,  Fran Oliveira e Marco Paullino.
 
 - css de todas as tela exceto a de login e a de perfil; 
 - Lógica das telas de explorar (/explore);
-- Lógica da tela principal de receitas (/foods e /drinks) e os botões de filtrar de acordo com a categora;
+- Lógica da tela principal de receitas (/foods e /drinks) e os botões de filtrar de acordo com a categoria;
 - A tela de receita em progresso foi iniciada por um integrante do grupo e finalizada por mim com a lógica de conferir se todos os ingredientes foram marcados para liberar o botão de finalizar e salvar o progresso atual no local Storage ao clicar em um ingrediente;
 - A pagina de receitas feitas (/done-recipes) foi realizada em pair-programing, eu e mais um integrante do grupo;
 - Todos os botões de favoritar e e compartilhar. 
