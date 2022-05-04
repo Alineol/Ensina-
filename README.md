@@ -11,8 +11,9 @@ O layout teve como foco dispositivos móveis, então todos os protótipos foram 
 Esse projeto foi realizado em grupo, dessa maneira podemos trabalhar metodologias ágeis como scrum e kanban durante seu desenvolvimento. 
 Integrantes: Aline Salema, Aline Oliveira,  Fran Oliveira e Marco Paullino.
 
-Entre minhas contribuições, posso citar:
--css de todas as tela exceto a de login e a de perfil; 
+**Entre minhas contribuições, posso citar:**
+
+- css de todas as tela exceto a de login e a de perfil; 
 - Lógica das telas de explorar (/explore);
 - Lógica da tela principal de receitas (/foods e /drinks) e os botões de filtrar de acordo com a categora;
 - A tela de receita em progresso foi iniciada por um integrante do grupo e finalizada por mim com a lógica de conferir se todos os ingredientes foram marcados para liberar o botão de finalizar e salvar o progresso atual no local Storage ao clicar em um ingrediente;
@@ -31,8 +32,9 @@ Nenhuma
 
 
 
-**Resultado final**
-alineol.github.io/ensinae/
+**Resultado final:**
+
+acesse o link -> [ensinaE](alineol.github.io/ensinae/)
 
   
   ![](https://github.com/Alineol/Pixels-art/blob/main/1_viMDiyH9fN7cmcM0n3qqIg.gif)
