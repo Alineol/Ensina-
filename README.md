@@ -28,7 +28,7 @@ Linguagem : JavaScript
 Bicliotecas : React(context)
 
 **Dependencias necessárias**
-Nenhuma
+Abra o projeto e rode npm install
 
 
 
